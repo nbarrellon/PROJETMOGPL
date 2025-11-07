@@ -84,5 +84,5 @@ def creation_fichier(instances_voulues,fichier):
             f.write(str(depart[0])+" "+str(depart[1])+" "+str(arrivee[0])+" "+str(arrivee[1])+" "+orientation[randint(0,3)]+"\n")
             f.write("0 0\n")
 
-creation_fichier([(5,5,3)],"essai2.txt")
+
 

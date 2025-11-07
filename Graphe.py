@@ -20,8 +20,8 @@ class Graphe:
                         self.obstacles.add((x,y)) #on ajoute pas ce sommet
         print("obstacles : ",self.obstacles)
         #construction du graphe
-        for x in range(self.N):
-            for y in range(self.M):
+        for x in range(self.N+1):
+            for y in range(self.M+1):
                 if (x,y) not in self.obstacles:#on vérifie si le sommet existe
                     for orientation in range(4):
                         etat = (x, y, orientation)
