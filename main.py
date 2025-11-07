@@ -22,21 +22,23 @@ def lecture_fichier_instance(fichier):
 
 def bfs(graphe,depart,arrivee):
     visited = []
-    chemin = []
+    chemin = dict() #on cree un dictionnaire successeur:predecesseur pour retrouver le chemin
+    chemin[depart]=depart
     p = deque() #creation d'une pile pour le parcours
     p.append(depart)
+    trouve = False
     while p: #on continue jusqu'à l'arrivée ou la fin du parcours
-        
         sommet = p.pop()
-        print(sommet)
-        print(p)
         for v in graphe.voisins(sommet):
+            if ((v[0],v[1]))==arrivee:
+                trouve = True
+                chemin[v]=sommet
+                return chemin
             if v not in visited:
                 visited.append(v)
-                chemin.append([v,sommet])
+                chemin[v]=sommet #pour retrouver en remontant le chemin de l'arrivee jusqu'au départ
                 p.append(v)
-        input("COnintuer? ")
-    return chemin
+    return -1 #on a pas trouvé le sommet arrivée (il n'est pas accessible depuis le départ)
 
 
 grille,D1,D2,F1,F2,orientation = lecture_fichier_instance("essai2.txt")
