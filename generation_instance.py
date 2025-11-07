@@ -24,6 +24,15 @@ def affiche_grille(grille):
 def dans_la_grille(grille,coordonnees):
     #test : les coordonnées sont-elles dans la grille ?
     x,y = coordonnees
+    if x<0 or x>=len(grille):
+        return False
+    if y<0 or y>=len(grille[0]):
+        return False
+    return True
+
+def sur_les_rails(grille,coordonnees):
+    #test : les coordonnées sont-elles dans la grille ?
+    x,y = coordonnees
     if x<0 or x>len(grille):
         return False
     if y<0 or y>len(grille[0]):
@@ -32,13 +41,13 @@ def dans_la_grille(grille,coordonnees):
 
 def choix_depart_arrivee(grille,coordonnees):
     #renvoie True si la coordonnée (x,y) dans la grille est accessible au robot
-    if not(dans_la_grille(grille,coordonnees)):
+    if not(sur_les_rails(grille,coordonnees)):
         return False
     direction = [(0,-1),(0,0),(-1,0),(-1,-1)]
     cases_a_verifier = []
     for d in direction:
         x_prime = x+d[0]
-        y_prime = y+d[0]
+        y_prime = y+d[1]
         if dans_la_grille(grille,(x_prime,y_prime)):
             cases_a_verifier.append((x_prime,y_prime))
     print(cases_a_verifier)
@@ -73,7 +82,7 @@ def creation_fichier(instances_voulues,fichier):
             while not(choix_depart_arrivee(grille,arrivee)) and arrivee!=depart:
                 arrivee = (randint(0,N),randint(0,M))
 
-instance = generation_grille(4,4,3)
+instance = [[0,0,0,0],[0,1,0,0],[0,0,0,0],[0,0,1,0]]
 affiche_grille(instance)
 x=int(input("x->"))
 y=int(input("y->"))
