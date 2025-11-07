@@ -41,6 +41,7 @@ def sur_les_rails(grille,coordonnees):
 
 def choix_depart_arrivee(grille,coordonnees):
     #renvoie True si la coordonnée (x,y) dans la grille est accessible au robot
+    x,y = coordonnees
     if not(sur_les_rails(grille,coordonnees)):
         return False
     direction = [(0,-1),(0,0),(-1,0),(-1,-1)]
@@ -81,10 +82,8 @@ def creation_fichier(instances_voulues,fichier):
             arrivee = (-1,-1)
             while not(choix_depart_arrivee(grille,arrivee)) and arrivee!=depart:
                 arrivee = (randint(0,N),randint(0,M))
+            f.write(str(depart[0])+" "+str(depart[1])+" "+str(arrivee[0])+" "+str(arrivee[1])+" "+orientation[randint(0,3)]+"\n")
+            f.write("0 0\n")
 
-instance = [[0,0,0,0],[0,1,0,0],[0,0,0,0],[0,0,1,0]]
-affiche_grille(instance)
-x=int(input("x->"))
-y=int(input("y->"))
-print(choix_depart_arrivee(instance,(x,y)))
+creation_fichier([(5,5,0),(5,5,1),(7,7,6)],"essai.txt")
 
