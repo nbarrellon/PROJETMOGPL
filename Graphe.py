@@ -35,7 +35,7 @@ class Graphe:
                         directions = [(-1, 0), (0, 1), (1, 0), (0, -1)]  # Nord, Est, Sud, Ouest
                         dx, dy = directions[orientation]
                         nx, ny = x + dx, y + dy
-                        if 0 <= nx < self.N and 0 <= ny < self.M and (nx, ny) not in self.obstacles:
+                        if 0 <= nx <= self.N and 0 <= ny <= self.M and (nx, ny) not in self.obstacles:
                             self.graphe[etat].append((nx, ny, (orientation+2)%4))
 
     def __str__(self):
