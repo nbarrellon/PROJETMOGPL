@@ -39,7 +39,7 @@ def choix_depart_arrivee(grille,coordonnees):
     for d in direction:
         x_prime = x+d[0]
         y_prime = y+d[0]
-        if dans_la_grille((x_prime,y_prime)):
+        if dans_la_grille(grille,(x_prime,y_prime)):
             cases_a_verifier.append((x_prime,y_prime))
     for case in cases_a_verifier:
         if grille[case[0]][case[1]]==1:
@@ -60,12 +60,21 @@ def creation_fichier(instances_voulues,fichier):
         for instance in instances_voulues:
             N,M,P = instance
             grille = generation_grille(N,M,P)
-            f.write(str(N)+" "str(M)+"\n")
+            f.write(str(N)+" "+str(M)+"\n")
             for i in range(N):
                 for j in range(M):
                     f.write(str(grille[i][j])+" ")
                 f.write("\n")
-            abcisse_depart = 
-instance = generation_grille(5,10,7)
+            depart = (-1,-1)
+            while not(choix_depart_arrivee(grille,depart)):
+                depart = (randint(0,N),randint(0,M))
+            arrivee = (-1,-1)
+            while not(choix_depart_arrivee(grille,arrivee)) and arrivee!=depart:
+                arrivee = (randint(0,N),randint(0,M))
+
+instance = generation_grille(4,4,3)
 affiche_grille(instance)
+x=int(input("x->"))
+y=int(input("y->"))
+print(choix_depart_arrivee(instance,(x,y)))
 
