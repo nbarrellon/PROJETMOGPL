@@ -39,8 +39,14 @@ def bfs(graphe,depart,arrivee):
                 p.append(v)
     return -1 #on a pas trouvé le sommet arrivée (il n'est pas accessible depuis le départ)
 
-def ecriture_chemin(chemin,depart,arrivee):
-
+def ecriture_chemin(path,depart,arrivee):
+    chemin = [arrivee]
+    next = path[arrivee]
+    while next!=depart:
+        chemin.append(next)
+        next = path[next]
+    chemin.append(depart)
+    return chemin[::-1]
 
 
 grille,D1,D2,F1,F2,orientation = lecture_fichier_instance("essai2.txt")
@@ -50,3 +56,4 @@ g = Graphe(grille)
 depart = (D1,D2,orientation)
 arrivee = (F1,F2)
 chemin = bfs(g,depart,arrivee)
+print(ecriture_chemin(chemin,depart,arrivee))
