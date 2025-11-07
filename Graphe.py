@@ -27,7 +27,7 @@ class Graphe:
                         etat = (x, y, orientation)
                         self.graphe[etat]=[]
                         # Ajouter les sommets orientés 
-                        # et les arcs "Tourne" N-E,E-S,S-O,O-N(a droite) et E-N,S-E,N-O,O-S (à gauche)
+                        # et les arcs "Tourne" a droite" et "Tourne à gauche"
                         for d in [-1, 1]:
                             new_orientation = (orientation + d) % 4
                             self.graphe[etat].append((x, y, new_orientation))
@@ -35,6 +35,7 @@ class Graphe:
                         directions = [(-1, 0), (0, 1), (1, 0), (0, -1)]  # Nord, Est, Sud, Ouest
                         dx, dy = directions[orientation]
                         nx, ny = x + dx, y + dy
+                        #on teste si on est en bord de grille et si le sommet n'est pas empêché
                         if 0 <= nx <= self.N and 0 <= ny <= self.M and (nx, ny) not in self.obstacles:
                             self.graphe[etat].append((nx, ny, (orientation+2)%4))
 
