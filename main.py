@@ -1,5 +1,6 @@
 from Graphe import *
 from generation_instance import *
+from collections import deque
 
 def lecture_fichier_instance(fichier):
     with open(fichier,"r",encoding='utf-8') as f:
@@ -19,6 +20,15 @@ def lecture_fichier_instance(fichier):
         f.readline() #on saute les 0 0 de la fin
     return grille,D1,D2,F1,F2,orientation
 
+def bfs(graphe,depart,arrivee):
+    visite = []
+    p = deque() #creation d'une pile pour le parcours
+    p.append(depart)
+    pas_arrive = True
+    while pas_arrive or p: #on continue jusqu'à l'arrivée ou la fin du parcours
+        sommet = p.pop()
+        visite.append(sommet)
+        for 
 grille,D1,D2,F1,F2,orientation = lecture_fichier_instance("essai2.txt")
 g = Graphe(grille)
 print(g)

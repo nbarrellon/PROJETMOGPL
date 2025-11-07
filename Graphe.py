@@ -45,6 +45,7 @@ class Graphe:
             ch += str(sommet)+":"+str(self.graphe[sommet])+"\n"
         return ch
                             
-   
+    def voisins(self,sommet):
+        return self.graphe[sommet]
 
 
