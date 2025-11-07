@@ -23,6 +23,7 @@ class Graphebis:
         for x in range(self.N+1):
             for y in range(self.M+1):
                 if (x,y) not in self.obstacles:#on vérifie si le sommet existe
+                    self.graphe[(x,y)]=[]
                     for orientation in range(4):
                         directions = [(-1, 0), (0, 1), (1, 0), (0, -1)]  # Nord, Est, Sud, Ouest
                         dx, dy = directions[orientation]
