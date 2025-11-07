@@ -21,3 +21,4 @@ def lecture_fichier_instance(fichier):
 
 grille,D1,D2,F1,F2,orientation = lecture_fichier_instance("essai2.txt")
 g = Graphe(grille)
+print(g)
