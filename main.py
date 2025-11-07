@@ -21,14 +21,23 @@ def lecture_fichier_instance(fichier):
     return grille,D1,D2,F1,F2,orientation
 
 def bfs(graphe,depart,arrivee):
-    visite = []
+    visite = [depart]
     p = deque() #creation d'une pile pour le parcours
     p.append(depart)
-    pas_arrive = True
-    while pas_arrive or p: #on continue jusqu'à l'arrivée ou la fin du parcours
+    while p: #on continue jusqu'à l'arrivée ou la fin du parcours
+        
         sommet = p.pop()
-        visite.append(sommet)
-        for 
+        print(sommet)
+        print(p)
+        for v in graphe.voisins(sommet):
+            visite.append([v,sommet])
+            p.append(v)
+        input("COnintuer?")
+    return visite
+
+
 grille,D1,D2,F1,F2,orientation = lecture_fichier_instance("essai2.txt")
+points_cardinaux = ["nord","est","sud","ouest"]
+orientation = points_cardinaux.index(orientation)
 g = Graphe(grille)
-print(g)
+print(bfs(g,(D1,D2,orientation),(F1,F2)))
