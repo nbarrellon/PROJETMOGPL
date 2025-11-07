@@ -21,7 +21,8 @@ def lecture_fichier_instance(fichier):
     return grille,D1,D2,F1,F2,orientation
 
 def bfs(graphe,depart,arrivee):
-    visite = [depart]
+    visited = []
+    chemin = []
     p = deque() #creation d'une pile pour le parcours
     p.append(depart)
     while p: #on continue jusqu'à l'arrivée ou la fin du parcours
@@ -30,10 +31,12 @@ def bfs(graphe,depart,arrivee):
         print(sommet)
         print(p)
         for v in graphe.voisins(sommet):
-            visite.append([v,sommet])
-            p.append(v)
-        input("COnintuer?")
-    return visite
+            if v not in visited:
+                visited.append(v)
+                chemin.append([v,sommet])
+                p.append(v)
+        input("COnintuer? ")
+    return chemin
 
 
 grille,D1,D2,F1,F2,orientation = lecture_fichier_instance("essai2.txt")
