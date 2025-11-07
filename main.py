@@ -23,16 +23,15 @@ def lecture_fichier_instance(fichier):
 def bfs(graphe,depart,arrivee):
     visited = []
     chemin = dict() #on cree un dictionnaire successeur:predecesseur pour retrouver le chemin
-    chemin[depart]=depart
     p = deque() #creation d'une pile pour le parcours
     p.append(depart)
     trouve = False
     while p: #on continue jusqu'à l'arrivée ou la fin du parcours
         sommet = p.pop()
         for v in graphe.voisins(sommet):
-            if ((v[0],v[1]))==arrivee:
+            if ((v[0],v[1]))==arrivee: #si on trouve le sommet arrivée, qu'importe l'orientation, on arrete.
                 trouve = True
-                chemin[v]=sommet
+                chemin[arrivee]=sommet
                 return chemin
             if v not in visited:
                 visited.append(v)
@@ -40,9 +39,14 @@ def bfs(graphe,depart,arrivee):
                 p.append(v)
     return -1 #on a pas trouvé le sommet arrivée (il n'est pas accessible depuis le départ)
 
+def ecriture_chemin(chemin,depart,arrivee):
+
+
 
 grille,D1,D2,F1,F2,orientation = lecture_fichier_instance("essai2.txt")
 points_cardinaux = ["nord","est","sud","ouest"]
 orientation = points_cardinaux.index(orientation)
 g = Graphe(grille)
-print(bfs(g,(D1,D2,orientation),(F1,F2)))
+depart = (D1,D2,orientation)
+arrivee = (F1,F2)
+chemin = bfs(g,depart,arrivee)
