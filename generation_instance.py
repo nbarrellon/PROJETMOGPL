@@ -21,6 +21,51 @@ def affiche_grille(grille):
             print(grille[i][j],end=" ")
         print()
 
+def dans_la_grille(grille,coordonnees):
+    #test : les coordonnées sont-elles dans la grille ?
+    x,y = coordonnees
+    if x<0 or x>len(grille):
+        return False
+    if y<0 or y>len(grille[0]):
+        return False
+    return True
+
+def choix_depart_arrivee(grille,coordonnees):
+    #renvoie True si la coordonnée (x,y) dans la grille est accessible au robot
+    if not(dans_la_grille(grille,coordonnees)):
+        return False
+    direction = [(0,-1),(0,0),(-1,0),(-1,-1)]
+    cases_a_verifier = []
+    for d in direction:
+        x_prime = x+d[0]
+        y_prime = y+d[0]
+        if dans_la_grille((x_prime,y_prime)):
+            cases_a_verifier.append((x_prime,y_prime))
+    for case in cases_a_verifier:
+        if grille[case[0]][case[1]]==1:
+            return False
+    return True
+
+
+
+def creation_fichier(instances_voulues,fichier):
+    """
+    Entrée : fichier : nom pour le fichier de sauvegarde
+            instances_voulues : liste des instances à générér. Tuple (N,M,P)
+    Cree un fichier .txt avec les instances
+    Sortie : None
+    """
+    orientation = ['sud','nord','est','ouest']
+    with open(fichier,"w",encoding='utf-8') as f:
+        for instance in instances_voulues:
+            N,M,P = instance
+            grille = generation_grille(N,M,P)
+            f.write(str(N)+" "str(M)+"\n")
+            for i in range(N):
+                for j in range(M):
+                    f.write(str(grille[i][j])+" ")
+                f.write("\n")
+            abcisse_depart = 
 instance = generation_grille(5,10,7)
 affiche_grille(instance)
 
