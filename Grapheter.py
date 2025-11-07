@@ -1,7 +1,8 @@
+from collections import defaultdict
 class Graphe:
     #on implémente le graphe par dictionnaire d'adjacence
     def __init__(self,grille):
-        self.graphe=dict()
+        self.graphe=defaultdict(list)
         direction = [(0,-1),(0,0),(-1,0),(-1,-1)] #pour  correspondance grille<->coordonnées
         self.N = len(grille)
         self.M = len(grille[0])
@@ -37,7 +38,7 @@ class Graphe:
                             dx, dy = directions[orientation]
                             nx, ny = x + n*dx, y + n*dy
                             if 0 <= nx < self.N and 0 <= ny < self.M and (nx, ny) not in self.obstacles:
-                                self.graphe[etat]= (nx, ny, orientation)
+                                self.graphe[etat].append((nx, ny, orientation))
 
     def __str__(self):
         ch = ""
