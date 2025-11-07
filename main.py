@@ -1,4 +1,4 @@
-from Graphe import *
+from Grapheter import *
 from generation_instance import *
 from collections import deque
 
@@ -53,6 +53,7 @@ grille,D1,D2,F1,F2,orientation = lecture_fichier_instance("essai2.txt")
 points_cardinaux = ["nord","est","sud","ouest"]
 orientation = points_cardinaux.index(orientation)
 g = Graphe(grille)
+print(g)
 depart = (D1,D2,orientation)
 arrivee = (F1,F2)
 chemin = bfs(g,depart,arrivee)
