@@ -19,7 +19,7 @@ class Graphe:
                 for case in cases_a_verifier:
                     if grille[case[0]][case[1]]==1:
                         self.obstacles.append((x,y)) #on ajoute pas ce sommet
-        print(self.obstacles)
+        print("obstacles : ",self.obstacles)
    
 
 

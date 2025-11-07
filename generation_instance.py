@@ -51,7 +51,6 @@ def choix_depart_arrivee(grille,coordonnees):
         y_prime = y+d[1]
         if dans_la_grille(grille,(x_prime,y_prime)):
             cases_a_verifier.append((x_prime,y_prime))
-    print(cases_a_verifier)
     for case in cases_a_verifier:
         if grille[case[0]][case[1]]==1:
             return False
@@ -85,5 +84,5 @@ def creation_fichier(instances_voulues,fichier):
             f.write(str(depart[0])+" "+str(depart[1])+" "+str(arrivee[0])+" "+str(arrivee[1])+" "+orientation[randint(0,3)]+"\n")
             f.write("0 0\n")
 
-creation_fichier([(5,5,0),(5,5,1),(7,7,6)],"essai.txt")
+creation_fichier([(5,5,3)],"essai2.txt")
 
