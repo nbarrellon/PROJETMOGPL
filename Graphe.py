@@ -7,9 +7,9 @@ class Graphe:
         N = len(grille)
         M = len(grille[0])
         #on récupère la liste des sommets à éliminer
-        self.obstacles = []
-        for x in range(N):
-            for y in range(M):
+        self.obstacles = set()
+        for x in range(N+1):
+            for y in range(M+1):
                 cases_a_verifier = []
                 for d in direction:
                     x_prime = x+d[0]
@@ -18,7 +18,7 @@ class Graphe:
                         cases_a_verifier.append((x_prime,y_prime))
                 for case in cases_a_verifier:
                     if grille[case[0]][case[1]]==1:
-                        self.obstacles.append((x,y)) #on ajoute pas ce sommet
+                        self.obstacles.add((x,y)) #on ajoute pas ce sommet
         print("obstacles : ",self.obstacles)
    
 
