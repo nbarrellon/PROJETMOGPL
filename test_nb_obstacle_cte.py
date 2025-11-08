@@ -1,5 +1,7 @@
 from calcul_chemin import *
+from time import perf_counter
 
+temps_necessaire = []
 #on considère qu'il y a 10 instances dans le fichier
 def test_nb_obstacle_cte(fichier):
     points_cardinaux = ["nord","est","sud","ouest"]
@@ -32,7 +34,6 @@ def test_nb_obstacle_cte(fichier):
                 chemin = ecriture_chemin(chemin,depart,arrivee)
             chemin = traduction_chemin(chemin)
             chemins.append(chemin)
-    print(chemins)
     nom_fichier = fichier[:-4]+"Reponses.txt"
     with open(nom_fichier,"w",encoding='utf-8') as f:
         for c in chemins:

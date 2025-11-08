@@ -63,7 +63,6 @@ def traduction_chemin(path):
     """
     if path==-1:
         return "-1\n"
-    print(path)
     chemin = str(len(path)-1)+" " #on ote depart
     for i in range(len(path)-1):
         x,y,orientation = path[i]
