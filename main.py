@@ -41,6 +41,10 @@ def bfs(graphe,depart,arrivee):
     return -1 #on a pas trouvé le sommet arrivée (il n'est pas accessible depuis le départ)
 
 def ecriture_chemin(path,depart,arrivee):
+    """
+    Entrée : le dictionnaire du bfs où chaque clé est un sommet et sa valeur son prédecesseur
+    Sortie : une liste contenant le chemin pour aller de départ à arrivée (x,y,orientation)
+    """
     chemin = [arrivee]
     next = path[arrivee]
     while next!=depart:
@@ -58,6 +62,5 @@ depart = (D1,D2,orientation)
 print("Depart : ",depart)
 arrivee = (F1,F2)
 print("Arrivée :",arrivee)
-print(g.voisins((0,0,2)))
 chemin = bfs(g,depart,arrivee)
 print(ecriture_chemin(chemin,depart,arrivee))
