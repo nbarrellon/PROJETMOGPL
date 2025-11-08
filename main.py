@@ -1,4 +1,4 @@
-from Grapheter import *
+from Graphe import *
 from generation_instance import *
 from collections import deque
 
@@ -23,13 +23,12 @@ def lecture_fichier_instance(fichier):
 def bfs(graphe,depart,arrivee):
     visited = []
     chemin = dict() #on cree un dictionnaire successeur:predecesseur pour retrouver le chemin
-    p = deque() #creation d'une pile pour le parcours
+    p = deque() #creation d'une file pour le parcours
     p.append(depart)
     trouve = False
     vague = 1
     while p: #on continue jusqu'à l'arrivée ou la fin du parcours
-        sommet = p.pop()
-        print("vague N°",vague)
+        sommet = p.popleft() #on défile
         for v in graphe.voisins(sommet):
             if ((v[0],v[1]))==arrivee: #si on trouve le sommet arrivée, qu'importe l'orientation, on arrete.
                 trouve = True
@@ -39,9 +38,6 @@ def bfs(graphe,depart,arrivee):
                 visited.append(v)
                 chemin[v]=sommet #pour retrouver en remontant le chemin de l'arrivee jusqu'au départ
                 p.append(v)
-        print(visited)
-        print(chemin)
-        vague +=1
     return -1 #on a pas trouvé le sommet arrivée (il n'est pas accessible depuis le départ)
 
 def ecriture_chemin(path,depart,arrivee):
@@ -58,12 +54,10 @@ grille,D1,D2,F1,F2,orientation = lecture_fichier_instance("essai2.txt")
 points_cardinaux = ["nord","est","sud","ouest"]
 orientation = points_cardinaux.index(orientation)
 g = Graphe(grille)
-#print(g)
 depart = (D1,D2,orientation)
 print("Depart : ",depart)
 arrivee = (F1,F2)
 print("Arrivée :",arrivee)
 print(g.voisins((0,0,2)))
-#chemin = bfs(g,depart,arrivee)
-#print(chemin)
-#print(ecriture_chemin(chemin,depart,arrivee))
+chemin = bfs(g,depart,arrivee)
+print(ecriture_chemin(chemin,depart,arrivee))

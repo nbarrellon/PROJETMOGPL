@@ -1,8 +1,7 @@
-from collections import defaultdict
 class Graphe:
     #on implémente le graphe par dictionnaire d'adjacence
     def __init__(self,grille):
-        self.graphe=defaultdict(list)
+        self.graphe=dict()
         direction = [(0,-1),(0,0),(-1,0),(-1,-1)] #pour  correspondance grille<->coordonnées
         self.N = len(grille)
         self.M = len(grille[0])
@@ -34,17 +33,11 @@ class Graphe:
                             self.graphe[etat].append((x, y, new_orientation))
                         # Ajouter les arcs pour "Avance(n)"
                         directions = [(-1, 0), (0, 1), (1, 0), (0, -1)]  # Nord, Est, Sud, Ouest
-                        n = 1
-                        pas_obstacle = True
-                        while n <=3 and pas_obstacle:
-                            dx, dy = directions[orientation]
-                            nx, ny = x + n*dx, y + n*dy
-                            if 0 <= nx <= self.N and 0 <= ny <= self.M:
-                                if (nx, ny) not in self.obstacles: #si le sommet arrivee est interdit, on ajoute pas l'arc
-                                    self.graphe[etat].append((nx, ny, orientation))
-                                else: #et on arrête de créer des arcs Avance car il y a un obstacle !
-                                    pas_obstacle = False
-                            n+=1
+                        dx, dy = directions[orientation]
+                        nx, ny = x + dx, y + dy
+                        #on teste si on est en bord de grille et si le sommet n'est pas empêché
+                        if 0 <= nx <= self.N and 0 <= ny <= self.M and (nx, ny) not in self.obstacles:
+                            self.graphe[etat].append((nx, ny, (orientation+2)%4))
 
     def __str__(self):
         ch = ""
