@@ -33,8 +33,11 @@ def test_nb_obstacle_cte(fichier):
             chemin = traduction_chemin(chemin)
             chemins.append(chemin)
     print(chemins)
-    with open("test_nb_obstacle_cte_reponses.txt","w",encoding='utf-8') as f:
+    nom_fichier = fichier[:-4]+"Reponses.txt"
+    with open(nom_fichier,"w",encoding='utf-8') as f:
         for c in chemins:
             f.write(c)
 
-test_nb_obstacle_cte("instance10-10-10.txt")
+instances_a_tester=["instance10-10-10.txt","instance20-20-20.txt","instance30-30-30.txt","instance40-40-40.txt","instance50-50-50.txt"]
+for inst in instances_a_tester:
+    test_nb_obstacle_cte(inst)
