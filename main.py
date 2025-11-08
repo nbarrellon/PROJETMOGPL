@@ -53,9 +53,11 @@ grille,D1,D2,F1,F2,orientation = lecture_fichier_instance("essai2.txt")
 points_cardinaux = ["nord","est","sud","ouest"]
 orientation = points_cardinaux.index(orientation)
 g = Graphe(grille)
-print(g)
+#print(g)
 depart = (D1,D2,orientation)
+print("Depart : ",depart)
 arrivee = (F1,F2)
+print("Arrivée :",arrivee)
 chemin = bfs(g,depart,arrivee)
 print(chemin)
 if chemin!=-1:
