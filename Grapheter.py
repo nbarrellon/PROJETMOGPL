@@ -34,14 +34,19 @@ class Graphe:
                             self.graphe[etat].append((x, y, new_orientation))
                         # Ajouter les arcs pour "Avance(n)"
                         directions = [(-1, 0), (0, 1), (1, 0), (0, -1)]  # Nord, Est, Sud, Ouest
-                        for n in [1, 2, 3]:
+                        n = 1
+                        pas_obstacle = True
+                        #print("-----------------\nSommet :",etat)
+                        while n <=3 and pas_obstacle:
+                            #print("n=",n,"pas obs=",pas_obstacle)
                             dx, dy = directions[orientation]
                             nx, ny = x + n*dx, y + n*dy
                             if 0 <= nx <= self.N and 0 <= ny <= self.M:
                                 if (nx, ny) not in self.obstacles:
                                     self.graphe[etat].append((nx, ny, orientation))
                                 else:
-                                    break
+                                    pas_obstacle = False
+                            n+=1
 
     def __str__(self):
         ch = ""
