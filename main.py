@@ -53,6 +53,13 @@ def ecriture_chemin(path,depart,arrivee):
     chemin.append(depart)
     return chemin[::-1]
 
+def traduction_chemin(path,depart,arrivee):
+    """
+    Entrée : le chemin de départ à arrivée dans le graphe
+    Sortie : la traduction en D a3 G a1 pour le fichier de sortie
+    """
+
+    pass
 
 grille,D1,D2,F1,F2,orientation = lecture_fichier_instance("essai2.txt")
 points_cardinaux = ["nord","est","sud","ouest"]
