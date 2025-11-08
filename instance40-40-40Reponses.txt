@@ -1,10 +1,10 @@
-14 G a3 a3 G a2 a3 a3 a3 a3 D a3 a3 a3 a3 
-7 a1 a3 a3 a3 G a1 a3 
-7 G a2 a3 D a3 a3 a3 
-19 a1 a3 a3 a3 a3 a3 a3 D a1 a3 G a3 a3 a3 a3 a3 a3 D a1 
-11 a3 a3 a3 a3 a3 a3 G a2 a3 a3 a3 
-14 D a3 a3 D a3 a3 a3 a3 a3 a3 a3 a3 G a3 
-11 G G a3 a3 G a2 a3 a3 a3 a3 a3 
-12 a1 a3 a3 a3 a3 a3 a3 a3 D a1 a3 a3 
-20 D a1 D a2 a3 a3 a3 G a3 a3 a3 a3 a3 a3 a3 a3 a3 D a3 a3 
-15 G a3 a3 a3 a3 a3 a3 G a2 a3 a3 a3 a3 a3 a3 
+10 a1 a3 a3 D a1 a3 a3 a3 a3 a3 
+14 G G a1 a3 a3 a3 D a2 a3 a3 a3 a3 a3 a3 
+17 G G a1 a3 a3 a3 a3 D a3 a3 a3 a3 a3 a3 a3 a3 a3 
+4 G G a2 a3 
+17 a3 a3 D a2 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 G a3 a3 
+9 G a3 G a3 a3 a3 a3 a3 a3 
+18 D a3 a3 D a2 G a3 a3 a3 D a3 a3 a3 a3 a3 a3 G a3 
+10 D a3 a3 a3 G a1 a3 a3 a3 a3 
+4 a3 G a2 a3 
+7 a1 a3 a3 a3 D a2 a3 
