@@ -1,0 +1,10 @@
+10 G a1 D a1 a3 D a1 a3 D a3 
+6 G a1 a3 D a1 a3 
+3 a2 G a1 
+8 a1 G a2 a3 a3 D a1 a3 
+3 a2 a3 a3 
+6 G G a3 a3 D a2 
+2 D a1 
+2 G a1 
+1 a2 
+1 G 
