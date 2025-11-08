@@ -58,7 +58,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-N = [10, 20, 30, 40, 50,60,70]
+N = [10, 20, 30, 40, 50, 60, 70, 80]
 
 N_array = np.array(N)
 temps_necessaire_array = np.array(temps_necessaire)
