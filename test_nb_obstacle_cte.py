@@ -46,25 +46,40 @@ def test_nb_obstacle_cte(fichier):
     
 temps_necessaire = []
 #tests sur instances N=M=10,20,30,40,50 avec nb_obstacles cte. Chaque instance est testée 10 fois
-instances_a_tester=["instance10-10-10.txt","instance20-20-20.txt","instance30-30-30.txt","instance40-40-40.txt","instance50-50-50.txt"]
+instances_a_tester=["instance10-10-10.txt","instance20-20-20.txt","instance30-30-30.txt",\
+                    "instance40-40-40.txt","instance50-50-50.txt",\
+                    "instance60-60-60.txt","instance70-70-70.txt","instance80-80-80.txt"  ]
 for inst in instances_a_tester:
     temps_necessaire.append(test_nb_obstacle_cte(inst))
 
+print(temps_necessaire)
 ############ TRACE DE LA COURBE t = f(N) ###########################""""
 import matplotlib.pyplot as plt
+import numpy as np
 
-# Exemple de données (remplacez par vos listes)
-N = [10, 20, 30, 40, 50]
-temps_moyen = [0.5, 1.2, 2.1, 3.0, 4.3]
+
+N = [10, 20, 30, 40, 50,60,70]
+
+N_array = np.array(N)
+temps_necessaire_array = np.array(temps_necessaire)
+
+# Calcul de la régression linéaire (degré 1)
+coefficients = np.polyfit(N_array, temps_necessaire_array, 1)
+pente = coefficients[0]
+ordonnee_origine = coefficients[1]
+
+# Création de la fonction linéaire
+regression_lineaire = np.poly1d(coefficients)
 
 # Création du graphique
 plt.figure(figsize=(8, 5))
-plt.plot(N, temps_moyen, marker='o', linestyle='-', color='b', label='Temps moyen')
+plt.plot(N, temps_necessaire, marker='o', linestyle='', color='b', label='Données')
+plt.plot(N_array, regression_lineaire(N_array), color='r', label=f'Régression linéaire (pente = {pente:.3f})')
 
 # Ajout des labels et titre
 plt.xlabel('N')
 plt.ylabel('Temps moyen (s)')
-plt.title('Courbe du temps moyen en fonction de N - Nb obstacle constant')
+plt.title('Courbe du temps moyen en fonction de N avec régression linéaire')
 plt.grid(True)
 plt.legend()
 plt.savefig("instanceX-X-X.png")
