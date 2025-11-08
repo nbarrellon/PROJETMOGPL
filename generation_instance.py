@@ -56,8 +56,6 @@ def choix_depart_arrivee(grille,coordonnees):
             return False
     return True
 
-
-
 def creation_fichier(instances_voulues,fichier):
     """
     Entrée : fichier : nom pour le fichier de sauvegarde
@@ -84,5 +82,7 @@ def creation_fichier(instances_voulues,fichier):
             f.write(str(depart[0])+" "+str(depart[1])+" "+str(arrivee[0])+" "+str(arrivee[1])+" "+orientation[randint(0,3)]+"\n")
             f.write("0 0\n")
 
+instances = [(10,10,10)]*10
+creation_fichier(instances,"instance10-10-10.txt")
 
 

@@ -80,16 +80,17 @@ def traduction_chemin(path):
             chemin += "a"+str(max(dx,dy))+" "
     return chemin+"\n"
 
-grille,D1,D2,F1,F2,orientation = lecture_fichier_instance("essaipoly.txt")
-points_cardinaux = ["nord","est","sud","ouest"]
-orientation = points_cardinaux.index(orientation)
-g = Graphe(grille)
-depart = (D1,D2,orientation)
-print("Depart : ",depart)
-arrivee = (F1,F2)
-print("Arrivée :",arrivee)
-chemin = bfs(g,depart,arrivee)
-if chemin!=-1:
-    chemin = ecriture_chemin(chemin,depart,arrivee)
-chemin = traduction_chemin(chemin)
-print(chemin)
+if __name__=="__main__":
+    grille,D1,D2,F1,F2,orientation = lecture_fichier_instance("essaipoly.txt")
+    points_cardinaux = ["nord","est","sud","ouest"]
+    orientation = points_cardinaux.index(orientation)
+    g = Graphe(grille)
+    depart = (D1,D2,orientation)
+    print("Depart : ",depart)
+    arrivee = (F1,F2)
+    print("Arrivée :",arrivee)
+    chemin = bfs(g,depart,arrivee)
+    if chemin!=-1:
+        chemin = ecriture_chemin(chemin,depart,arrivee)
+    chemin = traduction_chemin(chemin)
+    print(chemin)
