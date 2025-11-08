@@ -38,6 +38,9 @@ def test_nb_obstacle_cte(fichier):
         for c in chemins:
             f.write(c)
 
+#tests sur instances N=M=10,20,30,40,50 avec nb_obstacles cte. Chaque instance est testée 10 fois
 instances_a_tester=["instance10-10-10.txt","instance20-20-20.txt","instance30-30-30.txt","instance40-40-40.txt","instance50-50-50.txt"]
 for inst in instances_a_tester:
     test_nb_obstacle_cte(inst)
+
+
