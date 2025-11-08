@@ -53,13 +53,27 @@ def ecriture_chemin(path,depart,arrivee):
     chemin.append(depart)
     return chemin[::-1]
 
-def traduction_chemin(path,depart,arrivee):
+def traduction_chemin(path):
     """
     Entrée : le chemin de départ à arrivée dans le graphe
     Sortie : la traduction en D a3 G a1 pour le fichier de sortie
     """
-
-    pass
+    print(path)
+    chemin = str(len(path)-2) #on ote depart et arrivee
+    for i in range(len(path)-1):
+        x,y,orientation = path[i]
+        next_x,next_y,next_orientation = path[i+1]
+        if (x,y)==(next_x,next_y): #si les coordonnees sont égales, on tourne
+            if next_orientation-orientation==1 or next_orientation-orientation==-3: #le robot a tourné à droite
+                chemin += "D "
+            else:
+                chemin += "G "
+        else: #sinon on a avancé
+            dx = abs(next_x-x)
+            dy = abs(next_y-y)
+            #l'un des deux deltas est nul, pas de déplacement en diagonale
+            chemin += "a"+str(max(dy,dy))+" "
+    return chemin
 
 grille,D1,D2,F1,F2,orientation = lecture_fichier_instance("essai2.txt")
 points_cardinaux = ["nord","est","sud","ouest"]
@@ -70,4 +84,5 @@ print("Depart : ",depart)
 arrivee = (F1,F2)
 print("Arrivée :",arrivee)
 chemin = bfs(g,depart,arrivee)
-print(ecriture_chemin(chemin,depart,arrivee))
+chemin = ecriture_chemin(chemin,depart,arrivee)
+print(traduction_chemin(chemin))
