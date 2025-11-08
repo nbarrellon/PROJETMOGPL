@@ -49,7 +49,7 @@ def ecriture_chemin(path,depart,arrivee):
     return chemin[::-1]
 
 
-grille,D1,D2,F1,F2,orientation = lecture_fichier_instance("essai2.txt")
+grille,D1,D2,F1,F2,orientation = lecture_fichier_instance("essai_verfi.txt")
 points_cardinaux = ["nord","est","sud","ouest"]
 orientation = points_cardinaux.index(orientation)
 g = Graphe(grille)
