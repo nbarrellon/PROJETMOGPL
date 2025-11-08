@@ -58,4 +58,5 @@ depart = (D1,D2,orientation)
 arrivee = (F1,F2)
 chemin = bfs(g,depart,arrivee)
 print(chemin)
-print(ecriture_chemin(chemin,depart,arrivee))
+if chemin!=-1:
+    print(ecriture_chemin(chemin,depart,arrivee))
