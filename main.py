@@ -45,12 +45,15 @@ def ecriture_chemin(path,depart,arrivee):
     Entrée : le dictionnaire du bfs où chaque clé est un sommet et sa valeur son prédecesseur
     Sortie : une liste contenant le chemin pour aller de départ à arrivée (x,y,orientation)
     """
-    chemin = [arrivee]
+    xf,yf = arrivee
+    chemin = []
     next = path[arrivee]
+    orientation_finale = next[2]
     while next!=depart:
         chemin.append(next)
         next = path[next]
     chemin.append(depart)
+    chemin = [(xf,yf,orientation_finale)]+chemin #on ajoute le sommet d'arrivée avec l'orientation
     return chemin[::-1]
 
 def traduction_chemin(path):
@@ -58,8 +61,10 @@ def traduction_chemin(path):
     Entrée : le chemin de départ à arrivée dans le graphe
     Sortie : la traduction en D a3 G a1 pour le fichier de sortie
     """
+    if path==-1:
+        return "-1\n"
     print(path)
-    chemin = str(len(path)-2) #on ote depart et arrivee
+    chemin = str(len(path)-1)+" " #on ote depart
     for i in range(len(path)-1):
         x,y,orientation = path[i]
         next_x,next_y,next_orientation = path[i+1]
@@ -72,10 +77,10 @@ def traduction_chemin(path):
             dx = abs(next_x-x)
             dy = abs(next_y-y)
             #l'un des deux deltas est nul, pas de déplacement en diagonale
-            chemin += "a"+str(max(dy,dy))+" "
-    return chemin
+            chemin += "a"+str(max(dx,dy))+" "
+    return chemin+"\n"
 
-grille,D1,D2,F1,F2,orientation = lecture_fichier_instance("essai2.txt")
+grille,D1,D2,F1,F2,orientation = lecture_fichier_instance("essaipoly.txt")
 points_cardinaux = ["nord","est","sud","ouest"]
 orientation = points_cardinaux.index(orientation)
 g = Graphe(grille)
@@ -84,5 +89,7 @@ print("Depart : ",depart)
 arrivee = (F1,F2)
 print("Arrivée :",arrivee)
 chemin = bfs(g,depart,arrivee)
-chemin = ecriture_chemin(chemin,depart,arrivee)
-print(traduction_chemin(chemin))
+if chemin!=-1:
+    chemin = ecriture_chemin(chemin,depart,arrivee)
+chemin = traduction_chemin(chemin)
+print(chemin)
