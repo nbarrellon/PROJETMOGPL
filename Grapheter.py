@@ -37,8 +37,11 @@ class Graphe:
                         for n in [1, 2, 3]:
                             dx, dy = directions[orientation]
                             nx, ny = x + n*dx, y + n*dy
-                            if 0 <= nx <= self.N and 0 <= ny <= self.M and (nx, ny) not in self.obstacles:
-                                self.graphe[etat].append((nx, ny, orientation))
+                            if 0 <= nx <= self.N and 0 <= ny <= self.M:
+                                if (nx, ny) not in self.obstacles:
+                                    self.graphe[etat].append((nx, ny, orientation))
+                                else:
+                                    break
 
     def __str__(self):
         ch = ""
