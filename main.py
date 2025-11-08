@@ -26,8 +26,10 @@ def bfs(graphe,depart,arrivee):
     p = deque() #creation d'une pile pour le parcours
     p.append(depart)
     trouve = False
+    vague = 1
     while p: #on continue jusqu'à l'arrivée ou la fin du parcours
         sommet = p.pop()
+        print("vague N°",vague)
         for v in graphe.voisins(sommet):
             if ((v[0],v[1]))==arrivee: #si on trouve le sommet arrivée, qu'importe l'orientation, on arrete.
                 trouve = True
@@ -37,6 +39,9 @@ def bfs(graphe,depart,arrivee):
                 visited.append(v)
                 chemin[v]=sommet #pour retrouver en remontant le chemin de l'arrivee jusqu'au départ
                 p.append(v)
+        print(visited)
+        print(chemin)
+        vague +=1
     return -1 #on a pas trouvé le sommet arrivée (il n'est pas accessible depuis le départ)
 
 def ecriture_chemin(path,depart,arrivee):
@@ -58,7 +63,7 @@ depart = (D1,D2,orientation)
 print("Depart : ",depart)
 arrivee = (F1,F2)
 print("Arrivée :",arrivee)
-chemin = bfs(g,depart,arrivee)
-print(chemin)
-if chemin!=-1:
-    print(ecriture_chemin(chemin,depart,arrivee))
+print(g.voisins((0,0,2)))
+#chemin = bfs(g,depart,arrivee)
+#print(chemin)
+#print(ecriture_chemin(chemin,depart,arrivee))
