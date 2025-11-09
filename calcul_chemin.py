@@ -26,7 +26,6 @@ def bfs(graphe,depart,arrivee):
     p = deque() #creation d'une file pour le parcours
     p.append(depart)
     trouve = False
-    vague = 1
     while p: #on continue jusqu'à l'arrivée ou la fin du parcours
         sommet = p.popleft() #on défile
         for v in graphe.voisins(sommet):
