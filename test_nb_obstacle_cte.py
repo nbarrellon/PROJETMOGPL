@@ -4,6 +4,7 @@ from generation_instance import *
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import linregress
+from scipy.optimize import curve_fit
 
 #on considère qu'il y a 10 instances dans le fichier
 def test_nb_obstacle_cte(fichier):
@@ -67,25 +68,27 @@ N_array = np.array(N)
 temps_necessaire_array = np.array(temps_necessaire)
 
 
-# Ajustement d'un polynôme de degré 2 pour t = f(n)
-coefficients = np.polyfit(N, temps_necessaire_array, 2)
-polynome = np.poly1d(coefficients)
+# Fonction de modélisation : t = a * n^2
+def modele_quadratique(n, a):
+    return a * n**2
+
+# Ajustement du modèle aux données
+popt, pcov = curve_fit(modele_quadratique, N, temps_necessaire)
+a = popt[0]  # Coefficient trouvé
+
+# Valeurs pour la courbe modélisée
 N_fit = np.linspace(min(N), max(N), 100)
-temps_fit = polynome(N_fit)
+temps_fit = modele_quadratique(N_fit, a)
 
-# Création de la figure avec deux sous-graphiques
-fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8))
-
-# Première courbe : t = f(n) avec modélisation quadratique
-ax1.plot(N, temps_necessaire, 'bo-', label='Données')
-ax1.plot(N_fit, temps_fit, 'r--', label=f'Modélisation quadratique: t = {coefficients[0]:.3f}n² + {coefficients[1]:.3f}n + {coefficients[2]:.3f}')
-ax1.set_xlabel('N')
-ax1.set_ylabel('Temps nécessaire (t)')
-ax1.set_title('Courbe t = f(n) avec modélisation quadratique')
-ax1.legend()
-ax1.grid(True)
-
-
+# Tracé de la courbe
+plt.figure(figsize=(10, 6))
+plt.plot(N, temps_necessaire, 'bo-', label='Données expérimentales')
+plt.plot(N_fit, temps_fit, 'r--', label=f'Modélisation : $t = {a:.4f} \\cdot n^2$')
+plt.xlabel('Taille de l\'entrée (N)')
+plt.ylabel('Temps nécessaire (t)')
+plt.title('Courbe $t = f(n)$ avec modélisation quadratique')
+plt.legend()
+plt.grid(True)
 
 # Affichage des courbes
 plt.tight_layout()
