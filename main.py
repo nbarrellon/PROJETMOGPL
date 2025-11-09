@@ -123,7 +123,7 @@ def affichage():
     else:
         cheminter=[]
     print("chemin pour dessin:",cheminter)
-    chemin_affichage = traduction_chemin(chemin)+" depart :"+str(depart)+"arrivée:"+str(arrivee)+"orientation départ :"+orientation
+    chemin_affichage = traduction_chemin(chemin)+"-depart :"+str(depart)+"-arrivée:"+str(arrivee)+"orientation départ :"+orientation
     print("chemin à afficher:",chemin_affichage)
     dessiner_grille_intersections(grille,[(D1,D2),arrivee],cheminter,chemin_affichage,orientation)
 
