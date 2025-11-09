@@ -1,13 +1,13 @@
 import tkinter as tk
 
-def dessiner_grille_intersections(grille, points, chemin, orientation_depart):
+def dessiner_grille_intersections(grille, points, chemin, chemin_texte, orientation_depart):
     taille_case = 50
     marge = 20
     nb_lignes = len(grille)
     nb_colonnes = len(grille[0])
 
     fenetre = tk.Tk()
-    fenetre.title("Grille avec Chemin aux Intersections")
+    fenetre.title("La balade du robot")
 
     # Canevas pour la grille
     canevas = tk.Canvas(fenetre, width=nb_colonnes*taille_case + 2*marge, height=nb_lignes*taille_case + 2*marge, bg='white')
@@ -43,44 +43,52 @@ def dessiner_grille_intersections(grille, points, chemin, orientation_depart):
                                 marge + x2*taille_case, marge + y2*taille_case, fill='red', width=2)
 
     # Dessiner la flèche d'orientation du point de départ
-    if chemin and orientation_depart == "Nord":
+    if chemin:
         x, y = chemin[0]
-        # Dessiner une flèche vers le haut
-        canevas.create_line(marge + x*taille_case, marge + y*taille_case - 10,
-                            marge + x*taille_case, marge + y*taille_case - 20, fill='black', arrow=tk.LAST, width=2)
+        if orientation_depart == "nord":
+            canevas.create_line(marge + x*taille_case, marge + y*taille_case - 10,
+                                marge + x*taille_case, marge + y*taille_case - 20, fill='black', arrow=tk.LAST, width=2)
+        elif orientation_depart == "sud":
+            canevas.create_line(marge + x*taille_case, marge + y*taille_case + 10,
+                                marge + x*taille_case, marge + y*taille_case + 20, fill='black', arrow=tk.LAST, width=2)
+        elif orientation_depart == "est":
+            canevas.create_line(marge + x*taille_case + 10, marge + y*taille_case,
+                                marge + x*taille_case + 20, marge + y*taille_case, fill='black', arrow=tk.LAST, width=2)
+        elif orientation_depart == "ouest":
+            canevas.create_line(marge + x*taille_case - 10, marge + y*taille_case,
+                                marge + x*taille_case - 20, marge + y*taille_case, fill='black', arrow=tk.LAST, width=2)
 
     # Afficher le chemin sous forme de chaîne de caractères
-    chemin_texte = " → ".join(f"({x}, {y})" for x, y in chemin)
     label_chemin = tk.Label(fenetre, text=chemin_texte, font=('Arial', 12), bg='white')
     label_chemin.pack()
 
     fenetre.mainloop()
-
+if __name__=="__main__":
 # Exemple d'utilisation
-grille = [
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0]
-]
+    grille = [
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0]
+    ]
 
-# Mise à jour de la grille avec les cases bleues (1)
-grille[1][1] = 1
-grille[2][3] = 1
-grille[3][4] = 1
-grille[4][2] = 1
-grille[5][5] = 1
-grille[6][7] = 1
-grille[7][0] = 1
+    # Mise à jour de la grille avec les cases bleues (1)
+    grille[1][1] = 1
+    grille[2][3] = 1
+    grille[3][4] = 1
+    grille[4][2] = 1
+    grille[5][5] = 1
+    grille[6][7] = 1
+    grille[7][0] = 1
 
-points = [(1, 1), (6, 6)]  # Coordonnées des intersections
-chemin = [(1, 1), (1, 2), (2, 2), (2, 3), (3, 3), (3, 4), (4, 4), (5, 4), (5, 5), (6, 5), (6, 6)]  # Coordonnées des intersections
+    points = [(1, 1), (6, 6)]  # Coordonnées des intersections
+    chemin = [(1, 1), (1, 2), (2, 2), (2, 3), (3, 3), (3, 4), (4, 4), (5, 4), (5, 5), (6, 5), (6, 6)]  # Coordonnées des intersections
 
-# Orientation du point de départ
-orientation_depart = "Nord"
+    # Orientation du point de départ
+    orientation_depart = "Sud"  # Peut être "Nord", "Sud", "Est", ou "Ouest"
 
-dessiner_grille_intersections(grille, points, chemin, orientation_depart)
+    dessiner_grille_intersections(grille, points, chemin, "coucou",orientation_depart)
