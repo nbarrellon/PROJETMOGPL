@@ -1,7 +1,6 @@
 from calcul_chemin import *
 from time import perf_counter
 
-
 #on considère qu'il y a 10 instances dans le fichier
 def test_nb_obstacle_cte(fichier):
     points_cardinaux = ["nord","est","sud","ouest"]
@@ -30,26 +29,24 @@ def test_nb_obstacle_cte(fichier):
             orientation = points_cardinaux.index(orientation)
             depart = (D1,D2,orientation)
             arrivee = (F1,F2)
+            ########### mesure du temps necessaire à l'algorithme #############""
             t0 = perf_counter()
-            chemin = bfs(g,depart,arrivee)
+            bfs(g,depart,arrivee)
             t1 = perf_counter()
             tps_moyen += (t1-t0)
-            if chemin!=-1:
-                chemin = ecriture_chemin(chemin,depart,arrivee)
-            chemin = traduction_chemin(chemin)
-            chemins.append(chemin)
-    nom_fichier = fichier[:-4]+"Reponses.txt"
-    with open(nom_fichier,"w",encoding='utf-8') as f:
-        for c in chemins:
-            f.write(c)
+            #########################################
     return tps_moyen/10
-    
+
+#creation des fichiers d'instance à tester. 10 instances de N=5 à N=50 (*10 blocs)
+for i in range(5,15,5):
+    instances = [(i,i,i)]*10
+    nom_fichier = "./OUTPUT/instance"+str(i)*3+".txt"
+    creation_fichier(instances,nom_fichier)
+
 temps_necessaire = []
 #tests sur instances N=M=10,20,30,40,50 avec nb_obstacles cte. Chaque instance est testée 10 fois
-instances_a_tester=["instance10-10-10.txt","instance20-20-20.txt","instance30-30-30.txt",\
-                    "instance40-40-40.txt","instance50-50-50.txt",\
-                    "instance60-60-60.txt","instance70-70-70.txt","instance80-80-80.txt"  ]
-for inst in instances_a_tester:
+
+for inst in instances:
     temps_necessaire.append(test_nb_obstacle_cte(inst))
 
 print(temps_necessaire)
@@ -58,7 +55,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-N = [10, 20, 30, 40, 50, 60, 70, 80]
+N = [i for i in range(5,51,5)] #abcisse = taille de l'entrée pour une matrice carrée
 
 N_array = np.array(N)
 temps_necessaire_array = np.array(temps_necessaire)
