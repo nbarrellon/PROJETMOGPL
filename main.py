@@ -1,6 +1,7 @@
 from Graphe import *
 from generation_instance import *
 from calcul_chemin import *
+from dessin import *
 
 def menu():
     print("\n-------------------------------------")
@@ -106,20 +107,19 @@ def affichage():
          
     g = Graphe(grille)
     D1,D2 = depart
-    depart = (D1,D2,randint(0,3))
+    orientation = randint(0,3)
+    depart = (D1,D2,orientation)
     chemin = bfs(g,depart,arrivee)
     
     if chemin!=-1:
         chemin = ecriture_chemin(chemin,depart,arrivee)
-        print(chemin)
         cheminbis = [(c[0],c[1]) for c in chemin]
         cheminter=[]
         for c in cheminbis:
             if c not in cheminter:
                 cheminter.append(c)
-        print(cheminbis)
-        print(cheminter)
     chemin_affichage = traduction_chemin(chemin)
+    dessiner_grille_intersections(grille,[(D1,D2),(F1,F2)],cheminter,orientation)
 
 if __name__=="__main__":
     choix = menu()
