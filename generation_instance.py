@@ -78,7 +78,7 @@ def creation_fichier(instances_voulues,fichier,aleatoire=True,depart=(-1,-1),arr
                 while not(choix_depart_arrivee(grille,depart)):
                     depart = (randint(0,N),randint(0,M))
                 deja_essaye = [depart]
-                while not(choix_depart_arrivee(grille,arrivee)) or arrivee not in deja_essaye:
+                while not(choix_depart_arrivee(grille,arrivee)) or arrivee in deja_essaye:
                     arrivee = (randint(0,N),randint(0,M))
                     deja_essaye.append(arrivee)
                 cardinal = orientation[randint(0,3)]
