@@ -16,7 +16,20 @@ def menu():
 
 def generation():
     print("--------- Generation d'un fichier instance --------------")
+    n = int(input("Combien de blocs ?"))
+    instances = []
+    for i in range(1,n+1):
+        print("----------Bloc n°"+str(i)+" ---------------")
+        N = int(input("Que vaut N ? ->"))
+        M = int(input("Que vaut M ? ->"))
+        P = int(input("Combien d'obstacles ? ->"))
+        instances.append((N,M,P))
 
+    print("------------------------------------")
+    fichier = input("Nom du fichier de sauvegarde sans extension ->")
+    fichier = "./OUTPUT/"+fichier + ".txt"
+    creation_fichier(instances,fichier)
+    
 def solution():
     print("--------- Generation d'un fichier solution --------------")
 
