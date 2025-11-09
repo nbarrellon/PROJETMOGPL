@@ -103,10 +103,10 @@ def affichage():
     while not(choix_depart_arrivee(grille,arrivee)) or arrivee not in deja_essaye:
         arrivee = (randint(0,N),randint(0,M))
         deja_essaye.append(arrivee)
-    orientation = ["nord","sud","est","ouest"][randint(0,3)]       
+         
     g = Graphe(grille)
     D1,D2 = depart
-    depart = (D1,D2,orientation)
+    depart = (D1,D2,randint(0,3))
     chemin = bfs(g,depart,arrivee)
     print("arrivee:",arrivee)
     print("depart=",depart)
