@@ -3,7 +3,7 @@ from generation_instance import *
 from calcul_chemin import *
 
 def menu():
-    print("-------------------------------------")
+    print("\n-------------------------------------")
     print("-------- LA BALADE DU ROBOT ---------")
     print("-------------------------------------")
     print("Que voulez-vous faire ?")
@@ -33,6 +33,7 @@ def generation():
 def solution():
     print("--------- Generation d'un fichier solution --------------")
 
+
 def affichage():
     print("--------- Résolution d'une instance  --------------")  
 
@@ -41,4 +42,4 @@ if __name__=="__main__":
     faire = [generation,solution,affichage]
     while choix !=4:
         faire[choix-1]()
-        menu()
+        choix = menu()
