@@ -1,6 +1,9 @@
 from calcul_chemin import *
 from time import perf_counter
 from generation_instance import *
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import linregress
 
 #on considère qu'il y a 10 instances dans le fichier
 def test_nb_obstacle_cte(fichier):
@@ -57,30 +60,43 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-N = [i for i in range(5,51,5)] #abcisse = taille de l'entrée pour une matrice carrée
+N = [i for i in range(5,55,5)] #abcisse = taille de l'entrée pour une matrice carrée
 
 N_array = np.array(N)
 temps_necessaire_array = np.array(temps_necessaire)
 
-# Calcul de la régression linéaire (degré 1)
-coefficients = np.polyfit(N_array, temps_necessaire_array, 1)
-pente = coefficients[0]
-ordonnee_origine = coefficients[1]
 
-# Création de la fonction linéaire
-regression_lineaire = np.poly1d(coefficients)
 
-# Création du graphique
-plt.figure(figsize=(8, 5))
-plt.plot(N, temps_necessaire, marker='o', linestyle='', color='b', label='Données')
-plt.plot(N_array, regression_lineaire(N_array), color='r', label=f'Régression linéaire (pente = {pente:.3f})')
 
-# Ajout des labels et titre
-plt.xlabel('N')
-plt.ylabel('Temps moyen (s)')
-plt.title('Courbe du temps moyen en fonction de N avec régression linéaire')
-plt.grid(True)
-plt.legend()
-plt.savefig("instanceX-X-X.png")
+
+# Calcul des logarithmes (base 10)
+log_N = np.log10(N_array)
+log_temps = np.log10(temps_necessaire_array)
+
+# Régression linéaire sur log(t) = f(log(n))
+slope, intercept, r_value, p_value, std_err = linregress(log_N, log_temps)
+
+# Création de la figure avec deux sous-graphiques
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8))
+
+# Première courbe : t = f(n)
+ax1.plot(N, temps_necessaire, 'bo-', label='Données')
+ax1.set_xlabel('N')
+ax1.set_ylabel('Temps nécessaire (t)')
+ax1.set_title('Courbe t = f(n)')
+ax1.grid(True)
+
+# Deuxième courbe : log(t) = f(log(n)) avec régression linéaire
+ax2.plot(log_N, log_temps, 'ro-', label='Données')
+ax2.plot(log_N, slope * log_N + intercept, 'g--', label=f'Régression linéaire (pente = {slope:.3f})')
+ax2.set_xlabel('log(N)')
+ax2.set_ylabel('log(Temps nécessaire)')
+ax2.set_title('Courbe log(t) = f(log(n)) avec régression linéaire')
+ax2.legend()
+ax2.grid(True)
+
+# Affichage des courbes
+plt.tight_layout()
+plt.savefig("instanceXXX.png")
 # Affichage du graphique
 plt.show()
