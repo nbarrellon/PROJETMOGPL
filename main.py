@@ -110,7 +110,7 @@ def affichage():
     orientation = randint(0,3)
     depart = (D1,D2,orientation)
     chemin = bfs(g,depart,arrivee)
-    
+    orientation = ["nord","est","sud","ouest"][orientation]
     if chemin!=-1:
         chemin = ecriture_chemin(chemin,depart,arrivee)
         cheminbis = [(c[0],c[1]) for c in chemin]
@@ -118,8 +118,10 @@ def affichage():
         for c in cheminbis:
             if c not in cheminter:
                 cheminter.append(c)
-    chemin_affichage = traduction_chemin(chemin)
-    dessiner_grille_intersections(grille,[(D1,D2),arrivee],cheminter,chemin_affichage,["nord","est","sud","ouest"][orientation])
+    
+    chemin_affichage = traduction_chemin(chemin)+"- orientation de départ :"+orientation
+    
+    dessiner_grille_intersections(grille,[(D1,D2),arrivee],cheminter,chemin_affichage,orientation)
 
 if __name__=="__main__":
     choix = menu()
