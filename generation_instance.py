@@ -85,11 +85,4 @@ def creation_fichier(instances_voulues,fichier,aleatoire=True,depart=(-1,-1),arr
             f.write(str(depart[0])+" "+str(depart[1])+" "+str(arrivee[0])+" "+str(arrivee[1])+" "+cardinal+"\n")
             f.write("0 0\n")
 
-if __name__=="__main__":
-
-    for i in range(1,9):
-        instances = [(i*10,i*10,i*10)]*i*10
-        nom_fichier = "instance"+str(i*10)+"-"+str(i*10)+"-"+str(i*10)+".txt"
-        creation_fichier(instances,nom_fichier)
-
 
