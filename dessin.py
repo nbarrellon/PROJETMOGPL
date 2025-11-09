@@ -1,6 +1,6 @@
 import tkinter as tk
 
-def dessiner_grille_intersections(grille, points, chemin):
+def dessiner_grille_intersections(grille, points, chemin, orientation_depart):
     taille_case = 50
     marge = 20
     nb_lignes = len(grille)
@@ -19,12 +19,13 @@ def dessiner_grille_intersections(grille, points, chemin):
     for j in range(nb_colonnes + 1):
         canevas.create_line(marge + j*taille_case, marge, marge + j*taille_case, marge + nb_lignes*taille_case, fill='black')
 
-    # Dessiner les cases bleues avec une marge
+    # Dessiner les cases bleues avec une marge et un léger retrait
     for i in range(nb_lignes):
         for j in range(nb_colonnes):
             if grille[i][j] == 1:
-                canevas.create_rectangle(marge + j*taille_case, marge + i*taille_case,
-                                         marge + (j+1)*taille_case, marge + (i+1)*taille_case,
+                retrait = 2  # Retrait pour éviter l'empiètement
+                canevas.create_rectangle(marge + j*taille_case + retrait, marge + i*taille_case + retrait,
+                                         marge + (j+1)*taille_case - retrait, marge + (i+1)*taille_case - retrait,
                                          fill='lightblue', outline='')
 
     # Dessiner les points noirs aux intersections avec une marge
@@ -40,6 +41,13 @@ def dessiner_grille_intersections(grille, points, chemin):
             x2, y2 = chemin[k+1]
             canevas.create_line(marge + x1*taille_case, marge + y1*taille_case,
                                 marge + x2*taille_case, marge + y2*taille_case, fill='red', width=2)
+
+    # Dessiner la flèche d'orientation du point de départ
+    if chemin and orientation_depart == "Nord":
+        x, y = chemin[0]
+        # Dessiner une flèche vers le haut
+        canevas.create_line(marge + x*taille_case, marge + y*taille_case - 10,
+                            marge + x*taille_case, marge + y*taille_case - 20, fill='black', arrow=tk.LAST, width=2)
 
     # Afficher le chemin sous forme de chaîne de caractères
     chemin_texte = " → ".join(f"({x}, {y})" for x, y in chemin)
@@ -72,4 +80,7 @@ grille[7][0] = 1
 points = [(1, 1), (6, 6)]  # Coordonnées des intersections
 chemin = [(1, 1), (1, 2), (2, 2), (2, 3), (3, 3), (3, 4), (4, 4), (5, 4), (5, 5), (6, 5), (6, 6)]  # Coordonnées des intersections
 
-dessiner_grille_intersections(grille, points, chemin)
+# Orientation du point de départ
+orientation_depart = "Nord"
+
+dessiner_grille_intersections(grille, points, chemin, orientation_depart)
