@@ -29,11 +29,59 @@ def generation():
     fichier = input("Nom du fichier de sauvegarde sans extension ->")
     fichier = "./OUTPUT/"+fichier + ".txt"
     creation_fichier(instances,fichier)
+    print("Fichier d'instances créé avec succes dans le dossier OUTPUT")
 
 def solution():
     print("--------- Generation d'un fichier solution --------------")
-
-
+    fichier = input("Quel est le nom du fichier instance sans extension ? ->")
+    nom_fichier = "./OUTPUT/"+fichier+".txt"
+    try:
+        n = 0
+        #on compte le nombre de blocs du fichier instances
+        with open(nom_fichier,"r",encoding="utf-8") as f:
+            for ligne in f.readlines():
+                if ligne=="0 0\n":
+                    n+=1
+    except FileNotFoundError:
+        print("Désolé, le fichier ",fichier," n'existe pas !")
+        return
+    points_cardinaux = ["nord","est","sud","ouest"]
+    chemins = [] #pour stocker les n chemins correspondant aux n blocs
+    with open(nom_fichier,"r",encoding='utf-8') as f:
+        for _ in range(n): #on calcule les chemins pour les n instances et on les sauvegarde
+            ############# Lecture du bloc ######################
+            ligne1 = f.readline().split()
+            N = int(ligne1[0])
+            M = int(ligne1[1])
+            grille = []
+            for i in range(N):
+                ligne = f.readline().split()
+                grille.append([int(x) for x in ligne])
+            derniere_ligne = f.readline().split()
+            D1 = int(derniere_ligne[0])
+            D2 = int(derniere_ligne[1])
+            F1 = int(derniere_ligne[2])
+            F2 = int(derniere_ligne[3])
+            orientation = derniere_ligne[4]
+            f.readline() #on saute les 0 0 de la fin
+            ########## Generation du chemin ####################
+            g = Graphe(grille)
+            orientation = points_cardinaux.index(orientation)
+            depart = (D1,D2,orientation)
+            arrivee = (F1,F2)
+            ########## BFS ##############
+            chemin = bfs(g,depart,arrivee)
+            ##############################
+            if chemin!=-1:
+                chemin = ecriture_chemin(chemin,depart,arrivee)
+            chemin = traduction_chemin(chemin)
+            chemins.append(chemin)
+    nom_fichier = "./OUTPUT/"+fichier+"Reponses.txt"
+    with open(nom_fichier,"w",encoding='utf-8') as f:
+        for c in chemins:
+            f.write(c)
+    print("Fichier solution créé avec succes dans le dossier OUTPUT")
+    
 def affichage():
     print("--------- Résolution d'une instance  --------------")  
 
