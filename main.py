@@ -119,7 +119,7 @@ def affichage():
             if c not in cheminter:
                 cheminter.append(c)
     chemin_affichage = traduction_chemin(chemin)
-    dessiner_grille_intersections(grille,[(D1,D2),arrivee],cheminter,chemin_affichage,["nord","sud","est","ouest"][orientation])
+    dessiner_grille_intersections(grille,[(D1,D2),arrivee],cheminter,chemin_affichage,["nord","est","sud","ouest"][orientation])
 
 if __name__=="__main__":
     choix = menu()

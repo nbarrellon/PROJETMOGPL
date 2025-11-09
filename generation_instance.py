@@ -64,7 +64,7 @@ def creation_fichier(instances_voulues,fichier,aleatoire=True,depart=(-1,-1),arr
     Cree un fichier .txt avec les instances
     Sortie : None
     """
-    orientation = ['sud','nord','est','ouest']
+    orientation = ['nord','est','sud','ouest']
     with open(fichier,"w",encoding='utf-8') as f:
         for instance in instances_voulues:
             N,M,P = instance
