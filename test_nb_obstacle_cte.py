@@ -43,7 +43,7 @@ def test_nb_obstacle_cte(fichier):
 
 #creation des fichiers d'instance à tester. 10 instances de N=5 à N=50 (*10 blocs)
 instances= []
-for i in range(5,15,5):
+for i in range(5,35,5):
     instance = [(i,i,i)]*10
     nom_fichier = "./OUTPUT/instance"+str(i)*3+".txt"
     instances.append(nom_fichier)
@@ -61,16 +61,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-N = [i for i in range(5,15,5)] #abcisse = taille de l'entrée pour une matrice carrée
+N = [i for i in range(5,35,5)] #abcisse = taille de l'entrée pour une matrice carrée
 
 N_array = np.array(N)
 temps_necessaire_array = np.array(temps_necessaire)
 
-# Calcul des logarithmes (base 10)
-log_N = np.log10(N_array)
-log_temps = np.log10(temps_necessaire_array)
+
 # Ajustement d'un polynôme de degré 2 pour t = f(n)
-coefficients = np.polyfit(N, temps_necessaire, 2)
+coefficients = np.polyfit(N, temps_necessaire_array, 2)
 polynome = np.poly1d(coefficients)
 N_fit = np.linspace(min(N), max(N), 100)
 temps_fit = polynome(N_fit)
@@ -87,14 +85,7 @@ ax1.set_title('Courbe t = f(n) avec modélisation quadratique')
 ax1.legend()
 ax1.grid(True)
 
-# Deuxième courbe : log(t) = f(log(n)) avec régression linéaire
-ax2.plot(log_N, log_temps, 'ro-', label='Données')
-ax2.plot(log_N, slope * log_N + intercept, 'g--', label=f'Régression linéaire (pente = {slope:.3f})')
-ax2.set_xlabel('log(N)')
-ax2.set_ylabel('log(Temps nécessaire)')
-ax2.set_title('Courbe log(t) = f(log(n)) avec régression linéaire')
-ax2.legend()
-ax2.grid(True)
+
 
 # Affichage des courbes
 plt.tight_layout()
