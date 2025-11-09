@@ -23,6 +23,10 @@ def generation():
         N = int(input("Que vaut N ? ->"))
         M = int(input("Que vaut M ? ->"))
         P = int(input("Combien d'obstacles ? ->"))
+        while P>90*(N*M)/100:
+            print("Trop d'obstacles !")
+            P = int(input("Combien d'obstacles ? ->"))
+            
         instances.append((N,M,P))
 
     print("------------------------------------")
