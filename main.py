@@ -29,7 +29,7 @@ def generation():
     fichier = input("Nom du fichier de sauvegarde sans extension ->")
     fichier = "./OUTPUT/"+fichier + ".txt"
     creation_fichier(instances,fichier)
-    
+
 def solution():
     print("--------- Generation d'un fichier solution --------------")
 
@@ -41,6 +41,4 @@ if __name__=="__main__":
     faire = [generation,solution,affichage]
     while choix !=4:
         faire[choix-1]()
-
-
         menu()
