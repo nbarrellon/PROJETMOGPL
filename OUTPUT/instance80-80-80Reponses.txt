@@ -1,0 +1,10 @@
+27 G G a2 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 D a3 a3 a3 a3 a3 a3 a3 a3 
+17 G a2 a3 G a1 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 
+37 G a1 a3 D a1 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 G a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 
+4 a3 D a3 a3 
+19 a2 a3 D a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 D a2 G a3 a3 
+30 D a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 D a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 G a3 a3 a3 a3 
+27 G a2 a3 a3 a3 a3 G a2 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 D a3 a3 a3 a3 a3 
+22 G a1 a3 a3 a3 G a1 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 
+17 G a1 G a2 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 D a2 a3 
+23 a2 D a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 a3 

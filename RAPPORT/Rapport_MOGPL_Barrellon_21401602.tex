@@ -1,0 +1,373 @@
+%% 
+%% Authors:  
+%% Nils Barrellon (nils.barrellon1@etu.sorbonne-universite.fr)
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Type et package
+
+\documentclass[a4paper,12pt]{article}
+\usepackage[french,english]{babel}
+\usepackage{fancyhdr}
+\usepackage[utf8]{inputenc}
+\usepackage{cmbright}
+\usepackage{epsfig}
+\usepackage{calc}
+\usepackage{url}
+\usepackage{boxedminipage}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{csquotes}         % Gère les guillemets
+\usepackage[backend=biber,style=numeric]{biblatex} % Pour la bibliographie
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{matrix}
+\usepackage{enumitem}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{graphs, graphs.standard, quotes}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Définitions à personnaliser 
+
+\def\nomEtudA{Nils Barrellon 21401602}
+
+\def\titreProjetLong{MOGPL : La balade du robot}
+
+\def\typeDoc{Rapport final}
+ 
+%% - Reglage pour le code inséré
+
+
+\lstset{
+  language=Python,
+  basicstyle=\ttfamily\scriptsize,
+  keywordstyle=\color{blue}\bfseries,
+  commentstyle=\color{gray},
+  stringstyle=\color{red},
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  stepnumber=1,
+  numbersep=5pt,
+  tabsize=4,
+  showspaces=false,
+  showstringspaces=false,
+  breaklines=true,
+  frame=single,
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Définitions à ne pas modifier
+ 
+%%%%% ||| Mise en page verticale ||| 
+\setlength{\voffset}{-1in} % a4:reste 297mm pour les 5 suivants:
+\setlength{\topmargin}{15mm}         % avant l'en-tête
+\setlength{\headheight}{20mm}        % hauteur de l'en-tête 
+\setlength{\headsep}{10mm}            % entre l'en-tête et le corps
+\setlength{\textheight}{220mm}       % hauteur du corps
+\setlength{\footskip}{12mm}          % pied de page par rapport au corps 
+
+%%%%% --- Mise en page horizontale ---
+\setlength{\hoffset}{-1in} % a4:reste 210mm 
+\setlength{\oddsidemargin}{15mm}     % entre hoffset et le corps
+\setlength{\evensidemargin}{15mm}    % entre hoffset et le corps
+\setlength{\marginparwidth}{0mm}     % largeur de la marge
+\setlength{\marginparsep}{0mm}       % séparateur corps marge
+\setlength{\textwidth}{170mm}        % largeur du corps
+
+\def\annee{2025-26}
+\setlength{\parindent}{0cm} 
+\renewcommand{\familydefault}{\sfdefault}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Début du document
+
+\begin{document}
+%\sffamily
+\selectlanguage{french}
+\setcounter{page}{1} % Réinitialisation des numéros de page
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Définition des en-têtes et pied de pages
+\pagestyle{fancyplain}
+\lhead[\fancyplain{}{Master Informatique\\ UE \textbf{MOGPL} fév. \annee \\}]
+      {\fancyplain{}{Master Informatique\\ UE \textbf{MOGPL} \annee}}
+\rhead
+      {\fancyplain{}{\nomEtudA}}
+\lfoot[\fancyplain{}{\includegraphics[width=3cm]{LOGO_SCIENCES_DEF_CMJN_med.jpg}}]
+      {\fancyplain{}{\includegraphics[width=3cm]{LOGO_SCIENCES_DEF_CMJN_med.jpg}}}
+\cfoot[\fancyplain{}{\textbf{\thepage}}]
+      {\fancyplain{}{\textbf{\thepage}}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+~
+
+      \begin{center}
+        \begin{boxedminipage}{12cm}{
+            \begin{center}
+              ~\\\LARGE\textbf{\titreProjetLong}\\
+              ~\\\large Etudiant: \textbf{\nomEtudA}\\
+              ~
+            \end{center}
+            }
+        \end{boxedminipage}
+      \end{center}
+
+~
+
+\vspace{2cm}
+
+\begin{center}
+\href{https://github.com/nbarrellon/PROJETMOGPL}{Github associé : https://github.com/nbarrellon/PROJETMOGPL}
+\end{center}
+\newpage
+
+\section*{a. Formulation du problème}
+
+En première lecture, on se dit que, le robot passant d'une intersection de rail à une intersection de rail, le problème peut aisément se modéliser à l'aide d'un graphe où les sommets sont les coordonnées des intersections. On imagine supprimer du graphe les sommets qui sont interdits par la présence d'obstacle. Mais c'est oublier que le robot peut tourner quand il est sur une intersection et que cette opération est de valeur 1 (tout comme un déplacement). Il convient donc de créer, pour des mêmes coordonnées, autant de sommets qu'il y a d'orientation possibles pour le robot. Ainsi, passer d'une orientation à une autre (c'est à dire tourner) revient à passer d'un sommet à un autre.\\
+
+J'ai donc opté pour l'implémentation suivante :
+\begin{itemize}
+\item la grille est modélisée par un graphe G(V,E) ;
+\item chaque sommet V est un état du robot caractérisé par des coordonnées sur la grille \underline{qui lui sont accessibles} et une orientation (N,S,E,O) ;
+\item Un arc traduit la possibilité pour le robot de passer d'une intersection à une autre (AVANCE) ou de tourner sur lui-même (TOURNE).
+\end{itemize}
+
+Soit la grille $2\times3$ suivante :\\
+ \begin{figure}[H]
+ \begin{center}
+  \begin{tikzpicture}
+        \matrix (m) [matrix of nodes,
+                    nodes={draw, minimum size=1cm, anchor=center},
+                    row sep=-\pgflinewidth,
+                    column sep=-\pgflinewidth]
+        {
+            (0,0) & (0,1) & (0,2) \\
+            (1,0) & (1,1) & (1,2) \\
+        };
+
+        % Colorier la case (0,0) en noir
+        \fill[black] (m-2-2.north west) rectangle (m-2-2.south east);
+        \node[text=white] at (m-2-2) {(1,1)};
+
+   % Axes x et y dépassant du rectangle
+\draw[->] (m-1-1.north west) -- (m-2-1.south west) -- ([yshift=-0.5cm]m-2-1.south west) node[below] {x};
+\draw[->] (m-1-1.north west) -- (m-1-3.north east) -- ([xshift=0.5cm]m-1-3.north east) node[right] {y};
+
+
+        % Numérotation des intersections avec les axes (manuelle)
+        \node[left] at (m-1-1.north west) {0};
+        \node[left] at (m-2-1.north west) {1};
+        \node[left] at (m-2-1.south west) {2};
+        \node[above] at (m-1-1.north west) {0};
+        \node[above] at (m-1-2.north west) {1};
+        \node[above] at (m-1-3.north west) {2};
+        \node[above] at (m-1-3.north east) {3};
+    \end{tikzpicture}
+ \end{center}
+
+ \end{figure}
+
+Les sommets (1,1), (1,2), (2,1) et (2,2) ne doivent pas figurer dans le graphe car le robot n'y a pas accès.\\
+
+J'ai choisi d'implémenter les orientations du robot dans la grille de la façon suivante :\\
+\begin{center}
+\begin{tikzpicture}
+    % Dessiner le cercle
+    \draw (0,0) circle (1.5cm);
+
+    % Dessiner la croix perpendiculaire
+    \draw[thick] (-2,0) -- (2,0); % Ligne horizontale
+    \draw[thick] (0,-2) -- (0,2); % Ligne verticale
+
+    % Ajouter les orientations de la rose des vents
+    \node at (0, 2.5) {Nord (0)};
+    \node at (3, 0) {Est (1)};
+    \node at (0, -2.5) {Sud (2)};
+    \node at (-3, 0) {Ouest (3)};
+\end{tikzpicture}
+\end{center}
+
+Ainsi, le graphe associé est le suivant où les arcs AVANCE sont en rouge et les arcs TOURNE en bleu:\\
+
+
+\begin{tikzpicture}[every node/.style={draw, circle, inner sep=2pt, font=\tiny}]
+    \node (0-0-0) at (4,0) {(0,0,0)};
+  \node (0-0-1) at (2,0) {(0,0,1)};
+  \node (0-0-2) at (2,-2) {(0,0,2)};
+  \node (0-0-3) at (4,-2) {(0,0,3)};
+  \node (0-1-0) at (8,0) {(0,1,0)};
+  \node (0-1-1) at (6,0) {(0,1,1)};
+  \node (0-1-2) at (6,-2) {(0,1,2)};
+  \node (0-1-3) at (8,-2) {(0,1,3)};
+
+  \node (0-2-0) at (12,0) {(0,2,0)};
+  \node (0-2-1) at (10,0) {(0,2,1)};
+  \node (0-2-2) at (10,-2) {(0,2,2)};
+  \node (0-2-3) at (12,-2) {(0,2,3)};
+
+  \node (0-3-0) at (16,0) {(0,3,0)};
+  \node (0-3-1) at (14,0) {(0,3,1)};
+  \node (0-3-2) at (14,-2) {(0,3,2)};
+  \node (0-3-3) at (16,-2) {(0,3,3)};
+
+  \node (1-0-0) at (4,-4) {(1,0,0)};
+  \node (1-0-1) at (2,-4) {(1,0,1)};
+  \node (1-0-2) at (2,-6) {(1,0,2)};
+  \node (1-0-3) at (4,-6) {(1,0,3)};
+
+  \node (1-3-0) at (16,-4) {(1,3,0)};
+  \node (1-3-1) at (14,-4) {(1,3,1)};
+  \node (1-3-2) at (14,-6) {(1,3,2)};
+  \node (1-3-3) at (16,-6) {(1,3,3)};
+  \node (2-0-0) at (4,-8) {(2,0,0)};
+  \node (2-0-1) at (2,-8) {(2,0,1)};
+  \node (2-0-2) at (2,-10) {(2,0,2)};
+  \node (2-0-3) at (4,-10) {(2,0,3)};
+  \node (2-3-0) at (16,-8) {(2,3,0)};
+  \node (2-3-1) at (14,-8) {(2,3,1)};
+  \node (2-3-2) at (14,-10) {(2,3,2)};
+  \node (2-3-3) at (16,-10) {(2,3,3)};
+
+  % Arcs pour chaque groupe (x,y,z)
+  \draw[<->] (0-0-0) -- (0-0-1);
+  \draw[<->] (0-0-3) -- (0-0-0);
+  \draw[<->] (0-0-2) -- (0-0-1);
+  \draw[<->] (0-0-2) -- (0-0-3);
+
+  \draw[<->] (0-3-0) -- (0-3-1);
+  \draw[<->] (0-3-3) -- (0-3-0);
+  \draw[<->] (0-3-2) -- (0-3-1);
+  \draw[<->] (0-3-2) -- (0-3-3);
+
+  \draw[<->] (1-0-0) -- (1-0-1);
+  \draw[<->] (1-0-3) -- (1-0-0);
+  \draw[<->] (1-0-2) -- (1-0-1);
+  \draw[<->] (1-0-2) -- (1-0-3);
+
+  \draw[<->] (1-3-0) -- (1-3-1);
+  \draw[<->] (1-3-3) -- (1-3-0);
+  \draw[<->] (1-3-2) -- (1-3-1);
+  \draw[<->] (1-3-2) -- (1-3-3);
+
+  \draw[<->] (2-0-0) -- (2-0-1);
+  \draw[<->] (2-0-3) -- (2-0-0);
+  \draw[<->] (2-0-2) -- (2-0-1);
+  \draw[<->] (2-0-2) -- (2-0-3);
+
+  \draw[<->] (2-3-0) -- (2-3-1);
+  \draw[<->] (2-3-3) -- (2-3-0);
+  \draw[<->] (2-3-2) -- (2-3-1);
+  \draw[<->] (2-3-2) -- (2-3-3);
+  
+  \draw[<->] (0-1-2) -- (0-1-3);
+  \draw[<->] (0-1-3) -- (0-1-0);
+  \draw[<->] (0-1-0) -- (0-1-1);
+  \draw[<->] (0-1-1) -- (0-1-2);
+  
+  \draw[<->] (0-2-2) -- (0-2-3);
+  \draw[<->] (0-2-3) -- (0-2-0);
+  \draw[<->] (0-2-0) -- (0-2-1);
+  \draw[<->] (0-2-1) -- (0-2-2);
+  
+% Arcs pour chaque groupe (x,y,z) en bleu
+  \draw[<->, blue] (0-0-0) -- (0-0-1);
+  \draw[<->, blue] (0-0-3) -- (0-0-0);
+  \draw[<->, blue] (0-0-2) -- (0-0-1);
+  \draw[<->, blue] (0-0-2) -- (0-0-3);
+  \draw[<->, blue] (0-3-0) -- (0-3-1);
+  \draw[<->, blue] (0-3-3) -- (0-3-0);
+  \draw[<->, blue] (0-3-2) -- (0-3-1);
+  \draw[<->, blue] (0-3-2) -- (0-3-3);
+  \draw[<->, blue] (1-0-0) -- (1-0-1);
+  \draw[<->, blue] (1-0-3) -- (1-0-0);
+  \draw[<->, blue] (1-0-2) -- (1-0-1);
+  \draw[<->, blue] (1-0-2) -- (1-0-3);
+  \draw[<->, blue] (1-3-0) -- (1-3-1);
+  \draw[<->, blue] (1-3-3) -- (1-3-0);
+  \draw[<->, blue] (1-3-2) -- (1-3-1);
+  \draw[<->, blue] (1-3-2) -- (1-3-3);
+  \draw[<->, blue] (2-0-0) -- (2-0-1);
+  \draw[<->, blue] (2-0-3) -- (2-0-0);
+  \draw[<->, blue] (2-0-2) -- (2-0-1);
+  \draw[<->, blue] (2-0-2) -- (2-0-3);
+  \draw[<->, blue] (2-3-0) -- (2-3-1);
+  \draw[<->, blue] (2-3-3) -- (2-3-0);
+  \draw[<->, blue] (2-3-2) -- (2-3-1);
+  \draw[<->, blue] (2-3-2) -- (2-3-3);
+
+  \draw[<->, blue] (0-1-2) -- (0-1-3);
+  \draw[<->, blue] (0-1-3) -- (0-1-0);
+  \draw[<->, blue] (0-1-0) -- (0-1-1);
+  \draw[<->, blue] (0-1-1) -- (0-1-2);
+
+  \draw[<->, blue] (0-2-2) -- (0-2-3);
+  \draw[<->, blue] (0-2-3) -- (0-2-0);
+  \draw[<->, blue] (0-2-0) -- (0-2-1);
+  \draw[<->, blue] (0-2-1) -- (0-2-2);
+
+  % Arcs avancés courbés en rouge
+  \draw[->, red, bend right] (0-0-2) to (1-0-2);
+  \draw[->, red, bend right] (0-0-2) to (2-0-2);
+  \draw[->, red, bend right] (1-0-2) to (2-0-2);
+  \draw[->, red, bend left] (2-0-0) to (1-0-0);
+  \draw[->, red, bend left] (2-0-0) to (0-0-0);
+  \draw[->, red, bend left] (1-0-0) to (0-0-0);
+  \draw[->, red, bend right] (0-3-2) to (1-3-2);
+  \draw[->, red, bend right] (0-3-2) to (2-3-2);
+  \draw[->, red, bend right] (1-3-2) to (2-3-2);
+  \draw[->, red, bend left] (2-3-0) to (1-3-0);
+  \draw[->, red, bend left] (2-3-0) to (0-3-0);
+  \draw[->, red, bend left] (1-3-0) to (0-3-0);
+  \draw[->, red, bend left] (0-0-1) to (0-1-1);
+  \draw[->, red, bend left] (0-0-1) to (0-2-1);
+  \draw[->, red, bend left] (0-0-1) to (0-3-1);
+  \draw[->, red, bend left] (0-1-1) to (0-2-1);
+  \draw[->, red, bend left] (0-1-1) to (0-3-1);
+  \draw[->, red, bend left] (0-2-1) to (0-3-1);
+  \draw[->, red, bend left] (0-3-3) to (0-2-3);
+  \draw[->, red, bend left] (0-3-3) to (0-1-3);
+  \draw[->, red, bend left] (0-3-3) to (0-0-3);
+  \draw[->, red, bend left] (0-2-3) to (0-1-3);
+  \draw[->, red, bend left] (0-2-3) to (0-0-3);
+  \draw[->, red, bend left] (0-1-3) to (0-0-3);
+  
+\end{tikzpicture}
+
+\section*{b. Complexité de l'algorithme}
+
+Le plus court chemin dans un graphe orienté non pondéré (comme c'est ici notre cas puisque chaque opération coûte 1) peut être trouvé à l'aide d'un \textbf{parcours en largeur} (ou BFS). C'est celui que j'ai décidé d'utiliser. Sa complexité dans le pire cas est en $\mathcal{O}(n+m)$ où $n$ est le nombre de sommet du graphe $n=|V|$ et $m$ le nombre d'arête $m=|E|$.
+
+\section*{c. Temps de calcul en fonction de la taille de la grille}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.5]{instanceX-X-X.png}
+\caption{Temps d'éxécution en fonction de la taille de la grille pour un nombre d'obstacle constant.}
+\label{pcte}
+\end{center}
+\end{figure}
+
+\section*{d. Temps de calcul en fonction de la taille du nombre d'obstacle}
+
+\section*{e. Positionnement des obstacles}
+
+
+
+
+\end{document}
