@@ -108,14 +108,18 @@ def affichage():
     D1,D2 = depart
     depart = (D1,D2,randint(0,3))
     chemin = bfs(g,depart,arrivee)
-    print("arrivee:",arrivee)
-    print("depart=",depart)
-    print("chemin:",chemin)
-    print(g)
+    
     if chemin!=-1:
         chemin = ecriture_chemin(chemin,depart,arrivee)
-    print("chemin brut:",chemin)
-    chemin = traduction_chemin(chemin)
+        print(chemin)
+        cheminbis = [(c[0],c[1]) for c in chemin]
+        cheminter=[]
+        for c in cheminbis:
+            if c not in cheminter:
+                cheminter.append(c)
+        print(cheminbis)
+        print(cheminter)
+    chemin_affichage = traduction_chemin(chemin)
 
 if __name__=="__main__":
     choix = menu()
