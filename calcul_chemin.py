@@ -67,7 +67,7 @@ def traduction_chemin(path):
         x,y,orientation = path[i]
         next_x,next_y,next_orientation = path[i+1]
         if (x,y)==(next_x,next_y): #si les coordonnees sont égales, on tourne
-            if next_orientation-orientation==1 or next_orientation-orientation==-3: #le robot a tourné à droite
+            if (next_orientation-orientation)==1 or (next_orientation-orientation)==-3: #le robot a tourné à droite
                 chemin += "D "
             else:
                 chemin += "G "
