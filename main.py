@@ -120,7 +120,7 @@ def affichage():
                 cheminter.append(c)
     else:
         cheminter=[]
-    chemin_affichage = traduction_chemin(chemin)+"- orientation de départ :"+orientation
+    chemin_affichage = traduction_chemin(chemin)+" depart :"+str(depart)+"arrivée:"+str(arrivee)+"orientation départ :"+orientation
     
     dessiner_grille_intersections(grille,[(D1,D2),arrivee],cheminter,chemin_affichage,orientation)
 
