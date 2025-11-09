@@ -1,5 +1,7 @@
 import tkinter as tk
 
+#Cette fonction a été entièrement réalisée par l'IA. (Le Chat, une assistante IA développée par Mistral AI.)
+
 def dessiner_grille_intersections(grille, points, chemin, chemin_texte, orientation_depart):
     taille_case = 30
     marge = 20

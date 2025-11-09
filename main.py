@@ -88,15 +88,20 @@ def solution():
     print("Fichier solution créé avec succes dans le dossier OUTPUT")
     
 def affichage():
-    print("--------- Résolution d'une instance  --------------")
-    N = int(input("Que vaut N ? ->"))
-    M = int(input("Que vaut M ? ->"))
-    P = int(input("Combien d'obstacles ? ->"))
+    print("--------- Résolution d'une instance  aléatoire --------------")
+    N = int(input("Que vaut N (>5) ? ->"))
+    while N<5:
+        print("Trop petit !")
+        N = int(input("Que vaut N ? ->"))
+    M = int(input("Que vaut M (>5) ? ->"))
+    while M<5:
+        print("Trop petit !")
+        M = int(input("Que vaut M ? ->"))
+    P = int(input("Combien d'obstacles (<90% de N*M)? ->"))
     while P>90*(N*M)/100:
         print("Trop d'obstacles !")
         P = int(input("Combien d'obstacles ? ->"))
     grille = generation_grille(N,M,P)
-    
     depart = (-1,-1)
     arrivee = (-1,-1)
     while not(choix_depart_arrivee(grille,depart)):
@@ -111,7 +116,6 @@ def affichage():
     orientation = randint(0,3)
     depart = (D1,D2,orientation)
     chemin = bfs(g,depart,arrivee)
-    print("chemin en sortie de BFS:",chemin)
     orientation = ["nord","est","sud","ouest"][orientation]
     if chemin!=-1:
         chemin = ecriture_chemin(chemin,depart,arrivee)
