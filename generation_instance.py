@@ -51,6 +51,7 @@ def choix_depart_arrivee(grille,coordonnees):
         y_prime = y+d[1]
         if dans_la_grille(grille,(x_prime,y_prime)):
             cases_a_verifier.append((x_prime,y_prime))
+    #verifie que la coordonnée est accessible (pas d'obstacle)
     for case in cases_a_verifier:
         if grille[case[0]][case[1]]==1:
             return False
