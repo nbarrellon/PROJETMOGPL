@@ -43,10 +43,11 @@ def test_nb_obstacle_cte(fichier):
 
 #creation des fichiers d'instance à tester. 10 instances de N=5 à N=50 (*10 blocs)
 instances= []
-for i in range(5,55,5):
+for i in range(5,15,5):
     instance = [(i,i,i)]*10
     nom_fichier = "./OUTPUT/instance"+str(i)*3+".txt"
     instances.append(nom_fichier)
+    #pour chaque instance, départ et arrivée sont placés aux deux extrémités opposées.
     creation_fichier(instance,nom_fichier,False,(0,0),(i,i),"nord")
 print(instances)
 temps_necessaire = []
@@ -60,30 +61,30 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-N = [i for i in range(5,55,5)] #abcisse = taille de l'entrée pour une matrice carrée
+N = [i for i in range(5,15,5)] #abcisse = taille de l'entrée pour une matrice carrée
 
 N_array = np.array(N)
 temps_necessaire_array = np.array(temps_necessaire)
 
-
-
-
-
 # Calcul des logarithmes (base 10)
 log_N = np.log10(N_array)
 log_temps = np.log10(temps_necessaire_array)
-
-# Régression linéaire sur log(t) = f(log(n))
-slope, intercept, r_value, p_value, std_err = linregress(log_N, log_temps)
+# Ajustement d'un polynôme de degré 2 pour t = f(n)
+coefficients = np.polyfit(N, temps_necessaire, 2)
+polynome = np.poly1d(coefficients)
+N_fit = np.linspace(min(N), max(N), 100)
+temps_fit = polynome(N_fit)
 
 # Création de la figure avec deux sous-graphiques
 fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8))
 
-# Première courbe : t = f(n)
+# Première courbe : t = f(n) avec modélisation quadratique
 ax1.plot(N, temps_necessaire, 'bo-', label='Données')
+ax1.plot(N_fit, temps_fit, 'r--', label=f'Modélisation quadratique: t = {coefficients[0]:.3f}n² + {coefficients[1]:.3f}n + {coefficients[2]:.3f}')
 ax1.set_xlabel('N')
 ax1.set_ylabel('Temps nécessaire (t)')
-ax1.set_title('Courbe t = f(n)')
+ax1.set_title('Courbe t = f(n) avec modélisation quadratique')
+ax1.legend()
 ax1.grid(True)
 
 # Deuxième courbe : log(t) = f(log(n)) avec régression linéaire
