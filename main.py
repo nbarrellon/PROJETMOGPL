@@ -87,7 +87,35 @@ def solution():
     print("Fichier solution créé avec succes dans le dossier OUTPUT")
     
 def affichage():
-    print("--------- Résolution d'une instance  --------------")  
+    print("--------- Résolution d'une instance  --------------")
+    N = int(input("Que vaut N ? ->"))
+    M = int(input("Que vaut M ? ->"))
+    P = int(input("Combien d'obstacles ? ->"))
+    while P>90*(N*M)/100:
+        print("Trop d'obstacles !")
+        P = int(input("Combien d'obstacles ? ->"))
+    grille = generation_grille(N,M,P)
+    depart = (-1,-1)
+    arrivee = (-1,-1)
+    while not(choix_depart_arrivee(grille,depart)):
+        depart = (randint(0,N),randint(0,M))
+        deja_essaye = [depart]
+    while not(choix_depart_arrivee(grille,arrivee)) or arrivee not in deja_essaye:
+        arrivee = (randint(0,N),randint(0,M))
+        deja_essaye.append(arrivee)
+    orientation = ["nord","sud","est","ouest"][randint(0,3)]       
+    g = Graphe(grille)
+    D1,D2 = depart
+    depart = (D1,D2,orientation)
+    chemin = bfs(g,depart,arrivee)
+    print("arrivee:",arrivee)
+    print("depart=",depart)
+    print("chemin:",chemin)
+    print(g)
+    if chemin!=-1:
+        chemin = ecriture_chemin(chemin,depart,arrivee)
+    print("chemin brut:",chemin)
+    chemin = traduction_chemin(chemin)
 
 if __name__=="__main__":
     choix = menu()
