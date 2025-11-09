@@ -39,13 +39,14 @@ def test_nb_obstacle_cte(fichier):
     return tps_moyen/10
 
 #creation des fichiers d'instance à tester. 10 instances de N=5 à N=50 (*10 blocs)
+instances= []
 for i in range(5,55,5):
-    instances = [(i,i,i)]*10
+    instance = [(i,i,i)]*10
     nom_fichier = "./OUTPUT/instance"+str(i)*3+".txt"
-    creation_fichier(instances,nom_fichier,False,(0,0),(i,i),"nord")
-
+    instances.append(nom_fichier)
+    creation_fichier(instance,nom_fichier,False,(0,0),(i,i),"nord")
+print(instances)
 temps_necessaire = []
-#tests sur instances N=M=10,20,30,40,50 avec nb_obstacles cte. Chaque instance est testée 10 fois
 
 for inst in instances:
     temps_necessaire.append(test_nb_obstacle_cte(inst))
