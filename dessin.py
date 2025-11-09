@@ -30,21 +30,21 @@ def dessiner_grille_intersections(grille, points, chemin, chemin_texte, orientat
 
     # Dessiner les points noirs aux intersections avec une marge
     for point in points:
-        x, y = point
+        y, x = point
         canevas.create_oval(marge + x*taille_case-5, marge + y*taille_case-5,
                             marge + x*taille_case+5, marge + y*taille_case+5, fill='black')
 
     # Dessiner le chemin rouge reliant les intersections avec une marge
     if chemin:
         for k in range(len(chemin) - 1):
-            x1, y1 = chemin[k]
-            x2, y2 = chemin[k+1]
+            y1, x1 = chemin[k]
+            y2, x2 = chemin[k+1]
             canevas.create_line(marge + x1*taille_case, marge + y1*taille_case,
                                 marge + x2*taille_case, marge + y2*taille_case, fill='red', width=2)
 
     # Dessiner la flèche d'orientation du point de départ
     if chemin:
-        x, y = chemin[0]
+        y, x = chemin[0]
         if orientation_depart == "nord":
             canevas.create_line(marge + x*taille_case, marge + y*taille_case - 10,
                                 marge + x*taille_case, marge + y*taille_case - 20, fill='black', arrow=tk.LAST, width=2)
