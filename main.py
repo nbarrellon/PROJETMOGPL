@@ -100,7 +100,7 @@ def affichage():
     arrivee = (-1,-1)
     while not(choix_depart_arrivee(grille,depart)):
         depart = (randint(0,N),randint(0,M))
-        deja_essaye = [depart]
+    deja_essaye = [depart]
     while not(choix_depart_arrivee(grille,arrivee)) or arrivee not in deja_essaye:
         arrivee = (randint(0,N),randint(0,M))
         deja_essaye.append(arrivee)
@@ -118,7 +118,8 @@ def affichage():
         for c in cheminbis:
             if c not in cheminter:
                 cheminter.append(c)
-    
+    else:
+        cheminter=[]
     chemin_affichage = traduction_chemin(chemin)+"- orientation de départ :"+orientation
     
     dessiner_grille_intersections(grille,[(D1,D2),arrivee],cheminter,chemin_affichage,orientation)
