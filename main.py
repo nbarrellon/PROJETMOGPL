@@ -96,6 +96,7 @@ def affichage():
         print("Trop d'obstacles !")
         P = int(input("Combien d'obstacles ? ->"))
     grille = generation_grille(N,M,P)
+    
     depart = (-1,-1)
     arrivee = (-1,-1)
     while not(choix_depart_arrivee(grille,depart)):
@@ -110,6 +111,7 @@ def affichage():
     orientation = randint(0,3)
     depart = (D1,D2,orientation)
     chemin = bfs(g,depart,arrivee)
+    print("chemin en sortie de BFS:",chemin)
     orientation = ["nord","est","sud","ouest"][orientation]
     if chemin!=-1:
         chemin = ecriture_chemin(chemin,depart,arrivee)
@@ -120,8 +122,9 @@ def affichage():
                 cheminter.append(c)
     else:
         cheminter=[]
+    print("chemin pour dessin:",cheminter)
     chemin_affichage = traduction_chemin(chemin)+" depart :"+str(depart)+"arrivée:"+str(arrivee)+"orientation départ :"+orientation
-    
+    print("chemin à afficher:",chemin_affichage)
     dessiner_grille_intersections(grille,[(D1,D2),arrivee],cheminter,chemin_affichage,orientation)
 
 if __name__=="__main__":

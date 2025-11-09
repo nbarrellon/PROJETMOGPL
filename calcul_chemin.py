@@ -79,7 +79,7 @@ def traduction_chemin(path):
     return chemin+"\n"
 
 if __name__=="__main__":
-    grille,D1,D2,F1,F2,orientation = lecture_fichier_instance("essaipoly.txt")
+    grille,D1,D2,F1,F2,orientation = lecture_fichier_instance("./OUTPUT/essaipoly.txt")
     points_cardinaux = ["nord","est","sud","ouest"]
     orientation = points_cardinaux.index(orientation)
     g = Graphe(grille)
