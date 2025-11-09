@@ -56,7 +56,7 @@ def choix_depart_arrivee(grille,coordonnees):
             return False
     return True
 
-def creation_fichier(instances_voulues,fichier):
+def creation_fichier(instances_voulues,fichier,aleatoire=True,depart=(-1,-1),arrivee=(-1,-1),cardinal="nord"):
     """
     Entrée : fichier : nom pour le fichier de sauvegarde
             instances_voulues : liste des instances à générér. Tuple (N,M,P)
@@ -73,18 +73,20 @@ def creation_fichier(instances_voulues,fichier):
                 for j in range(M):
                     f.write(str(grille[i][j])+" ")
                 f.write("\n")
-            depart = (-1,-1)
-            while not(choix_depart_arrivee(grille,depart)):
-                depart = (randint(0,N),randint(0,M))
-            arrivee = (-1,-1)
-            while not(choix_depart_arrivee(grille,arrivee)) or arrivee==depart:
-                arrivee = (randint(0,N),randint(0,M))
-            f.write(str(depart[0])+" "+str(depart[1])+" "+str(arrivee[0])+" "+str(arrivee[1])+" "+orientation[randint(0,3)]+"\n")
+            if aleatoire:
+                while not(choix_depart_arrivee(grille,depart)):
+                    depart = (randint(0,N),randint(0,M))
+                while not(choix_depart_arrivee(grille,arrivee)) or arrivee==depart:
+                    arrivee = (randint(0,N),randint(0,M))
+                cardinal = orientation[randint(0,3)]
+            f.write(str(depart[0])+" "+str(depart[1])+" "+str(arrivee[0])+" "+str(arrivee[1])+" "+cardinal+"\n")
             f.write("0 0\n")
 
-for i in range(1,9):
-    instances = [(i*10,i*10,i*10)]*i*10
-    nom_fichier = "instance"+str(i*10)+"-"+str(i*10)+"-"+str(i*10)+".txt"
-    creation_fichier(instances,nom_fichier)
+if __name__=="__main__":
+
+    for i in range(1,9):
+        instances = [(i*10,i*10,i*10)]*i*10
+        nom_fichier = "instance"+str(i*10)+"-"+str(i*10)+"-"+str(i*10)+".txt"
+        creation_fichier(instances,nom_fichier)
 
 
