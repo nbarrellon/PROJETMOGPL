@@ -363,13 +363,21 @@ Le plus court chemin dans un graphe orienté non pondéré (comme c'est ici notr
 
 \section*{c. Temps de calcul en fonction de la taille de la grille}
 
+En théorie, la compléxité dans le pire des cas pour le parcours en largeur est $\mathcal{O}(N)$. Toutefois, on a montré que la taille de l'entrée varie en $N^2$ ainsi, je m'attends à une complexité du parcours en $\mathcal{O}(n^{2})$.\\
+Sur la Figure \ref{pcte} les résultats expérimentaux obtenus pour des matrices carrées ($N \leq 50$). Pour un N donné, 10 instances de graphes sont générées avec $P$ obstacles ($P=N$) pour obtenir un temps d'exécution moyen. J'ai choisi de positionner pour chacun des tests le départ en (0,0) et l'arrivée en (N,N) car, en tirant au hasard ces positions extrêmes on peut obtenir des parcours très courts (départ très voisin d'arrivée) et donc un temps d'éxécution non représentatif.
+
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.5]{instanceX-X-X.png}
+\includegraphics[scale=0.5]{tempsPconstant.png}
 \caption{Temps d'éxécution en fonction de la taille de la grille pour un nombre d'obstacle constant.}
 \label{pcte}
 \end{center}
 \end{figure}
+
+La courbe $t=f(N)$ a l'allure d'une courbe polynomiale de forme générale \textbf{$t=f(n)=n^\alpha$}. Pour déterminer le degré du polynome, je trace la courbe $log(t)=g(log(n))$. En effet, si $f(n)=n^\alpha$ alors $log(t)=log(n^\alpha)=\alpha \times log(n)$. \\
+Si l'hypothèse est correcte alors cette courbe est une droite dont le coefficient directeur vaut $\alpha$.\\
+L'hypothèse est vérifiée expérimentalement puis que j'obtiens, après régression linéaire, $\alpha \approx 2$ (le log utilisé par Numpy est le logartihme népérien soit une complexité temporelle dans le pire des cas \fbox{$\mathcal{O}(n^{2})$}
+
 
 \section*{d. Temps de calcul en fonction de la taille du nombre d'obstacle}
 
