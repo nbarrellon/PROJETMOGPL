@@ -349,6 +349,13 @@ Ainsi, le graphe associé est le suivant où les arcs AVANCE sont en rouge et le
   
 \end{tikzpicture}
 
+On ontient ainsi un graphe d'étude G(V,E) avec :
+\begin{itemize}
+\item : chaque intersection de rail génère 4 sommets (correspondant aux 4 orientations possibles) d'où  $|V| \approx 4 \times (NM-4 \times P)|$ où $P$ est le nombre d'obstacle (1 obstacle supprime 4 sommets).
+\item chaque état possède au mieux 2 arêtes (pour "tourner" d'une orientation à l'autre) et 3 arêtes (pour avancer si possible vers un autre sommet) soir $|E| = 7(NM-4\ times P)$.
+\end{itemize}
+
+
 \section*{b. Complexité de l'algorithme}
 
 Le plus court chemin dans un graphe orienté non pondéré (comme c'est ici notre cas puisque chaque opération coûte 1) peut être trouvé à l'aide d'un \textbf{parcours en largeur} (ou BFS). C'est celui que j'ai décidé d'utiliser. Sa complexité dans le pire cas est en $\mathcal{O}(n+m)$ où $n$ est le nombre de sommet du graphe $n=|V|$ et $m$ le nombre d'arête $m=|E|$.

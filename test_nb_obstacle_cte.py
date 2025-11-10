@@ -68,30 +68,58 @@ N_array = np.array(N)
 temps_necessaire_array = np.array(temps_necessaire)
 
 
-# Fonction de modélisation : t = a * n^2
-def modele_quadratique(n, a):
+# Fonction de modélisation : t = a * n^3
+def modele(n, a):
     return a * n**3
 
 # Ajustement du modèle aux données
-popt, pcov = curve_fit(modele_quadratique, N, temps_necessaire)
+popt, pcov = curve_fit(modele, N_array, temps_necessaire_array)
 a = popt[0]  # Coefficient trouvé
 
 # Valeurs pour la courbe modélisée
 N_fit = np.linspace(min(N), max(N), 100)
-temps_fit = modele_quadratique(N_fit, a)
+temps_fit = modele(N_fit, a)
 
-# Tracé de la courbe
-plt.figure(figsize=(10, 6))
-plt.plot(N, temps_necessaire, 'bo-', label='Données expérimentales')
-plt.plot(N_fit, temps_fit, 'r--', label=f'Modélisation : $t = {a:.4f} \\cdot n^2$')
-plt.xlabel('Taille de l\'entrée (N)')
-plt.ylabel('Temps nécessaire (t)')
-plt.title('Courbe $t = f(n)$ avec modélisation quadratique')
-plt.legend()
-plt.grid(True)
+# Calcul des logarithmes
+log_N = np.log(N_array)
+log_temps = np.log(temps_necessaire_array)
 
-# Affichage des courbes
+# Fonction de modélisation pour log(t) = b * log(n) + c
+def modele_log(x, b, c):
+    return b * x + c
+
+# Ajustement du modèle logarithmique
+popt_log, _ = curve_fit(modele_log, log_N, log_temps)
+b, c = popt_log  # Coefficients trouvés
+
+# Valeurs pour la courbe modélisée en échelle logarithmique
+log_N_fit = np.linspace(min(log_N), max(log_N), 100)
+log_temps_fit = modele_log(log_N_fit, b, c)
+
+# Création des graphiques
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 10))
+
+# Graphique 1 : t = f(n)
+ax1.plot(N, temps_necessaire, 'bo-', label='Données expérimentales')
+ax1.plot(N_fit, temps_fit, 'r--', label=f'Modélisation : $t = {a:.4f} \\cdot n^3$')
+ax1.set_xlabel('Taille de l\'entrée (N)')
+ax1.set_ylabel('Temps nécessaire (t)')
+ax1.set_title('Courbe $t = f(n)$ avec modélisation polynomiale')
+ax1.legend()
+ax1.grid(True)
+
+# Graphique 2 : log(t) = f(log(n))
+ax2.plot(log_N, log_temps, 'go-', label='Données en échelle logarithmique')
+ax2.plot(log_N_fit, log_temps_fit, 'm--', label=f'Modélisation : $\\log(t) = {b:.4f} \\cdot \\log(n) + {c:.4f}$')
+ax2.set_xlabel('$\log(N)$')
+ax2.set_ylabel('$\log(t)$')
+ax2.set_title('Courbe $\\log(t) = f(\\log(n))$')
+ax2.legend()
+ax2.grid(True)
+
+# Ajustement de la mise en page
 plt.tight_layout()
-plt.savefig("instanceXXX.png")
-# Affichage du graphique
+
+# Sauvegarde et affichage
+plt.savefig("instanceXXX_log.png")
 plt.show()
