@@ -45,7 +45,7 @@ def test_nb_obstacle_cte(fichier):
 #creation des fichiers d'instance à tester. 10 instances de N=5 à N=50 (*20 blocs)
 instances= []
 for i in range(5,51,3):
-    instance = [(i,i,i)]*20
+    instance = [(i,i,10)]*20
     nom_fichier = "./OUTPUT/instance"+str(i)*3+".txt"
     instances.append(nom_fichier)
     #pour chaque instance, départ et arrivée sont placés aux deux extrémités opposées.
