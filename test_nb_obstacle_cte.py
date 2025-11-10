@@ -44,7 +44,7 @@ def test_nb_obstacle_cte(fichier):
 
 #creation des fichiers d'instance à tester. 10 instances de N=5 à N=50 (*10 blocs)
 instances= []
-for i in range(5,35,5):
+for i in range(5,35,3):
     instance = [(i,i,i)]*10
     nom_fichier = "./OUTPUT/instance"+str(i)*3+".txt"
     instances.append(nom_fichier)
@@ -62,7 +62,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-N = [i for i in range(5,35,5)] #abcisse = taille de l'entrée pour une matrice carrée
+N = [i for i in range(5,35,3)] #abcisse = taille de l'entrée pour une matrice carrée
 
 N_array = np.array(N)
 temps_necessaire_array = np.array(temps_necessaire)
@@ -70,7 +70,7 @@ temps_necessaire_array = np.array(temps_necessaire)
 
 # Fonction de modélisation : t = a * n^2
 def modele_quadratique(n, a):
-    return a * n**2
+    return a * n**3
 
 # Ajustement du modèle aux données
 popt, pcov = curve_fit(modele_quadratique, N, temps_necessaire)
