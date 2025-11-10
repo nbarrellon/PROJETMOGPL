@@ -68,18 +68,6 @@ N_array = np.array(N)
 temps_necessaire_array = np.array(temps_necessaire)
 
 
-# Fonction de modélisation : t = a * n^3
-def modele(n, a):
-    return a * n**3
-
-# Ajustement du modèle aux données
-popt, pcov = curve_fit(modele, N_array, temps_necessaire_array)
-a = popt[0]  # Coefficient trouvé
-
-# Valeurs pour la courbe modélisée
-N_fit = np.linspace(min(N), max(N), 100)
-temps_fit = modele(N_fit, a)
-
 # Calcul des logarithmes
 log_N = np.log(N_array)
 log_temps = np.log(temps_necessaire_array)
@@ -101,16 +89,16 @@ fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 10))
 
 # Graphique 1 : t = f(n)
 ax1.plot(N, temps_necessaire, 'bo-', label='Données expérimentales')
-ax1.plot(N_fit, temps_fit, 'r--', label=f'Modélisation : $t = {a:.4f} \\cdot n^3$')
 ax1.set_xlabel('Taille de l\'entrée (N)')
 ax1.set_ylabel('Temps nécessaire (t)')
-ax1.set_title('Courbe $t = f(n)$ avec modélisation polynomiale')
+ax1.set_title('Courbe $t = f(n)$')
 ax1.legend()
 ax1.grid(True)
 
 # Graphique 2 : log(t) = f(log(n))
 ax2.plot(log_N, log_temps, 'go-', label='Données en échelle logarithmique')
-ax2.plot(log_N_fit, log_temps_fit, 'm--', label=f'Modélisation : $\\log(t) = {b:.4f} \\cdot \\log(n) + {c:.4f}$')
+ax2.plot(log_N_fit, log_temps_fit, 'm--', label=f'Modélisation : $\\log(t) = {b:.4f} \\cdot \\log(n)$')
+
 ax2.set_xlabel('$\log(N)$')
 ax2.set_ylabel('$\log(t)$')
 ax2.set_title('Courbe $\\log(t) = f(\\log(n))$')

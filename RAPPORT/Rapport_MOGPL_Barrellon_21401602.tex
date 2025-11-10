@@ -348,12 +348,13 @@ Ainsi, le graphe associé est le suivant où les arcs AVANCE sont en rouge et le
   \draw[->, red, bend left] (0-1-3) to (0-0-3);
   
 \end{tikzpicture}
-
-On ontient ainsi un graphe d'étude G(V,E) avec :
+\newpage
+On ontient ainsi un graphe d'étude G(V,E) :
 \begin{itemize}
-\item : chaque intersection de rail génère 4 sommets (correspondant aux 4 orientations possibles) d'où  $|V| \approx 4 \times (NM-4 \times P)|$ où $P$ est le nombre d'obstacle (1 obstacle supprime 4 sommets).
-\item chaque état possède au mieux 2 arêtes (pour "tourner" d'une orientation à l'autre) et 3 arêtes (pour avancer si possible vers un autre sommet) soir $|E| = 7(NM-4\ times P)$.
+\item chaque intersection de rail génère 4 sommets (correspondant aux 4 orientations possibles) d'où  $|V| \approx 4 \times (NM-4 \times P)|$ où $P$ est le nombre d'obstacle (1 obstacle supprime 4 sommets).
+\item chaque état possède au mieux 2 arêtes (pour "tourner" d'une orientation à l'autre) et 3 arêtes (pour avancer si possible vers un autre sommet) soir $|E| \approx 7(NM-4 \times P)$.
 \end{itemize}
+On constate donc que la taille du graphe est en $N^2$.
 
 
 \section*{b. Complexité de l'algorithme}

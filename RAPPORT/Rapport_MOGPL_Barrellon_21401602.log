@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.6.6)  10 NOV 2025 10:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.6.6)  10 NOV 2025 10:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1153,7 +1153,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 206--207
 
 File: LOGO_SCIENCES_DEF_CMJN_med.jpg Graphic file (type jpg)
 <use LOGO_SCIENCES_DEF_CMJN_med.jpg>
-Package pdftex.def Info: LOGO_SCIENCES_DEF_CMJN_med.jpg  used on input line 355
+Package pdftex.def Info: LOGO_SCIENCES_DEF_CMJN_med.jpg  used on input line 351
 .
 (pdftex.def)             Requested size: 85.35826pt x 34.23097pt.
 
@@ -1165,16 +1165,16 @@ Package fancyhdr Warning: \footskip is too small (34.1433pt):
 <instanceX-X-X.png, id=29, 578.16pt x 361.35pt>
 File: instanceX-X-X.png Graphic file (type png)
 <use instanceX-X-X.png>
-Package pdftex.def Info: instanceX-X-X.png  used on input line 367.
+Package pdftex.def Info: instanceX-X-X.png  used on input line 368.
 (pdftex.def)             Requested size: 289.07928pt x 180.67456pt.
 
 
 LaTeX Font Warning: Font shape `T1/cmbr/m/sc' undefined
-(Font)              using `T1/cmbr/m/n' instead on input line 368.
+(Font)              using `T1/cmbr/m/n' instead on input line 369.
 
 File: LOGO_SCIENCES_DEF_CMJN_med.jpg Graphic file (type jpg)
 <use LOGO_SCIENCES_DEF_CMJN_med.jpg>
-Package pdftex.def Info: LOGO_SCIENCES_DEF_CMJN_med.jpg  used on input line 380
+Package pdftex.def Info: LOGO_SCIENCES_DEF_CMJN_med.jpg  used on input line 381
 .
 (pdftex.def)             Requested size: 85.35826pt x 34.23097pt.
 
@@ -1187,9 +1187,20 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.380 \end{document}
+l.381 \end{document}
                      <./instanceX-X-X.png>]
-(./Rapport_MOGPL_Barrellon_21401602.aux)
+File: LOGO_SCIENCES_DEF_CMJN_med.jpg Graphic file (type jpg)
+<use LOGO_SCIENCES_DEF_CMJN_med.jpg>
+Package pdftex.def Info: LOGO_SCIENCES_DEF_CMJN_med.jpg  used on input line 381
+.
+(pdftex.def)             Requested size: 85.35826pt x 34.23097pt.
+
+
+Package fancyhdr Warning: \footskip is too small (34.1433pt): 
+(fancyhdr)                Make it at least 38.73102pt, for example:
+(fancyhdr)                \setlength{\footskip}{38.73102pt}.
+
+[5] (./Rapport_MOGPL_Barrellon_21401602.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -1207,23 +1218,24 @@ xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 32270 strings out of 474222
- 617423 string characters out of 5748734
+ 32271 strings out of 474222
+ 617429 string characters out of 5748734
  1946975 words of memory out of 5000000
  54064 multiletter control sequences out of 15000+600000
  568250 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,17n,87p,767b,2050s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/hfbright/hfbr10.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/hfbright/hfbrmi10.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/hfbright/hfbrsy10.pfb></usr/share/texmf/fon
-ts/type1/public/cm-super/sfbbx10.pfb></usr/share/texmf/fonts/type1/public/cm-su
-per/sfbmr10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbmr8.pfb>
-Output written on Rapport_MOGPL_Barrellon_21401602.pdf (4 pages, 150608 bytes).
+hare/texlive/texmf-dist/fonts/type1/public/hfbright/hfbr8.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/hfbright/hfbrmi10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/hfbright/hfbrsy10.pfb></usr/share/texmf/fonts/type1/p
+ublic/cm-super/sfbbx10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbmr1
+0.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbmr8.pfb>
+Output written on Rapport_MOGPL_Barrellon_21401602.pdf (5 pages, 151783 bytes).
 
 PDF statistics:
- 76 PDF objects out of 1000 (max. 8388607)
- 53 compressed objects within 1 object stream
- 11 named destinations out of 1000 (max. 500000)
+ 85 PDF objects out of 1000 (max. 8388607)
+ 59 compressed objects within 1 object stream
+ 12 named destinations out of 1000 (max. 500000)
  23 words of extra memory for PDF output out of 10000 (max. 10000000)
 
