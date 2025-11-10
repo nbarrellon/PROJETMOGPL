@@ -11,7 +11,7 @@ def test_nb_obstacle_cte(fichier):
     points_cardinaux = ["nord","est","sud","ouest"]
     chemins = [] #pour stocker les 10 chemins correspondant aux 10 blocs
     with open(fichier,"r",encoding='utf-8') as f:
-        for _ in range(10): #on calcule les chemins pour les 10 instances et on les sauvegarde
+        for _ in range(20): #on calcule les chemins pour les 20 instances et on les sauvegarde
             tps_moyen = 0
             ############# Lecture du bloc ######################
             ligne1 = f.readline().split()
@@ -40,12 +40,12 @@ def test_nb_obstacle_cte(fichier):
             t1 = perf_counter()
             tps_moyen += (t1-t0)
             #########################################
-    return tps_moyen/10
+    return tps_moyen/20
 
-#creation des fichiers d'instance à tester. 10 instances de N=5 à N=50 (*10 blocs)
+#creation des fichiers d'instance à tester. 10 instances de N=5 à N=50 (*20 blocs)
 instances= []
 for i in range(5,51,3):
-    instance = [(i,i,i)]*10
+    instance = [(i,i,i)]*20
     nom_fichier = "./OUTPUT/instance"+str(i)*3+".txt"
     instances.append(nom_fichier)
     #pour chaque instance, départ et arrivée sont placés aux deux extrémités opposées.
