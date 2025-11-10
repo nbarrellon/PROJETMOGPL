@@ -21,7 +21,7 @@ def lecture_fichier_instance(fichier):
     return grille,D1,D2,F1,F2,orientation
 
 def bfs(graphe,depart,arrivee):
-    visited = []
+    visited = set()
     chemin = dict() #on cree un dictionnaire successeur:predecesseur pour retrouver le chemin
     p = deque() #creation d'une file pour le parcours
     p.append(depart)
@@ -34,9 +34,9 @@ def bfs(graphe,depart,arrivee):
                 chemin[arrivee]=sommet
                 return chemin
             if v not in visited:
-                visited.append(v)
+                visited.add(v)
                 chemin[v]=sommet #pour retrouver en remontant le chemin de l'arrivee jusqu'au départ
-                p.append(v)
+                p.append(v) #on enfile
     return -1 #on a pas trouvé le sommet arrivée (il n'est pas accessible depuis le départ)
 
 def ecriture_chemin(path,depart,arrivee):
