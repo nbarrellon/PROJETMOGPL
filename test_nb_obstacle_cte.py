@@ -44,7 +44,7 @@ def test_nb_obstacle_cte(fichier):
 
 #creation des fichiers d'instance à tester. 10 instances de N=5 à N=50 (*10 blocs)
 instances= []
-for i in range(5,35,3):
+for i in range(5,55,3):
     instance = [(i,i,i)]*10
     nom_fichier = "./OUTPUT/instance"+str(i)*3+".txt"
     instances.append(nom_fichier)
@@ -62,7 +62,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-N = [i for i in range(5,35,3)] #abcisse = taille de l'entrée pour une matrice carrée
+N = [i for i in range(5,55,3)] #abcisse = taille de l'entrée pour une matrice carrée
 
 N_array = np.array(N)
 temps_necessaire_array = np.array(temps_necessaire)
@@ -96,8 +96,8 @@ ax1.legend()
 ax1.grid(True)
 
 # Graphique 2 : log(t) = f(log(n))
-ax2.plot(log_N, log_temps, 'go-', label='Données en échelle logarithmique')
-ax2.plot(log_N_fit, log_temps_fit, 'm--', label=f'Modélisation : $\\log(t) = {b:.4f} \\cdot \\log(n)$')
+ax2.plot(log_N, log_temps, 'bo-', label='Données en échelle logarithmique')
+ax2.plot(log_N_fit, log_temps_fit, 'r--', label=f'Modélisation : $\\log(t) = {b:.4f} \\cdot \\log(n)$')
 
 ax2.set_xlabel('$\log(N)$')
 ax2.set_ylabel('$\log(t)$')
