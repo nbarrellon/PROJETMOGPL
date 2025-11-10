@@ -44,7 +44,7 @@ def test_nb_obstacle_cte(fichier):
 
 #creation des fichiers d'instance à tester. 10 instances de N=5 à N=50 (*10 blocs)
 instances= []
-for i in range(5,31,3):
+for i in range(5,51,3):
     instance = [(i,i,i)]*10
     nom_fichier = "./OUTPUT/instance"+str(i)*3+".txt"
     instances.append(nom_fichier)
@@ -62,7 +62,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-N = [i for i in range(5,31,3)] #abcisse = taille de l'entrée pour une matrice carrée
+N = [i for i in range(5,51,3)] #abcisse = taille de l'entrée pour une matrice carrée
 
 N_array = np.array(N)
 temps_necessaire_array = np.array(temps_necessaire)
