@@ -43,7 +43,7 @@ def test_taille_grille_cte(fichier):
 instances= []
 for i in range(10,100,1): #nb obstacle de 10 à 300 par pas de 10
     instance = [(20,20,i)]*20 #grille de 20 par 20 avec i obstacles
-    nom_fichier = "./OUTPUT/instance_taille_grille_cte"+str(i)*3+".txt"
+    nom_fichier = "./OUTPUT/instance_taille_grille_cte"+str(i)+".txt"
     instances.append(nom_fichier)
     #pour chaque instance, départ et arrivée sont placés aux deux extrémités opposées.
     creation_fichier(instance,nom_fichier,False,(0,0),(i,i),"nord")
@@ -74,12 +74,12 @@ def modele_log(x, b, c):
     return b * x + c
 
 # Ajustement du modèle logarithmique
-popt_log, _ = curve_fit(modele_log, log_P, log_temps)
+popt_log, _ = curve_fit(modele_log, P_array, temps_necessaire_array)
 b, c = popt_log  # Coefficients trouvés
 
 # Valeurs pour la courbe modélisée en échelle logarithmique
-log_P_fit = np.linspace(min(log_P), max(log_N), 100)
-log_temps_fit = modele_log(log_P_fit, b, c)
+P_fit = np.linspace(min(P), max(P), 100)
+temps_fit = modele_log(P_fit, b, c)
 
 # Création des graphiques
 fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 10))
@@ -93,12 +93,12 @@ ax1.legend()
 ax1.grid(True)
 
 # Graphique 2 : log(t) = f(log(n))
-ax2.plot(log_N, log_temps, 'bo-', label='Données en échelle logarithmique')
-ax2.plot(log_N_fit, log_temps_fit, 'r--', label=f'Modélisation : $\\log(t) = {b:.4f} \\cdot \\log(P)$')
+ax2.plot(P, temps_necessaire, 'bo-', label='Données en échelle logarithmique')
+ax2.plot(P_fit, temps_fit, 'r--', label=f'Modélisation : $\\t = {b:.4f} \\cdot \\P$')
 
-ax2.set_xlabel('$\log(P)$')
-ax2.set_ylabel('$\log(t)$')
-ax2.set_title('Courbe $\\log(t) = f(\\log(P))$')
+ax2.set_xlabel('$\P$')
+ax2.set_ylabel('$\t$')
+ax2.set_title('Courbe $\\t = f(\\P)$')
 ax2.legend()
 ax2.grid(True)
 
