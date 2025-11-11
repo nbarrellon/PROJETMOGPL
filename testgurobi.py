@@ -28,7 +28,6 @@ def resolution_grille(grille,P,N,M):
         a.append(colonne)
     #contraintes sur le 101 pour les lignes
     for i in range(N):
-        
         for j in range(M-2):
             ligne = [0]*N*M
             ligne[j+i*M]=1
@@ -39,6 +38,7 @@ def resolution_grille(grille,P,N,M):
 # Second membre
     b = [2*P/M for _ in range(M)] #seconde membre contraintes lignes
     b += [2*P/N for _ in range(N)] #second membre contraintes colonnes
+    b += [2 for _ in range(N*(M-2))]
 
     return a,b
 
