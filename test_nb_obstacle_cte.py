@@ -6,7 +6,6 @@ import matplotlib.pyplot as plt
 from scipy.stats import linregress
 from scipy.optimize import curve_fit
 
-#on considère qu'il y a 10 instances dans le fichier
 def test_nb_obstacle_cte(fichier):
     points_cardinaux = ["nord","est","sud","ouest"]
     with open(fichier,"r",encoding='utf-8') as f:
@@ -26,6 +25,7 @@ def test_nb_obstacle_cte(fichier):
             F2 = int(derniere_ligne[3])
             orientation = derniere_ligne[4]
             f.readline() #on saute les 0 0 de la fin
+
             ########## Generation du chemin ####################
             g = Graphe(grille)
             orientation = points_cardinaux.index(orientation)
@@ -39,11 +39,11 @@ def test_nb_obstacle_cte(fichier):
             #########################################
     return tps_moyen/20
 
-#creation des fichiers d'instance à tester. instances de N=5 à N=50 (*20 blocs)
+#creation des fichiers d'instance à tester. instances de N=10 à N=70 (*20 blocs)
 instances= []
-for i in range(10,300,10): #nb obstacle de 10 à 300 par pas de 10
-    instance = [(20,20,i)]*20 #grille de 20 par 20 avec i obstacles
-    nom_fichier = "./OUTPUT/instancetaillegrillecte"+str(i)*3+".txt"
+for i in range(10,71,3):
+    instance = [(i,i,i)]*20 #instance de N*N avec N obstacles.
+    nom_fichier = "./OUTPUT/instance_nb_obstacle_cte"+str(i)*3+".txt"
     instances.append(nom_fichier)
     #pour chaque instance, départ et arrivée sont placés aux deux extrémités opposées.
     creation_fichier(instance,nom_fichier,False,(0,0),(i,i),"nord")
@@ -59,7 +59,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-N = [i for i in range(10,300,10)] #abcisse = taille de l'entrée pour une matrice carrée = nb obstacles
+N = [i for i in range(10,71,3)] #abcisse = taille de l'entrée pour une matrice carrée
 
 N_array = np.array(N)
 temps_necessaire_array = np.array(temps_necessaire)
@@ -106,5 +106,5 @@ ax2.grid(True)
 plt.tight_layout()
 
 # Sauvegarde et affichage
-plt.savefig("instanceXXX_log.png")
+plt.savefig("test_nb_obstacle_cte.png")
 plt.show()

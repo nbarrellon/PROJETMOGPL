@@ -7,16 +7,14 @@ from scipy.stats import linregress
 from scipy.optimize import curve_fit
 
 #on considère qu'il y a 10 instances dans le fichier
-def test_taille_grille_cte(fichier):
+def test_nb_obstacle_cte(fichier):
     points_cardinaux = ["nord","est","sud","ouest"]
-    chemins = [] #pour stocker les 10 chemins correspondant aux 10 blocs
     with open(fichier,"r",encoding='utf-8') as f:
         for _ in range(20): #on calcule les chemins pour les 20 instances et on les sauvegarde
             tps_moyen = 0
             ############# Lecture du bloc ######################
             ligne1 = f.readline().split()
-            N = int(ligne1[0])
-            M = int(ligne1[1])
+            N = int(ligne1[0]) #matrice carrée N = M
             grille = []
             for i in range(N):
                 ligne = f.readline().split()
@@ -28,7 +26,6 @@ def test_taille_grille_cte(fichier):
             F2 = int(derniere_ligne[3])
             orientation = derniere_ligne[4]
             f.readline() #on saute les 0 0 de la fin
-
             ########## Generation du chemin ####################
             g = Graphe(grille)
             orientation = points_cardinaux.index(orientation)
@@ -44,9 +41,9 @@ def test_taille_grille_cte(fichier):
 
 #creation des fichiers d'instance à tester. instances de N=5 à N=50 (*20 blocs)
 instances= []
-for i in range(10,71,3):
-    instance = [(i,i,i)]*20
-    nom_fichier = "./OUTPUT/instance"+str(i)*3+".txt"
+for i in range(10,300,10): #nb obstacle de 10 à 300 par pas de 10
+    instance = [(20,20,i)]*20 #grille de 20 par 20 avec i obstacles
+    nom_fichier = "./OUTPUT/instancetaillegrillecte"+str(i)*3+".txt"
     instances.append(nom_fichier)
     #pour chaque instance, départ et arrivée sont placés aux deux extrémités opposées.
     creation_fichier(instance,nom_fichier,False,(0,0),(i,i),"nord")
@@ -62,7 +59,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-N = [i for i in range(10,71,3)] #abcisse = taille de l'entrée pour une matrice carrée
+N = [i for i in range(10,300,10)] #abcisse = taille de l'entrée pour une matrice carrée = nb obstacles
 
 N_array = np.array(N)
 temps_necessaire_array = np.array(temps_necessaire)
