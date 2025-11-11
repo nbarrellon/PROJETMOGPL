@@ -65,19 +65,18 @@ P_array = np.array(P)
 temps_necessaire_array = np.array(temps_necessaire)
 
 # Régression linéaire
-slope, intercept, r_value, p_value, std_err = linregress(P, temps_necessaire)
+slope, intercept, r_value, p_value, std_err = linregress(P_array, temps_necessaire_array)
 regression_line = slope * P_array + intercept
 
 # Affichage
 plt.figure(figsize=(8, 5))
 plt.scatter(P, temps_necessaire, color='blue', label='Données $t = f(P)$')
-plt.plot(P, regression_line, 'r--', label=f'Régression linéaire\n(pente = {slope:.2f})')
+plt.plot(P, regression_line, 'r--', label=f'Régression linéaire\n(pente = {slope:.4f})')
 plt.xlabel('Nombre d\'obstacles $P$')
 plt.ylabel("Temps d'éxécution $t$")
 plt.title('Évolution de $t$ en fonction de $P$ et sa régression linéaire')
 plt.grid(True)
 plt.legend()
-plt.show()
 # Sauvegarde et affichage
 plt.savefig("instance_taille_grille_cte.png")
 plt.show()
