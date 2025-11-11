@@ -10,14 +10,19 @@ def genere_poids(N,M):
     #génère une grille dont chaque case a un poids tiré au hasard entre 1 et 1000
     return [[randint(1,1000) for _ in range(M)] for _ in range(N)]
 
-def resolution_grille(grille,P,N,M):
+def resolution_grille(P,N,M):
     
     # Matrice des contraintes a 
     a = []
+    aff=[]
     variables = [1]*M
     for i in range(N):
         a.append([0]*i*M+variables+[0]*(N*M-((i+1)*M))) #contraintes sur les lignes
+        aff.append([0]*i*M+variables+[0]*(N*M-((i+1)*M)))
+    print("Contraintes sur les lignes")
+    affiche_matrice(aff,N,N*M)
     #contraintes sur les colonnes
+    aff= []
     for j in range(M):
         colonne = []
         for i in range(N*M):
@@ -26,6 +31,10 @@ def resolution_grille(grille,P,N,M):
             else:
                 colonne.append(0)
         a.append(colonne)
+        aff.append(colonne)
+    print("Contraintes sur les colonnes")
+    affiche_matrice(aff,M,M*N)
+    aff = []
     #contraintes sur le 101 pour les lignes
     for i in range(N):
         for j in range(M-2):
@@ -33,6 +42,10 @@ def resolution_grille(grille,P,N,M):
             ligne[j+i*M]=1
             ligne[j+2+i*M]=1
             a.append(ligne)
+            aff.append(ligne)
+    print("Contraintes 101 sur les lignes")
+    print(aff)
+    aff = []
     #contraintes 101 pour les colonnes
     for j in range(M):
         for i in range(N-2):
@@ -40,6 +53,9 @@ def resolution_grille(grille,P,N,M):
             ligne[i+j*M]=1
             ligne[i+M*2]=1
             a.append(ligne)
+            aff.append(ligne)
+    print("Contraintes 101 sur les colonnes")
+    print(aff)
 
 # Second membre
     b = [2*P/M for _ in range(M)] #seconde membre contraintes lignes
@@ -49,13 +65,12 @@ def resolution_grille(grille,P,N,M):
     return a,b
 
 N=4
-M=4
+M=3
 grille_poids = genere_poids(N,M)
 P = 3
 print("Grille des poids")
 affiche_matrice(grille_poids,N,M)
-print("Grille des contraintes")
-contraintes,secondmb = resolution_grille(grille_poids,P,N,M)
-print(contraintes)
-print(secondmb)
+
+contraintes,secondmb = resolution_grille(P,N,M)
+
 
