@@ -87,7 +87,20 @@ def fonction_objectif(grille_poids,N,M):
     print(ch[:-1])
     return fonction_obj
 
-def brute_force()
+def brute_force(grille,N,M): #trouver les solutions de poids minimal
+    solutions = []
+    couts = []
+    instance = []
+    for g in grille:
+        instance+=g #on aplatit la matrice
+    def sol_rec(instance):
+        solution = []
+        cout = []
+        for i,inst in enumerate(instance):
+            solution.append(sol_rec(instance[1:])[0])
+            cout.append(sol_rec(instance[1:])[1])
+        return solution,cout   
+
 #####################################################################""
 N=4
 M=4
