@@ -73,6 +73,19 @@ def affichage_contrainte(contraintes,smb,N,M):
                 ch += "x"+str(j//N)+str(j%M)+"+"
         ch=ch[:-1]+"<="+str(smb[i])
         print(ch)
+
+
+def fonction_objectif(grille_poids,N,M):
+    fonction_obj = []
+    for i in range(N):
+        for j in range(M):
+            fonction_obj.append(grille_poids[i][j])
+    #affichage
+    ch = "min z="
+    for i in range(len(fonction_obj)):
+        ch += str(fonction_obj[i])+"*x"+str(i//N)+str(i%M)+"+"
+    print(ch[:-1])
+
 N=4
 M=4
 grille_poids = genere_poids(N,M)
@@ -82,4 +95,5 @@ affiche_matrice(grille_poids,N,M)
 
 contraintes,secondmb = resolution_grille(P,N,M)
 affichage_contrainte(contraintes,secondmb,N,M)
+fonction_objectif(grille_poids,N,M)
 
