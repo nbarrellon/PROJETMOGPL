@@ -16,7 +16,17 @@ def resolution_grille(grille,P,N,M):
     a = []
     variables = [1]*M
     for i in range(N):
-        a.append([0]*i*M+variables+[0]*(N*M-((i+1)*M)))
+        a.append([0]*i*M+variables+[0]*(N*M-((i+1)*M))) #contraintes sur les lignes
+    #contraintes sur les colonnes
+    for j in range(M):
+        colonne = []
+        for i in range(N*M):
+            if i%M==j:
+                colonne.append(1)
+            else:
+                colonne.append(0)
+        a.append(colonne)
+
 # Second membre
     b = [2*P/M for _ in range(M)] #seconde membre contraintes lignes
     b += [2*P/N for _ in range(N)] #second membre contraintes colonnes
