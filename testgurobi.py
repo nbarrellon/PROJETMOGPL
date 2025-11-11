@@ -65,7 +65,7 @@ def resolution_grille(P,N,M):
     return a,b
 
 N=4
-M=3
+M=4
 grille_poids = genere_poids(N,M)
 P = 3
 print("Grille des poids")
