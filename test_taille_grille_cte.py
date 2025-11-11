@@ -51,7 +51,7 @@ print(instances)
 temps_necessaire = []
 
 for inst in instances:
-    temps_necessaire.append(test_taille_grille_cte(inst))
+    temps_necessaire.append(test_taille_grille_cte(inst)*1e6)
 
 print(temps_necessaire)
 ############ TRACE DE LA COURBE t = f(N) ###########################""""
@@ -73,7 +73,7 @@ plt.figure(figsize=(8, 5))
 plt.scatter(P, temps_necessaire, color='blue', label='Données $t = f(P)$')
 plt.plot(P, regression_line, 'r--', label=f'Régression linéaire\n(pente = {slope:.4f})')
 plt.xlabel('Nombre d\'obstacles $P$')
-plt.ylabel("Temps d'éxécution $t$")
+plt.ylabel("Temps d'éxécution $t$ en us")
 plt.title('Évolution de $t$ en fonction de $P$ et sa régression linéaire')
 plt.grid(True)
 plt.legend()
