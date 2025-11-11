@@ -85,7 +85,10 @@ def fonction_objectif(grille_poids,N,M):
     for i in range(len(fonction_obj)):
         ch += str(fonction_obj[i])+"*x"+str(i//N)+str(i%M)+"+"
     print(ch[:-1])
+    return fonction_obj
 
+def brute_force()
+#####################################################################""
 N=4
 M=4
 grille_poids = genere_poids(N,M)
@@ -95,5 +98,5 @@ affiche_matrice(grille_poids,N,M)
 
 contraintes,secondmb = resolution_grille(P,N,M)
 affichage_contrainte(contraintes,secondmb,N,M)
-fonction_objectif(grille_poids,N,M)
+f_obj = fonction_objectif(grille_poids,N,M)
 
