@@ -1,5 +1,5 @@
 from Graphe import *
-from generation_instance import *
+from RAPPORT.generation_instance import *
 from calcul_chemin import *
 from RAPPORT.dessin import *
 

@@ -1,5 +1,5 @@
 from Graphe import *
-from generation_instance import *
+from RAPPORT.generation_instance import *
 from collections import deque
 
 def lecture_fichier_instance(fichier):
