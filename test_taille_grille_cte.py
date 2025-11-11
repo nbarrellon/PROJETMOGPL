@@ -59,14 +59,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-N = [i for i in range(10,100,1)] #abcisse = taille de l'entrée pour une matrice carrée = nb obstacles
+P = [i for i in range(10,100,1)] #abcisse = taille de l'entrée pour une matrice carrée = nb obstacles
 
-N_array = np.array(N)
+P_array = np.array(P)
 temps_necessaire_array = np.array(temps_necessaire)
 
 
 # Calcul des logarithmes
-log_N = np.log(N_array)
+log_P = np.log(P_array)
 log_temps = np.log(temps_necessaire_array)
 
 # Fonction de modélisation pour log(t) = b * log(n) + c
@@ -74,31 +74,31 @@ def modele_log(x, b, c):
     return b * x + c
 
 # Ajustement du modèle logarithmique
-popt_log, _ = curve_fit(modele_log, log_N, log_temps)
+popt_log, _ = curve_fit(modele_log, log_P, log_temps)
 b, c = popt_log  # Coefficients trouvés
 
 # Valeurs pour la courbe modélisée en échelle logarithmique
-log_N_fit = np.linspace(min(log_N), max(log_N), 100)
-log_temps_fit = modele_log(log_N_fit, b, c)
+log_P_fit = np.linspace(min(log_P), max(log_N), 100)
+log_temps_fit = modele_log(log_P_fit, b, c)
 
 # Création des graphiques
 fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 10))
 
 # Graphique 1 : t = f(n)
-ax1.plot(N, temps_necessaire, 'bo-', label='Données expérimentales')
-ax1.set_xlabel('Taille de l\'entrée (N)')
+ax1.plot(P, temps_necessaire, 'bo-', label='Données expérimentales')
+ax1.set_xlabel("Nombre d'obstacles (P)")
 ax1.set_ylabel('Temps nécessaire (t)')
-ax1.set_title('Courbe $t = f(n)$')
+ax1.set_title('Courbe $t = f(P)$')
 ax1.legend()
 ax1.grid(True)
 
 # Graphique 2 : log(t) = f(log(n))
 ax2.plot(log_N, log_temps, 'bo-', label='Données en échelle logarithmique')
-ax2.plot(log_N_fit, log_temps_fit, 'r--', label=f'Modélisation : $\\log(t) = {b:.4f} \\cdot \\log(n)$')
+ax2.plot(log_N_fit, log_temps_fit, 'r--', label=f'Modélisation : $\\log(t) = {b:.4f} \\cdot \\log(P)$')
 
-ax2.set_xlabel('$\log(N)$')
+ax2.set_xlabel('$\log(P)$')
 ax2.set_ylabel('$\log(t)$')
-ax2.set_title('Courbe $\\log(t) = f(\\log(n))$')
+ax2.set_title('Courbe $\\log(t) = f(\\log(P))$')
 ax2.legend()
 ax2.grid(True)
 
@@ -106,5 +106,5 @@ ax2.grid(True)
 plt.tight_layout()
 
 # Sauvegarde et affichage
-plt.savefig("instanceXXX_log.png")
+plt.savefig("instance_taille_grille_cte.png")
 plt.show()
