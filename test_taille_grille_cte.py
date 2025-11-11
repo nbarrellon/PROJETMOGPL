@@ -64,38 +64,10 @@ P = [i for i in range(10,100,1)] #abcisse = taille de l'entrée pour une matrice
 P_array = np.array(P)
 temps_necessaire_array = np.array(temps_necessaire)
 
-# Fonction de modélisation pour t = b * P + c
-def modele_log(x, b, c):
-    return b * x + c
-
-# Ajustement du modèle logarithmique
-popt_log, _ = curve_fit(modele_log, P_array, temps_necessaire_array)
-b, c = popt_log  # Coefficients trouvés
-
-# Valeurs pour la courbe modélisée en échelle logarithmique
-P_fit = np.linspace(min(P), max(P), 100)
-temps_fit = modele_log(P_fit, b, c)
-
-# Création des graphiques
-fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 10))
 
 # Graphique 1 : t = f(n)
-ax1.plot(P, temps_necessaire, 'bo-', label='Données expérimentales')
-ax1.set_xlabel("Nombre d'obstacles (P)")
-ax1.set_ylabel('Temps nécessaire (t)')
-ax1.set_title('Courbe $t = f(P)$')
-ax1.legend()
-ax1.grid(True)
-
-# Graphique 2 : t = f(n)
-ax2.plot(P, temps_necessaire, 'bo-', label='Données en échelle logarithmique')
-ax2.plot(P_fit, temps_fit, 'r--', label=f'Modélisation : $\\t = {b:.4f} \\cdot \\P$')
-
-ax2.set_xlabel('$\P$')
-ax2.set_ylabel('$\t$')
-ax2.set_title('Courbe $\\t = f(\\P)$')
-ax2.legend()
-ax2.grid(True)
+plt.plot(P, temps_necessaire, 'bo-', label='Données expérimentales')
+plt.grid(True)
 
 # Ajustement de la mise en page
 plt.tight_layout()

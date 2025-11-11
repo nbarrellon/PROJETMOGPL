@@ -360,8 +360,8 @@ Ainsi, le graphe associé est le suivant où les arcs AVANCE sont en rouge et le
 \newpage
 On ontient ainsi un graphe d'étude G(V,E) :
 \begin{itemize}
-\item chaque intersection de rail génère 4 sommets (correspondant aux 4 orientations possibles) d'où  $|V| \approx 4 \times (NM-4 \times P)|$ où $P$ est le nombre d'obstacle (1 obstacle supprime 4 sommets).
-\item chaque état possède au mieux 2 arêtes (pour "tourner" d'une orientation à l'autre) et 3 arêtes (pour avancer si possible vers un autre sommet) soir $|E| \approx 7(NM-4 \times P)$.
+\item chaque intersection de rail génère 4 sommets (correspondant aux 4 orientations possibles) d'où  $|V| \leq 4 \times (NM-4 \times P)|$ où $P$ est le nombre d'obstacle (1 obstacle supprime 4 sommets).
+\item chaque état possède au mieux 2 arêtes (pour "tourner" d'une orientation à l'autre) et 3 arêtes (pour avancer si possible vers un autre sommet) soir $|E| \leq 7(NM-4 \times P)$.
 \end{itemize}
 On constate donc que la taille du graphe est en $N^2$.
 
@@ -402,6 +402,8 @@ L'hypothèse est vérifiée expérimentalement puis que j'obtiens, après régre
 
 
 \section*{d. Temps de calcul en fonction de la taille du nombre d'obstacle}
+
+La complexité en fonction du nombre d'obstacle $P$ devrait tendre vers une complexité linéaire conforme à celle du BFS. En effet, plus le nombre d'obstacle augmente, plus l'ordre du graphe et sa densité diminue. Nous avons montré que $|V| \leq 4 \times (NM-4 \times P)$|
 
 \section*{e. Positionnement des obstacles}
 
