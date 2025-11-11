@@ -403,7 +403,17 @@ L'hypothèse est vérifiée expérimentalement puis que j'obtiens, après régre
 
 \section*{d. Temps de calcul en fonction de la taille du nombre d'obstacle}
 
-La complexité en fonction du nombre d'obstacle $P$ devrait tendre vers une complexité linéaire conforme à celle du BFS. En effet, plus le nombre d'obstacle augmente, plus l'ordre du graphe et sa densité diminue. Nous avons montré que $|V| \leq 4 \times (NM-4 \times P) = 4(N^2-4P)$ soit $\lim_{P \to N^2} |V| = 0 $
+La complexité en fonction du nombre d'obstacle $P$ devrait tendre vers une complexité linéaire conforme à celle du BFS. En effet, plus le nombre d'obstacle augmente, plus l'ordre du graphe et sa densité diminue. Nous avons montré que $|V| \leq 4 \times (NM-4 \times P) = 4(N^2-4P)$ soit $\lim_{P \to N^2} |V| = 0 $ pour une complexité qui devient alors constante.\\
+
+La figure \ref{tfonctionP} montre comment le temps de calcul de l'algorithme temps vers 0 quand P augmente pour une grille de taille fixe. On notera que cette limite semble atteinte pour $P=100$ ce qui paraît correct puisque nous avons dit que P obstacles supprimaient $4P$ sommets dans le graphe. Or, notre grille étant de taille 20 par 20, elle comprend au maximum 400 sommets. 
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.8]{instance_taille_grille_cte1.png}
+\caption{Temps d'éxécution en fonction du nombre d'obstacle quand la taille de la grille est constante.}
+\label{pcte3}
+\end{center}
+\end{figure}
 
 \section*{e. Positionnement des obstacles}
 

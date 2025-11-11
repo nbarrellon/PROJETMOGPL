@@ -1,7 +1,7 @@
 from Graphe import *
 from generation_instance import *
 from calcul_chemin import *
-from dessin import *
+from RAPPORT.dessin import *
 
 def menu():
     print("\n-------------------------------------")

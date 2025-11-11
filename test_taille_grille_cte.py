@@ -41,7 +41,7 @@ def test_taille_grille_cte(fichier):
 
 #creation des fichiers d'instance à tester. instances de N=5 à N=50 (*20 blocs)
 instances= []
-for i in range(10,200,1): #nb obstacle de 10 à 300 par pas de 10
+for i in range(10,50,1): #nb obstacle de 10 à 300 par pas de 10
     instance = [(20,20,i)]*20 #grille de 20 par 20 avec i obstacles
     nom_fichier = "./OUTPUT/instance_taille_grille_cte"+str(i)+".txt"
     instances.append(nom_fichier)
@@ -59,13 +59,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-P = [i for i in range(10,200,1)] #abcisse = taille de l'entrée pour une matrice carrée = nb obstacles
+P = [i for i in range(10,50,1)] #abcisse = taille de l'entrée pour une matrice carrée = nb obstacles
 
 P_array = np.array(P)
 temps_necessaire_array = np.array(temps_necessaire)
 
 plt.figure(figsize=(8, 5))
-plt.plot(P, temps_necessaire, color='blue')
+plt.plot(P, temps_necessaire, '-bo',color='blue')
 plt.xlabel('Nombre d\'obstacles $P$')
 plt.ylabel('Temps $t$)')
 plt.title('Évolution de $t$ en fonction de $P$')
