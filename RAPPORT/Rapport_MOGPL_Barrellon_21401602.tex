@@ -135,6 +135,10 @@
 \begin{center}
 \href{https://github.com/nbarrellon/PROJETMOGPL}{Github associé : https://github.com/nbarrellon/PROJETMOGPL}
 \end{center}
+\vspace{2cm}
+\begin{center}
+\includegraphics[scale=0.5]{grilleexemple.png}
+\end{center}
 \newpage
 
 \section*{a. Formulation du problème}
@@ -364,13 +368,29 @@ Le plus court chemin dans un graphe orienté non pondéré (comme c'est ici notr
 \section*{c. Temps de calcul en fonction de la taille de la grille}
 
 En théorie, la compléxité dans le pire des cas pour le parcours en largeur est $\mathcal{O}(N)$. Toutefois, on a montré que la taille de l'entrée varie en $N^2$ ainsi, je m'attends à une complexité du parcours en $\mathcal{O}(n^{2})$.\\
-Sur la Figure \ref{pcte} les résultats expérimentaux obtenus pour des matrices carrées ($N \leq 50$). Pour un N donné, 10 instances de graphes sont générées avec $P$ obstacles ($P=N$) pour obtenir un temps d'exécution moyen. J'ai choisi de positionner pour chacun des tests le départ en (0,0) et l'arrivée en (N,N) car, en tirant au hasard ces positions extrêmes on peut obtenir des parcours très courts (départ très voisin d'arrivée) et donc un temps d'éxécution non représentatif.
+Sur la Figure \ref{pcte2} \ref{pcte3} \ref{pcte4} les résultats expérimentaux obtenus pour des matrices carrées ($N \leq 50$). Pour un N donné, 10 instances de graphes sont générées avec $P$ obstacles ($P=N$) pour obtenir un temps d'exécution moyen. J'ai choisi de positionner pour chacun des tests le départ en (0,0) et l'arrivée en (N,N) car, en tirant au hasard ces positions extrêmes on peut obtenir des parcours très courts (départ très voisin d'arrivée) et donc un temps d'éxécution non représentatif.
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.5]{tempsPconstant.png}
+\includegraphics[scale=0.5]{instanceXXX_log2.png}
 \caption{Temps d'éxécution en fonction de la taille de la grille pour un nombre d'obstacle constant.}
-\label{pcte}
+\label{pcte2}
+\end{center}
+\end{figure}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.5]{instanceXXX_log3.png}
+\caption{Temps d'éxécution en fonction de la taille de la grille pour un nombre d'obstacle constant.}
+\label{pcte3}
+\end{center}
+\end{figure}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.5]{instanceXXX_log4.png}
+\caption{Temps d'éxécution en fonction de la taille de la grille pour un nombre d'obstacle constant.}
+\label{pcte4}
 \end{center}
 \end{figure}
 
