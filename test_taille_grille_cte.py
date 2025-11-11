@@ -64,12 +64,7 @@ P = [i for i in range(10,100,1)] #abcisse = taille de l'entrée pour une matrice
 P_array = np.array(P)
 temps_necessaire_array = np.array(temps_necessaire)
 
-
-# Calcul des logarithmes
-log_P = np.log(P_array)
-log_temps = np.log(temps_necessaire_array)
-
-# Fonction de modélisation pour log(t) = b * log(n) + c
+# Fonction de modélisation pour t = b * P + c
 def modele_log(x, b, c):
     return b * x + c
 
@@ -92,7 +87,7 @@ ax1.set_title('Courbe $t = f(P)$')
 ax1.legend()
 ax1.grid(True)
 
-# Graphique 2 : log(t) = f(log(n))
+# Graphique 2 : t = f(n)
 ax2.plot(P, temps_necessaire, 'bo-', label='Données en échelle logarithmique')
 ax2.plot(P_fit, temps_fit, 'r--', label=f'Modélisation : $\\t = {b:.4f} \\cdot \\P$')
 
