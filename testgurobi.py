@@ -26,6 +26,15 @@ def resolution_grille(grille,P,N,M):
             else:
                 colonne.append(0)
         a.append(colonne)
+    #contraintes sur le 101 pour les lignes
+    for i in range(N):
+        
+        for j in range(M-2):
+            ligne = [0]*N*M
+            ligne[j+i*M]=1
+            ligne[j+2+i*M]=1
+            a.append(ligne)
+
 
 # Second membre
     b = [2*P/M for _ in range(M)] #seconde membre contraintes lignes
@@ -33,13 +42,14 @@ def resolution_grille(grille,P,N,M):
 
     return a,b
 
-
-grille_poids = genere_poids(3,3)
+N=4
+M=4
+grille_poids = genere_poids(N,M)
 P = 3
 print("Grille des poids")
-affiche_matrice(grille_poids,3,3)
+affiche_matrice(grille_poids,N,M)
 print("Grille des contraintes")
-contraintes,secondmb = resolution_grille(grille_poids,P,3,3)
+contraintes,secondmb = resolution_grille(grille_poids,P,N,M)
 print(contraintes)
 print(secondmb)
 
