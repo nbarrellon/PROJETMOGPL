@@ -136,9 +136,14 @@
 \href{https://github.com/nbarrellon/PROJETMOGPL}{Github associé : https://github.com/nbarrellon/PROJETMOGPL}
 \end{center}
 \vspace{2cm}
-\begin{center}
-\includegraphics[scale=0.5]{grilleexemple.png}
-\end{center}
+
+\begin{tabular}{cc}
+        
+        \includegraphics[width=0.45\textwidth]{grilleexemple.png} &
+        \includegraphics[width=0.45\textwidth]{grilleexemple2.png} \\
+        
+    \end{tabular}
+
 \newpage
 
 \section*{a. Formulation du problème}
@@ -367,12 +372,15 @@ Le plus court chemin dans un graphe orienté non pondéré (comme c'est ici notr
 
 \section*{c. Temps de calcul en fonction de la taille de la grille}
 
-En théorie, la compléxité dans le pire des cas pour le parcours en largeur est $\mathcal{O}(N)$. Toutefois, on a montré que la taille de l'entrée varie en $N^2$ ainsi, je m'attends à une complexité du parcours en $\mathcal{O}(n^{2})$.\\
-Sur la Figure \ref{pcte2} \ref{pcte3} \ref{pcte4} les résultats expérimentaux obtenus pour des matrices carrées ($N \leq 50$). Pour un N donné, 10 instances de graphes sont générées avec $P$ obstacles ($P=N$) pour obtenir un temps d'exécution moyen. J'ai choisi de positionner pour chacun des tests le départ en (0,0) et l'arrivée en (N,N) car, en tirant au hasard ces positions extrêmes on peut obtenir des parcours très courts (départ très voisin d'arrivée) et donc un temps d'éxécution non représentatif.
+En théorie, la complexité dans le pire des cas de mon algorithme est en $\mathcal{O}(|V|+|E|)$. Toutefois, nous avons montré que l'ordre du graphe et le nombre d'arête varient en $N^2$ ainsi, je m'attends à une complexité du parcours en $\mathcal{O}(N^2)$.\\
+
+Les résultats expérimentaux obtenus pour des matrices carrées ($N \leq 60$) sont présentées figures \ref{pcte2} et \ref{pcte3}. \\
+
+Pour chaque $N \in \{10,70\}$,  20 instances de graphes sont générées avec $P$ obstacles ($P=N$) pour obtenir un temps d'exécution moyen de l'algorithme BFS. J'ai choisi de positionner pour chacun des tests le départ en (0,0) et l'arrivée en (N,N) car, en tirant au hasard ces positions extrêmes on peut obtenir des parcours très courts (départ très voisin d'arrivée) et donc un temps d'exécution non représentatif. Malgré tout, des mesures surprenantes apparaissent (voir figure \ref{pcte2} pour N = 60). \\
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.5]{instanceXXX_log2.png}
+\includegraphics[scale=0.5]{instanceXXX_log.png}
 \caption{Temps d'éxécution en fonction de la taille de la grille pour un nombre d'obstacle constant.}
 \label{pcte2}
 \end{center}
@@ -380,23 +388,17 @@ Sur la Figure \ref{pcte2} \ref{pcte3} \ref{pcte4} les résultats expérimentaux 
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.5]{instanceXXX_log3.png}
+\includegraphics[scale=0.5]{instanceXXX_log1.png}
 \caption{Temps d'éxécution en fonction de la taille de la grille pour un nombre d'obstacle constant.}
 \label{pcte3}
 \end{center}
 \end{figure}
 
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[scale=0.5]{instanceXXX_log4.png}
-\caption{Temps d'éxécution en fonction de la taille de la grille pour un nombre d'obstacle constant.}
-\label{pcte4}
-\end{center}
-\end{figure}
-
 La courbe $t=f(N)$ a l'allure d'une courbe polynomiale de forme générale \textbf{$t=f(n)=n^\alpha$}. Pour déterminer le degré du polynome, je trace la courbe $log(t)=g(log(n))$. En effet, si $f(n)=n^\alpha$ alors $log(t)=log(n^\alpha)=\alpha \times log(n)$. \\
 Si l'hypothèse est correcte alors cette courbe est une droite dont le coefficient directeur vaut $\alpha$.\\
-L'hypothèse est vérifiée expérimentalement puis que j'obtiens, après régression linéaire, $\alpha \approx 2$ (le log utilisé par Numpy est le logartihme népérien soit une complexité temporelle dans le pire des cas \fbox{$\mathcal{O}(n^{2})$}
+L'hypothèse est vérifiée expérimentalement puis que j'obtiens, après régression linéaire, $\alpha \approx 2$ soit une complexité temporelle dans le pire des cas \fbox{$\mathcal{O}(n^{2})$} conforme à ce que attendu. \\
+
+\underline{Remarque:} Cette complexité aurait pu peut-être être légèrement améliorée en supprimant les sommets inutiles. En effet, sur les bords de la grille, la création des sommets correspondant à une orientation pointant hors de la grille sont inutiles.
 
 
 \section*{d. Temps de calcul en fonction de la taille du nombre d'obstacle}

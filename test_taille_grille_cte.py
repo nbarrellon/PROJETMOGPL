@@ -7,14 +7,16 @@ from scipy.stats import linregress
 from scipy.optimize import curve_fit
 
 #on considère qu'il y a 10 instances dans le fichier
-def test_nb_obstacle_cte(fichier):
+def test_taille_grille_cte(fichier):
     points_cardinaux = ["nord","est","sud","ouest"]
+    chemins = [] #pour stocker les 10 chemins correspondant aux 10 blocs
     with open(fichier,"r",encoding='utf-8') as f:
         for _ in range(20): #on calcule les chemins pour les 20 instances et on les sauvegarde
             tps_moyen = 0
             ############# Lecture du bloc ######################
             ligne1 = f.readline().split()
-            N = int(ligne1[0]) #matrice carrée N = M
+            N = int(ligne1[0])
+            M = int(ligne1[1])
             grille = []
             for i in range(N):
                 ligne = f.readline().split()
