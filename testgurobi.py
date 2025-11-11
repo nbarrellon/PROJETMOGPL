@@ -47,11 +47,12 @@ def resolution_grille(P,N,M):
     print(aff)
     aff = []
     #contraintes 101 pour les colonnes FAUX !!!!
-    for i in range(0,M*N,M):
-        for j in range(N-2):
+    for i in range(0,N-2):
+        for j in range(M):
             ligne = [0]*N*M
-            ligne[i+j]=1
-            ligne[i+j+M]
+            ligne[j+i*M]=1
+            ligne[j+2*M+i*M]=1
+            print(ligne)
             a.append(ligne)
             aff.append(ligne)
     print("Contraintes 101 sur les colonnes")
