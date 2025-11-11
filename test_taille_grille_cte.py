@@ -64,13 +64,20 @@ P = [i for i in range(10,50,1)] #abcisse = taille de l'entrée pour une matrice 
 P_array = np.array(P)
 temps_necessaire_array = np.array(temps_necessaire)
 
+# Régression linéaire
+slope, intercept, r_value, p_value, std_err = linregress(P, temps_necessaire)
+regression_line = slope * P_array + intercept
+
+# Affichage
 plt.figure(figsize=(8, 5))
-plt.plot(P, temps_necessaire, '-bo',color='blue')
+plt.scatter(P, temps_necessaire, color='blue', label='Données $t = f(P)$')
+plt.plot(P, regression_line, 'r--', label=f'Régression linéaire\n(pente = {slope:.2f})')
 plt.xlabel('Nombre d\'obstacles $P$')
-plt.ylabel('Temps $t$)')
-plt.title('Évolution de $t$ en fonction de $P$')
+plt.ylabel("Temps d'éxécution $t$")
+plt.title('Évolution de $t$ en fonction de $P$ et sa régression linéaire')
 plt.grid(True)
 plt.legend()
+plt.show()
 # Sauvegarde et affichage
 plt.savefig("instance_taille_grille_cte.png")
 plt.show()
