@@ -403,7 +403,7 @@ L'hypothèse est vérifiée expérimentalement puis que j'obtiens, après régre
 
 \section*{d. Temps de calcul en fonction de la taille du nombre d'obstacle}
 
-La complexité en fonction du nombre d'obstacle $P$ devrait tendre vers une complexité linéaire conforme à celle du BFS. En effet, plus le nombre d'obstacle augmente, plus l'ordre du graphe et sa densité diminue. Nous avons montré que $|V| \leq 4 \times (NM-4 \times P)$|
+La complexité en fonction du nombre d'obstacle $P$ devrait tendre vers une complexité linéaire conforme à celle du BFS. En effet, plus le nombre d'obstacle augmente, plus l'ordre du graphe et sa densité diminue. Nous avons montré que $|V| \leq 4 \times (NM-4 \times P) = 4(N^2-4P)$ soit $\lim_{P \to N^2} |V| = 0 $
 
 \section*{e. Positionnement des obstacles}
 
