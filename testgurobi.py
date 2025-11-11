@@ -52,7 +52,6 @@ def resolution_grille(P,N,M):
             ligne = [0]*N*M
             ligne[j+i*M]=1
             ligne[j+2*M+i*M]=1
-            print(ligne)
             a.append(ligne)
             aff.append(ligne)
     print("Contraintes 101 sur les colonnes")
@@ -66,6 +65,14 @@ def resolution_grille(P,N,M):
 
     return a,b
 
+def affichage_contrainte(contraintes,smb,N,M):
+    for i in range(len(contraintes)):
+        ch = ""
+        for j in range(len(contraintes[i])):
+            if contraintes[i][j]:
+                ch += "x"+str(j//N)+str(j%M)+"+"
+        ch=ch[:-1]+"<="+str(smb[i])
+        print(ch)
 N=4
 M=4
 grille_poids = genere_poids(N,M)
@@ -74,5 +81,5 @@ print("Grille des poids")
 affiche_matrice(grille_poids,N,M)
 
 contraintes,secondmb = resolution_grille(P,N,M)
-
+affichage_contrainte(contraintes,secondmb,N,M)
 
