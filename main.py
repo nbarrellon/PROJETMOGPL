@@ -126,7 +126,10 @@ def affichage():
                 cheminter.append(c)
     else:
         cheminter=[]
-    dessiner_grille_intersections(grille,[(D1,D2),arrivee],cheminter,traduction_chemin(chemin),orientation)
+    texte = traduction_chemin(chemin)
+    if "-1" in texte:
+        texte = "Pas de chemin possible"
+    dessiner_grille_intersections(grille,[(D1,D2),arrivee],cheminter,texte,orientation)
 
 if __name__=="__main__":
     choix = menu()
