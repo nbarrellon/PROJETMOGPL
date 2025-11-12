@@ -94,8 +94,9 @@ def brute_force(grille,N,M,P): #trouver les solutions de poids minimal
         instance+=g #on aplatit la matrice
     solutions = set()
     for inst in range(2**P-1,2**(N*M)): #toutes les solutions ayant au moins P bits à 1
-        solution = str(bin(inst))[2:]
-        solution += "0"*(N*M-len(solution))
+        solution = str(bin(inst))[2:][::-1]
+        solution = "0"*(N*M-len(solution))+solution
+        print(solution)
         if solution.count("1")==P: #on ne garde que les solutions qui ont P bits à 1
             solutions.add(solution)
     print(solutions)
