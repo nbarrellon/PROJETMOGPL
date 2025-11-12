@@ -60,8 +60,8 @@ def resolution_grille(P,N,M):
 # Second membre
     b = [2*P/M for _ in range(M)] #seconde membre contraintes lignes
     b += [2*P/N for _ in range(N)] #second membre contraintes colonnes
-    b += [2 for _ in range(N*(M-2))]
-    b += [2 for _ in range(M*(N-2))]
+    b += [1 for _ in range(N*(M-2))]
+    b += [1 for _ in range(M*(N-2))]
 
     return a,b
 
@@ -84,7 +84,7 @@ def fonction_objectif(grille_poids,N,M):
     ch = "min z="
     for i in range(len(fonction_obj)):
         ch += str(fonction_obj[i])+"*x"+str(i//N)+str(i%M)+"+"
-    print(ch[:-1])
+    #print(ch[:-1])
     return fonction_obj
 
 def brute_force(grille,N,M,P): #trouver les solutions de poids minimal
@@ -98,12 +98,14 @@ def brute_force(grille,N,M,P): #trouver les solutions de poids minimal
         solution += "0"*(N*M-len(solution))
         if solution.count("1")==P: #on ne garde que les solutions qui ont P bits à 1
             solutions.append(solution)
+    print(solutions)
     mini = 1000*P #plus grand valeur de la somme possible
     res = ""
     for sol in solutions:
         s = 0
         for i in range(len(sol)):
             s += instance[i]*int(sol[i])
+            #print(s)
             if s<mini:
                 mini = s
                 res = sol
@@ -111,14 +113,13 @@ def brute_force(grille,N,M,P): #trouver les solutions de poids minimal
 
 
 #####################################################################""
-N=4
-M=4
+N=3
+M=3
 grille_poids = genere_poids(N,M)
 P = 3
 print("Grille des poids")
 affiche_matrice(grille_poids,N,M)
 
 contraintes,secondmb = resolution_grille(P,N,M)
-affichage_contrainte(contraintes,secondmb,N,M)
 f_obj = fonction_objectif(grille_poids,N,M)
 brute_force(grille_poids,N,M,P)
