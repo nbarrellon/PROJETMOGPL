@@ -35,7 +35,6 @@ def solution_grille(contraintes,scdmb,fonction_obj,N,M):
     # Definition des contraintes
     for i in lignes:
         m.addConstr(quicksum(contraintes[i][j]*x[j] for j in colonnes) <= scdmb[i], "Contrainte%d" % i)
-    print(m)
     # Resolution
     m.optimize()
     print("")                

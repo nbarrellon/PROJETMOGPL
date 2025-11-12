@@ -58,14 +58,14 @@ def resolution_grille(P,N,M):
     print(aff)
     #derniere contrainte : il faut qu'il y ait P obstacles 
     #sinon pour minimiser c'est facile, on ne prend rien !
-    a.append([-1]*N*M)
+    a.append([-1]*N*M) #*-1 pour <=
 
 # Second membre
     b = [2*P/M for _ in range(M)] #seconde membre contraintes lignes
     b += [2*P/N for _ in range(N)] #second membre contraintes colonnes
     b += [1 for _ in range(N*(M-2))]
     b += [1 for _ in range(M*(N-2))]
-    b.append(-P) #il faut P obstacles !
+    b.append(-P) #il faut P obstacles ! On *-1 pour avoir un <=
     return a,b
 
 def affichage_contrainte(contraintes,smb,N,M):
@@ -116,14 +116,14 @@ def brute_force(grille,N,M,P): #trouver les solutions de poids minimal
 
 #####################################################################*
 if __name__=="__main__":
-    N=3
-    M=3
+    N=5
+    M=5
     grille_poids = genere_poids(N,M)
-    P = 3
+    P = 5
 
     affiche_matrice(grille_poids,N,M)
     contraintes,secondmb = resolution_grille(P,N,M)
     f_obj = fonction_objectif(grille_poids,N,M)
-    print("Grille des poids")
+    affichage_contrainte(contraintes,secondmb,N,M)
 
 
