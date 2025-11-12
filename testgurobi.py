@@ -71,9 +71,9 @@ def resolution_grille(P,N,M):
 def affichage_contrainte(contraintes,smb,N,M):
     for i in range(len(contraintes)):
         ch = ""
-        for j in range(len(contraintes[i])):
+        for j in range(0,len(contraintes[i])):
             if contraintes[i][j]:
-                ch += "x"+str(j//N)+str(j%M)+"+"
+                ch += "x"+str(j+1)+"+"
         ch=ch[:-1]+"<="+str(smb[i])
         print(ch)
 
@@ -86,7 +86,7 @@ def fonction_objectif(grille_poids,N,M):
     #affichage
     ch = "min z="
     for i in range(len(fonction_obj)):
-        ch += str(fonction_obj[i])+"*x"+str(i//N)+str(i%M)+"+"
+        ch += str(fonction_obj[i])+"*x"+str(i+1)+"+"
     #print(ch[:-1])
     return fonction_obj
 
