@@ -56,13 +56,16 @@ def resolution_grille(P,N,M):
             aff.append(ligne)
     print("Contraintes 101 sur les colonnes")
     print(aff)
+    #derniere contrainte : il faut qu'il y ait P obstacles 
+    #sinon pour minimiser c'est facile, on ne prend rien !
+    a.append([-1]*N*M)
 
 # Second membre
     b = [2*P/M for _ in range(M)] #seconde membre contraintes lignes
     b += [2*P/N for _ in range(N)] #second membre contraintes colonnes
     b += [1 for _ in range(N*(M-2))]
     b += [1 for _ in range(M*(N-2))]
-
+    b.append(-P) #il faut P obstacles !
     return a,b
 
 def affichage_contrainte(contraintes,smb,N,M):

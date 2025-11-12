@@ -35,7 +35,7 @@ def solution_grille(contraintes,scdmb,fonction_obj,N,M):
     # Definition des contraintes
     for i in lignes:
         m.addConstr(quicksum(contraintes[i][j]*x[j] for j in colonnes) <= scdmb[i], "Contrainte%d" % i)
-
+    print(m)
     # Resolution
     m.optimize()
     print("")                
@@ -51,5 +51,6 @@ P = 5
 grille_poids = genere_poids(N,M)
 affiche_matrice(grille_poids,N,M)
 contraintes,secondmb = resolution_grille(P,N,M)
+affichage_contrainte(contraintes,secondmb,N,M)
 f_obj = fonction_objectif(grille_poids,N,M)
 solution_grille(contraintes,secondmb,f_obj,N,M)
