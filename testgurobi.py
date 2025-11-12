@@ -87,19 +87,28 @@ def fonction_objectif(grille_poids,N,M):
     print(ch[:-1])
     return fonction_obj
 
-def brute_force(grille,N,M): #trouver les solutions de poids minimal
-    solutions = []
-    couts = []
+def brute_force(grille,N,M,P): #trouver les solutions de poids minimal
+    #COMPLEXITE EXPONENTIELLE !
     instance = []
     for g in grille:
         instance+=g #on aplatit la matrice
-    def sol_rec(instance):
-        solution = []
-        cout = []
-        for i,inst in enumerate(instance):
-            solution.append(sol_rec(instance[1:])[0])
-            cout.append(sol_rec(instance[1:])[1])
-        return solution,cout   
+    solutions = []
+    for inst in range(2**P-1,2**(N*M)): #toutes les solutions ayant au moins P bits à 1
+        solution = str(bin(inst))[2:]
+        solution += "0"*(N*M-len(solution))
+        if solution.count("1")==P: #on ne garde que les solutions qui ont P bits à 1
+            solutions.append(solution)
+    mini = 1000*P #plus grand valeur de la somme possible
+    res = ""
+    for sol in solutions:
+        s = 0
+        for i in range(len(sol)):
+            s += instance[i]*int(sol[i])
+            if s<mini:
+                mini = s
+                res = sol
+    print("Solution = ",res," pour un cout de ",mini)
+
 
 #####################################################################""
 N=4
@@ -112,4 +121,4 @@ affiche_matrice(grille_poids,N,M)
 contraintes,secondmb = resolution_grille(P,N,M)
 affichage_contrainte(contraintes,secondmb,N,M)
 f_obj = fonction_objectif(grille_poids,N,M)
-
+brute_force(grille_poids,N,M,P)
