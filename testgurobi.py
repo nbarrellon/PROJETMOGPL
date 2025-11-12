@@ -88,7 +88,7 @@ def fonction_objectif(grille_poids,N,M):
     return fonction_obj
 
 def brute_force(grille,N,M,P): #trouver les solutions de poids minimal
-    #COMPLEXITE EXPONENTIELLE !
+    #COMPLEXITE EXPONENTIELLE ! Et ne prend pas en compte les contraintes sur le nombre d'obstacle max par ligne
     instance = []
     for g in grille:
         instance+=g #on aplatit la matrice
@@ -111,15 +111,16 @@ def brute_force(grille,N,M,P): #trouver les solutions de poids minimal
     print("Solution = ",res," pour un cout de ",mini)
 
 
-#####################################################################""
-N=3
-M=3
-grille_poids = genere_poids(N,M)
-P = 3
+#####################################################################*
+if __name__=="__main__":
+    N=3
+    M=3
+    grille_poids = genere_poids(N,M)
+    P = 3
+
+    affiche_matrice(grille_poids,N,M)
+    contraintes,secondmb = resolution_grille(P,N,M)
+    f_obj = fonction_objectif(grille_poids,N,M)
+    print("Grille des poids")
 
 
-contraintes,secondmb = resolution_grille(P,N,M)
-f_obj = fonction_objectif(grille_poids,N,M)
-print("Grille des poids")
-affiche_matrice(grille_poids,N,M)
-brute_force(grille_poids,N,M,P)
