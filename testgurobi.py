@@ -94,12 +94,10 @@ def brute_force(grille,N,M,P): #trouver les solutions de poids minimal
         instance+=g #on aplatit la matrice
     solutions = set()
     for inst in range(2**P-1,2**(N*M)): #toutes les solutions ayant au moins P bits à 1
-        solution = str(bin(inst))[2:][::-1]
+        solution = str(bin(inst))[2:]
         solution = "0"*(N*M-len(solution))+solution
-        print(solution)
         if solution.count("1")==P: #on ne garde que les solutions qui ont P bits à 1
             solutions.add(solution)
-    print(solutions)
     mini = 1000*P #plus grand valeur de la somme possible
     res = ""
     for sol in solutions:
@@ -107,9 +105,9 @@ def brute_force(grille,N,M,P): #trouver les solutions de poids minimal
         for i in range(len(sol)):
             s += instance[i]*int(sol[i])
             #print(s)
-            if s<mini:
-                mini = s
-                res = sol
+        if s<mini:
+            mini = s
+            res = sol
     print("Solution = ",res," pour un cout de ",mini)
 
 
@@ -118,9 +116,10 @@ N=3
 M=3
 grille_poids = genere_poids(N,M)
 P = 3
-print("Grille des poids")
-affiche_matrice(grille_poids,N,M)
+
 
 contraintes,secondmb = resolution_grille(P,N,M)
 f_obj = fonction_objectif(grille_poids,N,M)
+print("Grille des poids")
+affiche_matrice(grille_poids,N,M)
 brute_force(grille_poids,N,M,P)
