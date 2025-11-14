@@ -78,20 +78,17 @@ def creation_fichier(instances_voulues,fichier,aleatoire=True,depart=(-1,-1),arr
             if aleatoire:
                 while not(choix_depart_arrivee(grille,depart)):
                     depart = (randint(0,N),randint(0,M))
-                deja_essaye = [depart]
-                while arrivee not in deja_essaye or not(choix_depart_arrivee(grille,arrivee)):
-                    old_arrivee = arrivee
+                
+                while not(choix_depart_arrivee(grille,arrivee)) or depart==arrivee:
+                    
                     arrivee = (randint(0,N),randint(0,M))
-                    deja_essaye.append(old_arrivee)
-                    print("depart=",depart)
-                    print("old_arrivee =",old_arrivee)
-                    print("arrivee=",arrivee)
-                    print(deja_essaye)
-                    s= input()
+                    
+                    
+                    
                 cardinal = orientation[randint(0,3)]
             f.write(str(depart[0])+" "+str(depart[1])+" "+str(arrivee[0])+" "+str(arrivee[1])+" "+cardinal+"\n")
             f.write("0 0\n")
 
 if __name__=="__main__":
-    creation_fichier([(10,10,90)],"./OUTPUT/test.txt")
+    creation_fichier([(10,10,20)],"./OUTPUT/test.txt")
 

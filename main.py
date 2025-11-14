@@ -145,7 +145,7 @@ def solution_gurobi():
     while M<5:
         print("Trop petit !")
         M = int(input("Que vaut M ? ->"))
-    P = int(input("Combien d'obstacles (<90% de N*M)? ->"))
+    P = int(input("Combien d'obstacles (<50% de N*M)? ->"))
     while P>(N*M/2+2):
         print("Trop d'obstacles !")
         P = int(input("Combien d'obstacles ? ->"))
