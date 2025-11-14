@@ -183,8 +183,6 @@ def solution_gurobi():
     texte = traduction_chemin(chemin)
     if "-1" in texte:
         texte = "Pas de chemin possible"
-    affiche_grille(grille_poids)
-    affiche_grille(grille)
     dessiner_grille(grille,[(D1,D2),arrivee],cheminter,texte,orientation,grille_poids)
 
 if __name__=="__main__":
