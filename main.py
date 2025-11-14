@@ -1,7 +1,7 @@
 from Graphe import *
-from RAPPORT.generation_instance import *
+from generation_instance import *
 from calcul_chemin import *
-from RAPPORT.dessin import *
+from dessin import *
 
 def menu():
     print("\n-------------------------------------")
@@ -11,7 +11,8 @@ def menu():
     print("1 -> Générer un fichier d'instances")
     print("2 -> Générer un fichier chemin à partir d'instances")
     print("3 -> Générer une instance et sa solution")
-    print("4 -> Sortir")
+    print("4 -> Générer une instance avec Gurobi et sa solution")
+    print("5 -> Sortir")
     choix = int(input("Votre choix ->"))
     return choix
 
@@ -131,9 +132,12 @@ def affichage():
         texte = "Pas de chemin possible"
     dessiner_grille_intersections(grille,[(D1,D2),arrivee],cheminter,texte,orientation)
 
+def solution_gurobi():
+    pass
+
 if __name__=="__main__":
     choix = menu()
-    faire = [generation,solution,affichage]
-    while choix !=4:
+    faire = [generation,solution,affichage,solution_gurobi]
+    while choix !=5:
         faire[choix-1]()
         choix = menu()

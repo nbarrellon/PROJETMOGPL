@@ -1,6 +1,6 @@
 from calcul_chemin import *
 from time import perf_counter
-from RAPPORT.generation_instance import *
+from generation_instance import *
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import linregress
