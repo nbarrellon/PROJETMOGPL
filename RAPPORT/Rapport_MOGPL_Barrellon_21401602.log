@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.6.6)  14 NOV 2025 11:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.6.6)  14 NOV 2025 11:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1445,17 +1445,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 575--576
  []
 
 LaTeX Font Info:    Trying to load font information for T1+cmtl on input line 5
-77.
+78.
 (/usr/share/texlive/texmf-dist/tex/latex/cmbright/t1cmtl.fd
 File: t1cmtl.fd 2005/04/13 v8.1 (WaS)
 )
-Underfull \hbox (badness 10000) in paragraph at lines 577--578
+Underfull \hbox (badness 10000) in paragraph at lines 578--579
 
  []
 
 File: LOGO_SCIENCES_DEF_CMJN_med.jpg Graphic file (type jpg)
 <use LOGO_SCIENCES_DEF_CMJN_med.jpg>
-Package pdftex.def Info: LOGO_SCIENCES_DEF_CMJN_med.jpg  used on input line 620
+Package pdftex.def Info: LOGO_SCIENCES_DEF_CMJN_med.jpg  used on input line 627
 .
 (pdftex.def)             Requested size: 85.35826pt x 34.23097pt.
 
@@ -1468,7 +1468,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.7}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.620 \end{document}
+l.627 \end{document}
                     ] (./Rapport_MOGPL_Barrellon_21401602.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
@@ -1487,8 +1487,8 @@ xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 33193 strings out of 474222
- 631159 string characters out of 5748734
+ 33195 strings out of 474222
+ 631181 string characters out of 5748734
  1950975 words of memory out of 5000000
  54939 multiletter control sequences out of 15000+600000
  569238 words of font info for 60 fonts, out of 8000000 for 9000
@@ -1504,11 +1504,11 @@ blic/hfbright/hfbrsy8.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbbx10
 .pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbmr10.pfb></usr/share/texm
 f/fonts/type1/public/cm-super/sfbmr8.pfb></usr/share/texmf/fonts/type1/public/c
 m-super/sfbtl10.pfb>
-Output written on Rapport_MOGPL_Barrellon_21401602.pdf (11 pages, 422640 bytes)
+Output written on Rapport_MOGPL_Barrellon_21401602.pdf (11 pages, 424494 bytes)
 .
 PDF statistics:
- 170 PDF objects out of 1000 (max. 8388607)
- 117 compressed objects within 2 object streams
- 33 named destinations out of 1000 (max. 500000)
+ 172 PDF objects out of 1000 (max. 8388607)
+ 119 compressed objects within 2 object streams
+ 35 named destinations out of 1000 (max. 500000)
  53 words of extra memory for PDF output out of 10000 (max. 10000000)
 

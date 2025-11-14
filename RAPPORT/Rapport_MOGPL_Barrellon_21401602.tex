@@ -574,6 +574,7 @@ puis multipliée par -1 pour avoir une homogénéité des signes d'inégalités 
 
 $-x_{11} - x_{12} - x_{13} - x_{14} - x_{21} - x_{22} - x_{23} - x_{24} - x_{31} - x_{32} - x_{33} - x_{34} - x_{41} - x_{42} - x_{43} - x_{44} \leq -5$\\
 
+\subsection*{5) Solution}
 Quelques boucles \texttt{for} permettent de construire aisément les listes des coefficients de chaque contrainte que l'on ajoute à la matrice des contraintes, idem pour les seconds membres et la fonction objectif. Tout ceci est traité par Gurobi en prenant soin d'"écraser" la matrice des variables et de lui préciser que ces dernières sont binaires (\texttt{vtype=GRB.BINARY}). Gurobi renvoie la solution :\\
 \begin{center}
 $x_{1} = 0 $,
@@ -616,5 +617,11 @@ Qui correspond à la grille de la figure \ref{solutiongurobi} de poids total $p=
 \caption{Solution du problème}
 \label{solutiongurobi}
  \end{figure}
+ 
+ \subsection*{6) Remarques}
+Les contraintes imposées génèrent une contrainte sur le nombre maximal d'obstacle que l'on peut placer dans une grille de taille $N \times M$. \\
+En effet, on doit avoir $M > \frac{2P}{M} \Leftrightarrow P < \frac{M^2}{2}$ et $N > \frac{2P}{N} \Leftrightarrow P < \frac{N^2}{2}$. \\
+J'ai intégré ces condition dans le programme Python, en restreignant les choix possibles de l'utilisateur. 
+
 
 \end{document}
