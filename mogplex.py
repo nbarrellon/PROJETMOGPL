@@ -6,7 +6,12 @@ from gurobipy import *
 from testgurobi import *
 from dessin import *
 
-def solution_grille(contraintes,scdmb,fonction_obj,N,M):
+def solution_grille(contraintes:list[list[int]],scdmb:list[int],fonction_obj:list[int],N:int,M:int)->list[int]:
+    """
+    Renvoie la solution du PL
+    Entrée : contraintes du PL (coefficient et second membre), fonction objectif, taille de la matrice 
+    Sortie : Liste de taille N*M avec la valeur des variables de décision (0 ou 1)
+    """
     nbcont=len(contraintes) #Ncontraintes sur les lignes, M contraintes sur les colonnes 
     nbvar=N*M #il y a autant de variable que de cases
     # Range of plants and warehouses
@@ -35,12 +40,13 @@ def solution_grille(contraintes,scdmb,fonction_obj,N,M):
         solution.append(int(x[j].x))
     return solution
 
-def vecteur_to_matrice(v,M):
+def vecteur_to_matrice(v,N,M):
+    """
+    Reçoit la solution donnée par Gurobi sous forme de vecteur de taille N*M
+    Renvoie la grille correspondante : matrice de N par M
+    """
     grille = [[0 for _ in range(M)] for _ in range(N)]
-    print(grille)
-    print(v)
     for i in range(len(v)):
-        print("i=",i//M,",j=",i%M,"v=",v[i])
         grille[i//M][i%M]=v[i]
     return grille
 
@@ -55,9 +61,7 @@ if __name__=="__main__":
     #affichage_contrainte(contraintes,secondmb,N,M)
     f_obj = fonction_objectif(grille_poids,N,M)
     sol = solution_grille(contraintes,secondmb,f_obj,N,M)
-    print(sol)
-    grille = vecteur_to_matrice(sol,M)
+    grille = vecteur_to_matrice(sol,N,M)
     affiche_matrice(grille,N,M)
-    print("-----------------------")
-    affiche_matrice(vecteur_to_matrice([1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],4),4,4)
+    
     

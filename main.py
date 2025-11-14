@@ -154,7 +154,7 @@ def solution_gurobi():
     f_obj = fonction_objectif(grille_poids,N,M)
     solution = solution_grille(contraintes,secondmb,f_obj,N,M)
     #creation de la grille en fonction de la solution renvoyée par Gurobi
-    grille = vecteur_to_matrice(solution,M)
+    grille = vecteur_to_matrice(solution,N,M)
     
     depart = (-1,-1)
     arrivee = (-1,-1)
@@ -185,7 +185,7 @@ def solution_gurobi():
         texte = "Pas de chemin possible"
     affiche_grille(grille_poids)
     affiche_grille(grille)
-    #dessiner_grille(grille,[(D1,D2),arrivee],cheminter,texte,orientation,grille_poids)
+    dessiner_grille(grille,[(D1,D2),arrivee],cheminter,texte,orientation,grille_poids)
 
 if __name__=="__main__":
     choix = menu()
