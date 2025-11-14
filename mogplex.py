@@ -36,11 +36,11 @@ def solution_grille(contraintes,scdmb,fonction_obj,N,M):
     return solution
 
 def vecteur_to_matrice(v,M):
-    grille = [[0]*M]*N
+    grille = [[0 for _ in range(M)] for _ in range(N)]
     print(grille)
     print(v)
     for i in range(len(v)):
-        print("i=",i//M,",j=",i%M)
+        print("i=",i//M,",j=",i%M,"v=",v[i])
         grille[i//M][i%M]=v[i]
     return grille
 
@@ -57,6 +57,7 @@ if __name__=="__main__":
     sol = solution_grille(contraintes,secondmb,f_obj,N,M)
     print(sol)
     grille = vecteur_to_matrice(sol,M)
-    print(grille)
     affiche_matrice(grille,N,M)
+    print("-----------------------")
+    affiche_matrice(vecteur_to_matrice([1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],4),4,4)
     
