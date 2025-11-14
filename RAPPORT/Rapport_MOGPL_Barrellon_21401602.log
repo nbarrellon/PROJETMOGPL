@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.6.6)  14 NOV 2025 10:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.6.6)  14 NOV 2025 11:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1160,18 +1160,23 @@ File: omscmbrs.fd 2005/04/13 v8.1 (WaS)
 File: grilleexemple.png Graphic file (type png)
 <use grilleexemple.png>
 Package pdftex.def Info: grilleexemple.png  used on input line 143.
-(pdftex.def)             Requested size: 217.6621pt x 268.05063pt.
+(pdftex.def)             Requested size: 145.11052pt x 178.70255pt.
 <grilleexemple2.png, id=10, 332.24126pt x 399.4925pt>
 File: grilleexemple2.png Graphic file (type png)
 <use grilleexemple2.png>
 Package pdftex.def Info: grilleexemple2.png  used on input line 144.
-(pdftex.def)             Requested size: 217.6621pt x 261.72131pt.
+(pdftex.def)             Requested size: 145.11052pt x 174.48494pt.
+<grilleexemple3.png, id=11, 339.2675pt x 419.5675pt>
+File: grilleexemple3.png Graphic file (type png)
+<use grilleexemple3.png>
+Package pdftex.def Info: grilleexemple3.png  used on input line 145.
+(pdftex.def)             Requested size: 145.11052pt x 179.45659pt.
 LaTeX Font Info:    Font shape `T1/cmbr/b/n' in size <12> not available
-(Font)              Font shape `T1/cmbr/bx/n' tried instead on input line 148.
-<LOGO_SCIENCES_DEF_CMJN_med.jpg, id=11, 142.3719pt x 57.0933pt>
+(Font)              Font shape `T1/cmbr/bx/n' tried instead on input line 149.
+<LOGO_SCIENCES_DEF_CMJN_med.jpg, id=12, 142.3719pt x 57.0933pt>
 File: LOGO_SCIENCES_DEF_CMJN_med.jpg Graphic file (type jpg)
 <use LOGO_SCIENCES_DEF_CMJN_med.jpg>
-Package pdftex.def Info: LOGO_SCIENCES_DEF_CMJN_med.jpg  used on input line 148
+Package pdftex.def Info: LOGO_SCIENCES_DEF_CMJN_med.jpg  used on input line 149
 .
 (pdftex.def)             Requested size: 85.35826pt x 34.23097pt.
 
@@ -1183,43 +1188,43 @@ Package fancyhdr Warning: \footskip is too small (34.1433pt):
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/en
 c/dvips/cm-super/cm-super-t1.enc}
 
- <./grilleexemple.png> <./grilleexemple2.png> <./LOGO_SCIENCES_DEF_CMJN_med.jpg
->]
+ <./grilleexemple.png> <./grilleexemple2.png> <./grilleexemple3.png> <./LOGO_SC
+IENCES_DEF_CMJN_med.jpg>]
 LaTeX Font Info:    Font shape `T1/cmbr/b/n' in size <17.28> not available
-(Font)              Font shape `T1/cmbr/bx/n' tried instead on input line 150.
+(Font)              Font shape `T1/cmbr/bx/n' tried instead on input line 151.
 
-Underfull \hbox (badness 10000) in paragraph at lines 152--153
+Underfull \hbox (badness 10000) in paragraph at lines 153--154
 
  []
 
 LaTeX Font Info:    Trying to load font information for TS1+cmbr on input line 
-156.
+157.
 (/usr/share/texlive/texmf-dist/tex/latex/cmbright/ts1cmbr.fd
 File: ts1cmbr.fd 2005/04/13 v8.1 (WaS)
 )
-Overfull \hbox (2.17354pt too wide) in paragraph at lines 158--159
+Overfull \hbox (2.17354pt too wide) in paragraph at lines 159--160
 []\T1/cmbr/m/n/12 Un arc tra-duit la pos-si-bi-lité pour le ro-bot de pas-ser d
 'une in-ter-sec-tion à une autre (AVANCE)
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 161--194
+Underfull \hbox (badness 10000) in paragraph at lines 162--195
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 196--197
+Underfull \hbox (badness 10000) in paragraph at lines 197--198
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 198--199
+Underfull \hbox (badness 10000) in paragraph at lines 199--200
 
  []
 
 File: LOGO_SCIENCES_DEF_CMJN_med.jpg Graphic file (type jpg)
 <use LOGO_SCIENCES_DEF_CMJN_med.jpg>
-Package pdftex.def Info: LOGO_SCIENCES_DEF_CMJN_med.jpg  used on input line 214
+Package pdftex.def Info: LOGO_SCIENCES_DEF_CMJN_med.jpg  used on input line 215
 .
 (pdftex.def)             Requested size: 85.35826pt x 34.23097pt.
 
@@ -1228,13 +1233,13 @@ Package fancyhdr Warning: \footskip is too small (34.1433pt):
 (fancyhdr)                \setlength{\footskip}{38.73102pt}.
 
 [2{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-Underfull \hbox (badness 10000) in paragraph at lines 216--217
+Underfull \hbox (badness 10000) in paragraph at lines 217--218
 
  []
 
 File: LOGO_SCIENCES_DEF_CMJN_med.jpg Graphic file (type jpg)
 <use LOGO_SCIENCES_DEF_CMJN_med.jpg>
-Package pdftex.def Info: LOGO_SCIENCES_DEF_CMJN_med.jpg  used on input line 361
+Package pdftex.def Info: LOGO_SCIENCES_DEF_CMJN_med.jpg  used on input line 362
 .
 (pdftex.def)             Requested size: 85.35826pt x 34.23097pt.
 
@@ -1243,32 +1248,32 @@ Package fancyhdr Warning: \footskip is too small (34.1433pt):
 (fancyhdr)                \setlength{\footskip}{38.73102pt}.
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 376--377
+Underfull \hbox (badness 10000) in paragraph at lines 377--378
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 378--379
+Underfull \hbox (badness 10000) in paragraph at lines 379--380
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 380--381
+Underfull \hbox (badness 10000) in paragraph at lines 381--382
 
  []
 
-<instanceXXX_log.png, id=37, 722.7pt x 722.7pt>
+<instanceXXX_log.png, id=39, 722.7pt x 722.7pt>
 File: instanceXXX_log.png Graphic file (type png)
 <use instanceXXX_log.png>
-Package pdftex.def Info: instanceXXX_log.png  used on input line 384.
+Package pdftex.def Info: instanceXXX_log.png  used on input line 385.
 (pdftex.def)             Requested size: 361.3491pt x 361.3491pt.
 
 LaTeX Font Warning: Font shape `T1/cmbr/m/sc' undefined
-(Font)              using `T1/cmbr/m/n' instead on input line 385.
+(Font)              using `T1/cmbr/m/n' instead on input line 386.
 
 File: LOGO_SCIENCES_DEF_CMJN_med.jpg Graphic file (type jpg)
 <use LOGO_SCIENCES_DEF_CMJN_med.jpg>
-Package pdftex.def Info: LOGO_SCIENCES_DEF_CMJN_med.jpg  used on input line 389
+Package pdftex.def Info: LOGO_SCIENCES_DEF_CMJN_med.jpg  used on input line 390
 .
 (pdftex.def)             Requested size: 85.35826pt x 34.23097pt.
 
@@ -1277,14 +1282,14 @@ Package fancyhdr Warning: \footskip is too small (34.1433pt):
 (fancyhdr)                \setlength{\footskip}{38.73102pt}.
 
 [4]
-<instanceXXX_log1.png, id=48, 722.7pt x 722.7pt>
+<instanceXXX_log1.png, id=50, 722.7pt x 722.7pt>
 File: instanceXXX_log1.png Graphic file (type png)
 <use instanceXXX_log1.png>
-Package pdftex.def Info: instanceXXX_log1.png  used on input line 392.
+Package pdftex.def Info: instanceXXX_log1.png  used on input line 393.
 (pdftex.def)             Requested size: 361.3491pt x 361.3491pt.
 File: LOGO_SCIENCES_DEF_CMJN_med.jpg Graphic file (type jpg)
 <use LOGO_SCIENCES_DEF_CMJN_med.jpg>
-Package pdftex.def Info: LOGO_SCIENCES_DEF_CMJN_med.jpg  used on input line 397
+Package pdftex.def Info: LOGO_SCIENCES_DEF_CMJN_med.jpg  used on input line 398
 .
 (pdftex.def)             Requested size: 85.35826pt x 34.23097pt.
 
@@ -1298,20 +1303,20 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.397 
+l.398 
        <./instanceXXX_log.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 398--401
+Underfull \hbox (badness 10000) in paragraph at lines 399--402
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 407--408
+Underfull \hbox (badness 10000) in paragraph at lines 408--409
 
  []
 
 File: LOGO_SCIENCES_DEF_CMJN_med.jpg Graphic file (type jpg)
 <use LOGO_SCIENCES_DEF_CMJN_med.jpg>
-Package pdftex.def Info: LOGO_SCIENCES_DEF_CMJN_med.jpg  used on input line 408
+Package pdftex.def Info: LOGO_SCIENCES_DEF_CMJN_med.jpg  used on input line 409
 .
 (pdftex.def)             Requested size: 85.35826pt x 34.23097pt.
 
@@ -1324,28 +1329,28 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.408 
+l.409 
        <./instanceXXX_log1.png>]
-<instance_taille_grille_cte1.png, id=60, 578.16pt x 361.35pt>
+<instance_taille_grille_cte1.png, id=62, 578.16pt x 361.35pt>
 File: instance_taille_grille_cte1.png Graphic file (type png)
 <use instance_taille_grille_cte1.png>
 Package pdftex.def Info: instance_taille_grille_cte1.png  used on input line 41
-2.
+3.
 (pdftex.def)             Requested size: 289.07928pt x 180.67456pt.
-<instance_taille_grille_cte.png, id=61, 578.16pt x 361.35pt>
+<instance_taille_grille_cte.png, id=63, 578.16pt x 361.35pt>
 File: instance_taille_grille_cte.png Graphic file (type png)
 <use instance_taille_grille_cte.png>
-Package pdftex.def Info: instance_taille_grille_cte.png  used on input line 419
+Package pdftex.def Info: instance_taille_grille_cte.png  used on input line 420
 .
 (pdftex.def)             Requested size: 289.07928pt x 180.67456pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 424--425
+Underfull \hbox (badness 10000) in paragraph at lines 425--426
 
  []
 
 File: LOGO_SCIENCES_DEF_CMJN_med.jpg Graphic file (type jpg)
 <use LOGO_SCIENCES_DEF_CMJN_med.jpg>
-Package pdftex.def Info: LOGO_SCIENCES_DEF_CMJN_med.jpg  used on input line 425
+Package pdftex.def Info: LOGO_SCIENCES_DEF_CMJN_med.jpg  used on input line 426
 .
 (pdftex.def)             Requested size: 85.35826pt x 34.23097pt.
 
@@ -1358,21 +1363,21 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.425 
+l.426 
       
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.425 
+l.426 
        <./instance_taille_grille_cte1.png> <./instance_taille_grille_cte.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 446--447
+Underfull \hbox (badness 10000) in paragraph at lines 447--448
 
  []
 
 File: LOGO_SCIENCES_DEF_CMJN_med.jpg Graphic file (type jpg)
 <use LOGO_SCIENCES_DEF_CMJN_med.jpg>
-Package pdftex.def Info: LOGO_SCIENCES_DEF_CMJN_med.jpg  used on input line 451
+Package pdftex.def Info: LOGO_SCIENCES_DEF_CMJN_med.jpg  used on input line 452
 .
 (pdftex.def)             Requested size: 85.35826pt x 34.23097pt.
 
@@ -1383,7 +1388,7 @@ Package fancyhdr Warning: \footskip is too small (34.1433pt):
 [8]
 File: LOGO_SCIENCES_DEF_CMJN_med.jpg Graphic file (type jpg)
 <use LOGO_SCIENCES_DEF_CMJN_med.jpg>
-Package pdftex.def Info: LOGO_SCIENCES_DEF_CMJN_med.jpg  used on input line 518
+Package pdftex.def Info: LOGO_SCIENCES_DEF_CMJN_med.jpg  used on input line 519
 .
 (pdftex.def)             Requested size: 85.35826pt x 34.23097pt.
 
@@ -1397,31 +1402,31 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.518 \]
+l.519 \]
         
 pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.518 \]
+l.519 \]
         ]
-Underfull \hbox (badness 10000) in paragraph at lines 566--567
+Underfull \hbox (badness 10000) in paragraph at lines 567--568
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 568--569
+Underfull \hbox (badness 10000) in paragraph at lines 569--570
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 570--571
+Underfull \hbox (badness 10000) in paragraph at lines 571--572
 
  []
 
 File: LOGO_SCIENCES_DEF_CMJN_med.jpg Graphic file (type jpg)
 <use LOGO_SCIENCES_DEF_CMJN_med.jpg>
-Package pdftex.def Info: LOGO_SCIENCES_DEF_CMJN_med.jpg  used on input line 572
+Package pdftex.def Info: LOGO_SCIENCES_DEF_CMJN_med.jpg  used on input line 573
 .
 (pdftex.def)             Requested size: 85.35826pt x 34.23097pt.
 
@@ -1430,27 +1435,27 @@ Package fancyhdr Warning: \footskip is too small (34.1433pt):
 (fancyhdr)                \setlength{\footskip}{38.73102pt}.
 
 [10]
-Underfull \hbox (badness 10000) in paragraph at lines 572--573
+Underfull \hbox (badness 10000) in paragraph at lines 573--574
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 574--575
+Underfull \hbox (badness 10000) in paragraph at lines 575--576
 
  []
 
 LaTeX Font Info:    Trying to load font information for T1+cmtl on input line 5
-76.
+77.
 (/usr/share/texlive/texmf-dist/tex/latex/cmbright/t1cmtl.fd
 File: t1cmtl.fd 2005/04/13 v8.1 (WaS)
 )
-Underfull \hbox (badness 10000) in paragraph at lines 576--577
+Underfull \hbox (badness 10000) in paragraph at lines 577--578
 
  []
 
 File: LOGO_SCIENCES_DEF_CMJN_med.jpg Graphic file (type jpg)
 <use LOGO_SCIENCES_DEF_CMJN_med.jpg>
-Package pdftex.def Info: LOGO_SCIENCES_DEF_CMJN_med.jpg  used on input line 619
+Package pdftex.def Info: LOGO_SCIENCES_DEF_CMJN_med.jpg  used on input line 620
 .
 (pdftex.def)             Requested size: 85.35826pt x 34.23097pt.
 
@@ -1463,7 +1468,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.7}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.619 \end{document}
+l.620 \end{document}
                     ] (./Rapport_MOGPL_Barrellon_21401602.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
@@ -1482,10 +1487,10 @@ xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 33186 strings out of 474222
- 630985 string characters out of 5748734
+ 33193 strings out of 474222
+ 631159 string characters out of 5748734
  1950975 words of memory out of 5000000
- 54932 multiletter control sequences out of 15000+600000
+ 54939 multiletter control sequences out of 15000+600000
  569238 words of font info for 60 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,17n,87p,767b,2050s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1499,11 +1504,11 @@ blic/hfbright/hfbrsy8.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbbx10
 .pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbmr10.pfb></usr/share/texm
 f/fonts/type1/public/cm-super/sfbmr8.pfb></usr/share/texmf/fonts/type1/public/c
 m-super/sfbtl10.pfb>
-Output written on Rapport_MOGPL_Barrellon_21401602.pdf (11 pages, 407402 bytes)
+Output written on Rapport_MOGPL_Barrellon_21401602.pdf (11 pages, 422640 bytes)
 .
 PDF statistics:
- 168 PDF objects out of 1000 (max. 8388607)
+ 170 PDF objects out of 1000 (max. 8388607)
  117 compressed objects within 2 object streams
  33 named destinations out of 1000 (max. 500000)
- 48 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 53 words of extra memory for PDF output out of 10000 (max. 10000000)
 
