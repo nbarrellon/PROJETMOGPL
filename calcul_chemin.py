@@ -62,7 +62,7 @@ def traduction_chemin(path):
     """
     if path==-1:
         return "-1\n"
-    chemin = str(len(path)-1)+" " #on ote depart
+    chemin = ""
     for i in range(len(path)-1):
         x,y,orientation = path[i]
         next_x,next_y,next_orientation = path[i+1]
@@ -76,7 +76,7 @@ def traduction_chemin(path):
             dy = abs(next_y-y)
             #l'un des deux deltas est nul, pas de déplacement en diagonale
             chemin += "a"+str(max(dx,dy))+" "
-    return chemin+"\n"
+    return chemin + "(cout = "+str(len(path)-1)+")" #on ote depart"\n"
 
 if __name__=="__main__":
     grille,D1,D2,F1,F2,orientation = lecture_fichier_instance("./OUTPUT/essaipoly.txt")
