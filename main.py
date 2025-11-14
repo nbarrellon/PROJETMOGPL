@@ -14,8 +14,10 @@ def menu():
     print("3 -> Générer une instance et sa solution")
     print("4 -> Générer une instance avec Gurobi et sa solution")
     print("5 -> Sortir")
-    choix = int(input("Votre choix ->"))
-    return choix
+    choix = -1
+    while choix not in ["1","2","3","4","5"]:
+        choix = input("Votre choix ->")
+    return int(choix)
 
 def generation():
     print("--------- Generation d'un fichier instance --------------")
@@ -131,7 +133,7 @@ def affichage():
     texte = traduction_chemin(chemin)
     if "-1" in texte:
         texte = "Pas de chemin possible"
-    dessiner_grille_intersections(grille,[(D1,D2),arrivee],cheminter,texte,orientation)
+    dessiner_grille_2(grille,[(D1,D2),arrivee],cheminter,texte,orientation)
 
 def solution_gurobi():
     print("--------- Résolution d'une instance calculée --------------")
