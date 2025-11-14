@@ -44,10 +44,11 @@ def solution_grille(contraintes,scdmb,fonction_obj,N,M):
     print("")
     print('Valeur de la fonction objectif :', m.objVal)
 
-N = 5
-M = 5
+N = 4
+M = 4
 P = 5  
-grille_poids = genere_poids(N,M)
+#grille_poids = genere_poids(N,M)
+grille_poids =[[132,12,34,789],[202,345,70,707],[11,236,657,90],[178,801,900,654]]
 affiche_matrice(grille_poids,N,M)
 contraintes,secondmb = resolution_grille(P,N,M)
 affichage_contrainte(contraintes,secondmb,N,M)

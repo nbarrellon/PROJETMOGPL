@@ -27,6 +27,7 @@
 \usepackage{tikz}
 \usetikzlibrary{matrix}
 \usepackage{enumitem}
+\usepackage{amsmath}
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{graphs, graphs.standard, quotes}
 
@@ -425,11 +426,150 @@ La figure \ref{ffonctionP} montre comment le temps de calcul de l'algorithme ten
 
 Pour un nombre d'obstacles variant de 10 à 50 dans une grille de taille 20 par 20. Les résultats expérimentaux de la figure \ref{ffonctionP2} font bien apparaître une complexité linéaire.
 
-
-
 \section*{e. Positionnement des obstacles}
 
+On souhaite écrire le programme linéaire qui va choisir $P$ cases-obstacles dans une grille de taille $N \times M$ dont chaque case est pondérée par un entier tiré aléatoirement entre 1 et 1000. La somme des cases choisies doit être minimale et les contraintes suivantes doivent être respectées :
+\begin{itemize}
+\item il n'y ait pas plus de $\frac{2P}{M}$ obstacles par ligne $\rightarrow$ jeu de contraintes \textcircled{1};
+\item il n'y ait pas plus de $\frac{2P}{N}$ obstacles par colonne $\rightarrow$ jeu de contraintes \textcircled{2};
+\item il n'y ait aucune configuration de type "obstacle-cas vide-obstacle" sur les lignes $\rightarrow$ jeu de contraintes \textcircled{3};
+\item il n'y ait aucune configuration de type "obstacle-cas vide-obstacle" sur les colonnes $\rightarrow$ jeu de contraintes \textcircled{4};
+\item il y ait $P$ obstacles dans la grille $\rightarrow$ jeu de contraintes \textcircled{5};
+\end{itemize}
 
+\subsection*{1) Variables de décision :}
 
+J'ai décidé de choisir comme variables de décision, $x_{ij}, i \in [1,2...,N]$ et $j \in [1,2...,M]$ en attribuant donc une variable par case. Ces variables $x_{ij}$ sont \textbf{binaires} : 0 la case n'est pas retenue, 1 elle est choisie.
 
+\subsection*{2) Fonction objectif}
+
+On souhaite minimiser la somme des coefficients de pondération des cases choisies. Ainsi, la fonction objectif $z$ s'écrit :\\
+
+\[
+\min z = \sum_{i=1}^{N} \sum_{j=1}^{M} x_{i,j}
+\]
+\newpage
+\subsection*{3) Contraintes}
+\begin{enumerate}[label=\textcircled{\arabic*}]
+\item $\forall i \in \{1, \dots, N\}$ on veut $\sum_{j=1}^{M} x_{ij} \leq \frac{2P}{M}$
+\item $\forall j \in \{1, \dots, M\}$ on veut $\sum_{i=1}^{N} x_{ij} \leq \frac{2P}{N}$
+\item $\forall i \in \{1, \dots, N\}$, $\forall j \in \{1, \dots, M-2\}$ on veut $x_{i,j}+x_{i,j+2} \leq 1$ qui assure que deux cases entourant une case vide dans une ligne ne peuvent pas être choisies simultanément
+\item $\forall j \in \{1, \dots, M\}$, $\forall i \in \{1, \dots, N-2\}$ on veut $x_{i,j}+x_{i+2,j} \leq 1$ qui assure que deux cases entourant une case vide dans une colonne ne peuvent pas être choisies simultanément
+\item $\sum_{i=1}^{N} \sum_{j=1}^{M} x_{i,j} = P$ 
+\end{enumerate}
+
+\subsection*{4) Exemple}
+
+Soit la grille de $4 \times 4$ de la figure \ref{grillepondérée}.
+
+\begin{figure}[H]
+ \begin{center}
+  \begin{tikzpicture}
+        \matrix (m) [matrix of nodes,
+                    nodes={draw, minimum size=1cm, anchor=center},
+                    row sep=-\pgflinewidth,
+                    column sep=-\pgflinewidth]
+        {
+            132 & 12 & 34 & 789\\
+            202 & 345 & 70 & 707\\
+            11 & 236 & 657 & 90\\
+            178 & 801 & 900 & 654\\
+        };
+
+    \end{tikzpicture}
+ \end{center}
+\caption{Grille de jeu avec pondération}
+\label{grillepondérée}
+ \end{figure}
+
+Les variables de décision associées sont :
+
+\begin{figure}[H]
+ \begin{center}
+  \begin{tikzpicture}
+        \matrix (m) [matrix of nodes,
+                    nodes={draw, minimum size=1cm, anchor=center},
+                    row sep=-\pgflinewidth,
+                    column sep=-\pgflinewidth]
+        {
+            $x_{11}$ & $x_{12}$ & $x_{13}$ & $x_{14}$\\
+            $x_{21}$ & $x_{22}$ & $x_{23}$ & $x_{24}$\\
+            $x_{31}$ & $x_{32}$ & $x_{33}$ & $x_{34}$\\
+            $x_{41}$ & $x_{42}$ & $x_{43}$ & $x_{44}$\\
+        };
+
+    \end{tikzpicture}
+ \end{center}
+\caption{Variables de décision}
+\label{grillevariables}
+ \end{figure}
+ 
+Si on souhaite placer $P=5$ obstacles dans cette grille, les contraintes s'écrivent :\\
+\underline{$N=4$ contraintes \textcircled{1}}
+\[
+\left\{
+\begin{aligned}
+x_{11} + x_{12} + x_{13} + x_{14} &\leq 2 \\
+x_{21} + x_{22} + x_{23} + x_{24} &\leq 2 \\
+x_{31} + x_{32} + x_{33} + x_{34} &\leq 2 \\
+x_{41} + x_{42} + x_{43} + x_{44} &\leq 2
+\end{aligned}
+\right.
+\]
+
+\underline{$M=4$ contraintes \textcircled{2}}
+\[
+\left\{
+\begin{aligned}
+x_{11} + x_{21} + x_{31} + x_{41} &\leq 2 \\
+x_{12} + x_{22} + x_{32} + x_{42} &\leq 2 \\
+x_{13} + x_{23} + x_{33} + x_{43} &\leq 2 \\
+x_{14} + x_{24} + x_{34} + x_{44} &\leq 2
+\end{aligned}
+\right.
+\]
+
+\underline{$N \times (M-2)=8$ contraintes \textcircled{3}}
+\[
+\left\{
+\begin{aligned}
+x_{11} + x_{13} &\leq 1 \\
+x_{12} + x_{14} &\leq 1 \\
+x_{21} + x_{23}  &\leq 1 \\
+x_{22} + x_{24}  &\leq 1 \\
+x_{31} + x_{33}  &\leq 1 \\
+x_{32} + x_{34}  &\leq 1 \\
+x_{41} + x_{43}  &\leq 1 \\
+x_{42} + x_{44}  &\leq 1 \\
+\end{aligned}
+\right.
+\]
+
+\underline{$M \times (N-2)=8$ contraintes \textcircled{4}}
+
+\[
+\left\{
+\begin{aligned}
+x_{11} + x_{31} &\leq 1 \\
+x_{21} + x_{41} &\leq 1 \\
+x_{12} + x_{32}  &\leq 1 \\
+x_{22} + x_{42}  &\leq 1 \\
+x_{13} + x_{33}  &\leq 1 \\
+x_{33} + x_{43}  &\leq 1 \\
+x_{14} + x_{34}  &\leq 1 \\
+x_{24} + x_{44}  &\leq 1 \\
+\end{aligned}
+\right.
+\]
+\underline{1 contrainte \textcircled{5}}
+
+$x_{11} + x_{12} + x_{13} + x_{14} + x_{21} + x_{22} + x_{23} + x_{24} + x_{31} + x_{32} + x_{33} + x_{34} + x_{41} + x_{42} + x_{43} + x_{44} = 5$ \\
+
+Sachant que l'on travaille en minimisation (ajouter une sixième variable ne pourrait que dégrader la fonction objectif), je l'ai modifiée pour Gurobi par :\\
+
+$x_{11} + x_{12} + x_{13} + x_{14} + x_{21} + x_{22} + x_{23} + x_{24} + x_{31} + x_{32} + x_{33} + x_{34} + x_{41} + x_{42} + x_{43} + x_{44} \geq 5$\\
+
+puis multipliée par -1 pour avoir une homogénéité des signes d'inégalités (toujours pour Gurobi) : \\
+
+$-x_{11} - x_{12} - x_{13} - x_{14} - x_{21} - x_{22} - x_{23} - x_{24} - x_{31} - x_{32} - x_{33} - x_{34} - x_{41} - x_{42} - x_{43} - x_{44} \leq -5$
 \end{document}
