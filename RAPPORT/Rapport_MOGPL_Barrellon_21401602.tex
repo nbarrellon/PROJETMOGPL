@@ -620,6 +620,8 @@ Qui correspond à la grille de la figure \ref{solutiongurobi} de poids total $p=
  
  \subsection*{6) Remarques}
 Les contraintes imposées génèrent une contrainte sur le nombre maximal d'obstacle que l'on peut placer dans une grille de taille $N \times M$. \\
+En effet, le solveur annonce "\texttt{Model is infeasible}" et plante pour certaines configurations (N,M,P). 
+
 En effet, on doit avoir $M > \frac{2P}{M} \Leftrightarrow P < \frac{M^2}{2}$ et $N > \frac{2P}{N} \Leftrightarrow P < \frac{N^2}{2}$. \\
 J'ai intégré ces condition dans le programme Python, en restreignant les choix possibles de l'utilisateur. 
 
