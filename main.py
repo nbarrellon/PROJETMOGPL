@@ -146,7 +146,7 @@ def solution_gurobi():
         print("Trop petit !")
         M = int(input("Que vaut M ? ->"))
     P = int(input("Combien d'obstacles (<90% de N*M)? ->"))
-    while (P>N**2/2) and (P>M**2/2):
+    while P>(N*M/2+2):
         print("Trop d'obstacles !")
         P = int(input("Combien d'obstacles ? ->"))
     #generation d'une grille pondérée
