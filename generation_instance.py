@@ -69,6 +69,7 @@ def creation_fichier(instances_voulues,fichier,aleatoire=True,depart=(-1,-1),arr
         for instance in instances_voulues:
             N,M,P = instance
             grille = generation_grille(N,M,P)
+            
             f.write(str(N)+" "+str(M)+"\n")
             for i in range(N):
                 for j in range(M):
@@ -77,12 +78,17 @@ def creation_fichier(instances_voulues,fichier,aleatoire=True,depart=(-1,-1),arr
             if aleatoire:
                 while not(choix_depart_arrivee(grille,depart)):
                     depart = (randint(0,N),randint(0,M))
+                print("depart=",depart)   
                 deja_essaye = [depart]
+                print(deja_essaye)
                 while not(choix_depart_arrivee(grille,arrivee)) or arrivee in deja_essaye:
                     arrivee = (randint(0,N),randint(0,M))
                     deja_essaye.append(arrivee)
+                    print(deja_essaye)
                 cardinal = orientation[randint(0,3)]
             f.write(str(depart[0])+" "+str(depart[1])+" "+str(arrivee[0])+" "+str(arrivee[1])+" "+cardinal+"\n")
             f.write("0 0\n")
 
+if __name__=="__main__":
+    creation_fichier([(10,10,10)],"test")
 
