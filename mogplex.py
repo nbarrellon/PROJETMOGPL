@@ -35,11 +35,11 @@ def solution_grille(contraintes,scdmb,fonction_obj,N,M):
     return solution
 
 if __name__=="__main__":
-    N = 4
-    M = 4
-    P = 5  
-    #grille_poids = genere_poids(N,M)
-    grille_poids =[[2,999,2,789],[202,345,70,707],[2,2,2,2],[178,801,900,654]]
+    N = 10
+    M = 10
+    P = 10 
+    grille_poids = genere_poids(N,M)
+    
     affiche_matrice(grille_poids,N,M)
     contraintes,secondmb = resolution_grille(P,N,M)
     affichage_contrainte(contraintes,secondmb,N,M)

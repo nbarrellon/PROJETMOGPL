@@ -154,8 +154,8 @@ def solution_gurobi():
     f_obj = fonction_objectif(grille_poids,N,M)
     solution = solution_grille(contraintes,secondmb,f_obj,N,M)
     #cretion de la grille en fonction de la solution renvoyée par Gurobi
-    grille []
-    for i in range(len(solution)):
+    grille = []
+    for i in range(0,len(solution),M):
         ligne = []
         for j in range(i,i+M):
             ligne.append(solution[i])
@@ -187,7 +187,9 @@ def solution_gurobi():
     texte = traduction_chemin(chemin)
     if "-1" in texte:
         texte = "Pas de chemin possible"
-    dessiner_grille_intersections(grille,[(D1,D2),arrivee],cheminter,texte,orientation)
+    affiche_grille(grille_poids)
+    affiche_grille(grille)
+    #dessiner_grille(grille,[(D1,D2),arrivee],cheminter,texte,orientation,grille_poids)
 
 if __name__=="__main__":
     choix = menu()
