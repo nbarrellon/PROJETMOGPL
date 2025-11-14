@@ -571,5 +571,49 @@ $x_{11} + x_{12} + x_{13} + x_{14} + x_{21} + x_{22} + x_{23} + x_{24} + x_{31} 
 
 puis multipliée par -1 pour avoir une homogénéité des signes d'inégalités (toujours pour Gurobi) : \\
 
-$-x_{11} - x_{12} - x_{13} - x_{14} - x_{21} - x_{22} - x_{23} - x_{24} - x_{31} - x_{32} - x_{33} - x_{34} - x_{41} - x_{42} - x_{43} - x_{44} \leq -5$
+$-x_{11} - x_{12} - x_{13} - x_{14} - x_{21} - x_{22} - x_{23} - x_{24} - x_{31} - x_{32} - x_{33} - x_{34} - x_{41} - x_{42} - x_{43} - x_{44} \leq -5$\\
+
+Quelques boucles \texttt{for} permettent de construire aisément les listes des coefficients de chaque contrainte que l'on ajoute à la matrice des contraintes, idem pour les seconds membres et la fonction objectif. Tout ceci est traité par Gurobi en prenant soin d'"écraser" la matrice des variables et de lui préciser que ces dernières sont binaires (\texttt{vtype=GRB.BINARY}). Gurobi renvoie la solution :\\
+\begin{center}
+$x_{1} = 0 $,
+$x_{2} = 1 $,
+$x_{3} = 1 $,
+$x_{4} = 0$,
+$x_{5} = 0 $,
+$x_{6} = 0 $,
+$x_{7} = 1 $,
+$x_{8} = 0 $ \\
+$x_{9} = 1 $,
+$x_{10} = 0 $,
+$x_{11} = 0 $,
+$x_{12} = 1 $,
+$x_{13} = 0 $,
+$x_{14} = 0 $,
+$x_{15} = 0 $,
+$x_{16} = 0 $
+\end{center}
+
+
+
+Qui correspond à la grille de la figure \ref{solutiongurobi} de poids total $p=12+34+70+11+90=217$:
+\begin{figure}[H]
+ \begin{center}
+  \begin{tikzpicture}[scale=0.6]
+        \matrix (m) [matrix of nodes,
+                    nodes={draw, minimum size=1cm, anchor=center},
+                    row sep=-\pgflinewidth,
+                    column sep=-\pgflinewidth]
+        {
+            $0$ & $1$ & $1$ & $0$\\
+            $0$ & $0$ & $1$ & $0$\\
+            $1$ & $0$ & $0$ & $1$\\
+            $0$ & $0$ & $0$ & $0$\\
+        };
+
+    \end{tikzpicture}
+ \end{center}
+\caption{Solution du problème}
+\label{solutiongurobi}
+ \end{figure}
+
 \end{document}

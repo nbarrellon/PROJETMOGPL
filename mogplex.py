@@ -39,6 +39,7 @@ def solution_grille(contraintes,scdmb,fonction_obj,N,M):
     m.optimize()
     print("")                
     print('Solution optimale:')
+    print(x)
     for j in colonnes:
         print('x%d'%(j+1), '=', x[j].x)
     print("")
