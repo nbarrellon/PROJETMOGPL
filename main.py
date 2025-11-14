@@ -153,13 +153,9 @@ def solution_gurobi():
     contraintes,secondmb = resolution_grille(P,N,M)
     f_obj = fonction_objectif(grille_poids,N,M)
     solution = solution_grille(contraintes,secondmb,f_obj,N,M)
-    #cretion de la grille en fonction de la solution renvoyée par Gurobi
-    grille = []
-    for i in range(0,len(solution),M):
-        ligne = []
-        for j in range(i,i+M):
-            ligne.append(solution[i])
-        grille.append(ligne)
+    #creation de la grille en fonction de la solution renvoyée par Gurobi
+    grille = vecteur_to_matrice(solution,M)
+    
     depart = (-1,-1)
     arrivee = (-1,-1)
     while not(choix_depart_arrivee(grille,depart)):

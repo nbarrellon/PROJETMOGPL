@@ -4,6 +4,7 @@
 
 from gurobipy import *
 from testgurobi import *
+from dessin import *
 
 def solution_grille(contraintes,scdmb,fonction_obj,N,M):
     nbcont=len(contraintes) #Ncontraintes sur les lignes, M contraintes sur les colonnes 
@@ -34,6 +35,15 @@ def solution_grille(contraintes,scdmb,fonction_obj,N,M):
         solution.append(int(x[j].x))
     return solution
 
+def vecteur_to_matrice(v,M):
+    grille = [[0]*M]*N
+    print(grille)
+    print(v)
+    for i in range(len(v)):
+        print("i=",i//M,",j=",i%M)
+        grille[i//M][i%M]=v[i]
+    return grille
+
 if __name__=="__main__":
     N = 10
     M = 10
@@ -42,6 +52,11 @@ if __name__=="__main__":
     
     affiche_matrice(grille_poids,N,M)
     contraintes,secondmb = resolution_grille(P,N,M)
-    affichage_contrainte(contraintes,secondmb,N,M)
+    #affichage_contrainte(contraintes,secondmb,N,M)
     f_obj = fonction_objectif(grille_poids,N,M)
-    print(solution_grille(contraintes,secondmb,f_obj,N,M))
+    sol = solution_grille(contraintes,secondmb,f_obj,N,M)
+    print(sol)
+    grille = vecteur_to_matrice(sol,M)
+    print(grille)
+    affiche_matrice(grille,N,M)
+    

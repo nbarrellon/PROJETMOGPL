@@ -11,18 +11,13 @@ def genere_poids(N,M):
     return [[randint(1,1000) for _ in range(M)] for _ in range(N)]
 
 def resolution_grille(P,N,M):
-    
     # Matrice des contraintes a 
     a = []
-    aff=[]
+    #contraintes sur les lignes
     variables = [1]*M
     for i in range(N):
-        a.append([0]*i*M+variables+[0]*(N*M-((i+1)*M))) #contraintes sur les lignes
-        aff.append([0]*i*M+variables+[0]*(N*M-((i+1)*M)))
-    print("Contraintes sur les lignes")
-    affiche_matrice(aff,N,N*M)
+        a.append([0]*i*M+variables+[0]*(N*M-((i+1)*M))) 
     #contraintes sur les colonnes
-    aff= []
     for j in range(M):
         colonne = []
         for i in range(N*M):
@@ -31,10 +26,6 @@ def resolution_grille(P,N,M):
             else:
                 colonne.append(0)
         a.append(colonne)
-        aff.append(colonne)
-    print("Contraintes sur les colonnes")
-    affiche_matrice(aff,M,M*N)
-    aff = []
     #contraintes sur le 101 pour les lignes
     for i in range(N):
         for j in range(M-2):
@@ -42,10 +33,6 @@ def resolution_grille(P,N,M):
             ligne[j+i*M]=1
             ligne[j+2+i*M]=1
             a.append(ligne)
-            aff.append(ligne)
-    print("Contraintes 101 sur les lignes")
-    print(aff)
-    aff = []
     #contraintes 101 pour les colonnes FAUX !!!!
     for i in range(0,N-2):
         for j in range(M):
@@ -53,9 +40,6 @@ def resolution_grille(P,N,M):
             ligne[j+i*M]=1
             ligne[j+2*M+i*M]=1
             a.append(ligne)
-            aff.append(ligne)
-    print("Contraintes 101 sur les colonnes")
-    print(aff)
     #derniere contrainte : il faut qu'il y ait P obstacles 
     #sinon pour minimiser c'est facile, on ne prend rien !
     a.append([-1]*N*M) #*-1 pour <=
