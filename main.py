@@ -2,6 +2,7 @@ from Graphe import *
 from generation_instance import *
 from calcul_chemin import *
 from dessin import *
+from mogplex import *
 
 def menu():
     print("\n-------------------------------------")
@@ -133,7 +134,60 @@ def affichage():
     dessiner_grille_intersections(grille,[(D1,D2),arrivee],cheminter,texte,orientation)
 
 def solution_gurobi():
-    pass
+    print("--------- Résolution d'une instance calculée --------------")
+    N = int(input("Que vaut N (>5) ? ->"))
+    while N<5:
+        print("Trop petit !")
+        N = int(input("Que vaut N ? ->"))
+    M = int(input("Que vaut M (>5) ? ->"))
+    while M<5:
+        print("Trop petit !")
+        M = int(input("Que vaut M ? ->"))
+    P = int(input("Combien d'obstacles (<90% de N*M)? ->"))
+    while P>90*(N*M)/100:
+        print("Trop d'obstacles !")
+        P = int(input("Combien d'obstacles ? ->"))
+    #generation d'une grille pondérée
+    grille_poids = genere_poids(N,M)
+    #generation d'une grille répondant aux contraintes par Gurobi
+    contraintes,secondmb = resolution_grille(P,N,M)
+    f_obj = fonction_objectif(grille_poids,N,M)
+    solution = solution_grille(contraintes,secondmb,f_obj,N,M)
+    #cretion de la grille en fonction de la solution renvoyée par Gurobi
+    grille []
+    for i in range(len(solution)):
+        ligne = []
+        for j in range(i,i+M):
+            ligne.append(solution[i])
+        grille.append(ligne)
+    depart = (-1,-1)
+    arrivee = (-1,-1)
+    while not(choix_depart_arrivee(grille,depart)):
+        depart = (randint(0,N),randint(0,M))
+    deja_essaye = [depart]
+    while not(choix_depart_arrivee(grille,arrivee)) or arrivee not in deja_essaye:
+        arrivee = (randint(0,N),randint(0,M))
+        deja_essaye.append(arrivee)
+         
+    g = Graphe(grille)
+    D1,D2 = depart
+    orientation = randint(0,3)
+    depart = (D1,D2,orientation)
+    chemin = bfs(g,depart,arrivee)
+    orientation = ["nord","est","sud","ouest"][orientation]
+    if chemin!=-1:
+        chemin = ecriture_chemin(chemin,depart,arrivee)
+        cheminbis = [(c[0],c[1]) for c in chemin]
+        cheminter=[]
+        for c in cheminbis:
+            if c not in cheminter:
+                cheminter.append(c)
+    else:
+        cheminter=[]
+    texte = traduction_chemin(chemin)
+    if "-1" in texte:
+        texte = "Pas de chemin possible"
+    dessiner_grille_intersections(grille,[(D1,D2),arrivee],cheminter,texte,orientation)
 
 if __name__=="__main__":
     choix = menu()
