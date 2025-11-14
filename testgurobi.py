@@ -74,29 +74,6 @@ def fonction_objectif(grille_poids,N,M):
     #print(ch[:-1])
     return fonction_obj
 
-def brute_force(grille,N,M,P): #trouver les solutions de poids minimal
-    #COMPLEXITE EXPONENTIELLE ! Et ne prend pas en compte les contraintes sur le nombre d'obstacle max par ligne
-    instance = []
-    for g in grille:
-        instance+=g #on aplatit la matrice
-    solutions = set()
-    for inst in range(2**P-1,2**(N*M)): #toutes les solutions ayant au moins P bits à 1
-        solution = str(bin(inst))[2:]
-        solution = "0"*(N*M-len(solution))+solution
-        if solution.count("1")==P: #on ne garde que les solutions qui ont P bits à 1
-            solutions.add(solution)
-    mini = 1000*P #plus grand valeur de la somme possible
-    res = ""
-    for sol in solutions:
-        s = 0
-        for i in range(len(sol)):
-            s += instance[i]*int(sol[i])
-            #print(s)
-        if s<mini:
-            mini = s
-            res = sol
-    print("Solution = ",res," pour un cout de ",mini)
-
 
 #####################################################################*
 if __name__=="__main__":
