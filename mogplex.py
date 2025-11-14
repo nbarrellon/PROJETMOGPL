@@ -53,7 +53,7 @@ def vecteur_to_matrice(v,N,M):
 if __name__=="__main__":
     N = 15
     M = 8
-    P = 21 
+    P = 22 
     grille_poids = genere_poids(N,M)
     
     affiche_matrice(grille_poids,N,M)
