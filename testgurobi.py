@@ -54,7 +54,7 @@ def resolution_grille(P,N,M):
 
 def affichage_contrainte(contraintes,smb,N,M):
     for i in range(len(contraintes)):
-        ch = ""
+        ch = "contrainte n°"+str(i+1)+":"
         for j in range(0,len(contraintes[i])):
             if contraintes[i][j]:
                 ch += "x"+str(j+1)+"+"
