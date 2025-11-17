@@ -6,7 +6,7 @@ from gurobipy import *
 from testgurobi import *
 from dessin import *
 
-def solution_grille(contraintes:list[list[int]],scdmb:list[int],fonction_obj:list[int],N:int,M:int)->list[int]:
+def solution_grille(contraintes:list[list[int]],scdmb:list[int],fonction_obj:list[int],N:int,M:int,P:int)->list[int]:
     """
     Renvoie la solution du PL
     Entrée : contraintes du PL (coefficient et second membre), fonction objectif, taille de la matrice 
@@ -37,10 +37,18 @@ def solution_grille(contraintes:list[list[int]],scdmb:list[int],fonction_obj:lis
     m.optimize()
     #m.computeIIS()
     #m.write("model_iis.lp")
-    solution = []
-    for j in colonnes:
-        solution.append(int(x[j].x))
-    return solution
+    if m.status == GRB.OPTIMAL:
+        solution = []
+        for j in colonnes:
+            solution.append(int(x[j].x))
+        return solution
+    elif m.status == GRB.INFEASIBLE:
+        print("*******************************************************************************************")
+        print("Aie ! Désolé mais on ne peut pas répartir ",P,"obstacles dans une grille de taille ",N,"x",M)
+        print("Sans violer une ou plusieurs contraintes...")
+        print("Il faut ré-essayer (en diminuant le nombre d'obstacles ;-)")
+        print("*******************************************************************************************")
+        return None
 
 def vecteur_to_matrice(v,N,M):
     """
@@ -64,8 +72,9 @@ if __name__=="__main__":
     contraintes,secondmb = resolution_grille(P,N,M)
     #affichage_contrainte(contraintes,secondmb,N,M)
     f_obj = fonction_objectif(grille_poids,N,M)
-    sol = solution_grille(contraintes,secondmb,f_obj,N,M)
-    grille = vecteur_to_matrice(sol,N,M)
-    affiche_matrice(grille,N,M)
-    
+    sol = solution_grille(contraintes,secondmb,f_obj,N,M,P)
+    if sol:
+        grille = vecteur_to_matrice(sol,N,M)
+        affiche_matrice(grille,N,M)
+        
     

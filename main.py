@@ -153,38 +153,39 @@ def solution_gurobi():
     #generation d'une grille répondant aux contraintes par Gurobi
     contraintes,secondmb = resolution_grille(P,N,M)
     f_obj = fonction_objectif(grille_poids,N,M)
-    solution = solution_grille(contraintes,secondmb,f_obj,N,M)
-    #creation de la grille en fonction de la solution renvoyée par Gurobi
-    grille = vecteur_to_matrice(solution,N,M)
-    
-    depart = (-1,-1)
-    arrivee = (-1,-1)
-    while not(choix_depart_arrivee(grille,depart)):
-        depart = (randint(0,N),randint(0,M))
-    deja_essaye = [depart]
-    while not(choix_depart_arrivee(grille,arrivee)) or arrivee not in deja_essaye:
-        arrivee = (randint(0,N),randint(0,M))
-        deja_essaye.append(arrivee)
-         
-    g = Graphe(grille)
-    D1,D2 = depart
-    orientation = randint(0,3)
-    depart = (D1,D2,orientation)
-    chemin = bfs(g,depart,arrivee)
-    orientation = ["nord","est","sud","ouest"][orientation]
-    if chemin!=-1:
-        chemin = ecriture_chemin(chemin,depart,arrivee)
-        cheminbis = [(c[0],c[1]) for c in chemin]
-        cheminter=[]
-        for c in cheminbis:
-            if c not in cheminter:
-                cheminter.append(c)
-    else:
-        cheminter=[]
-    texte = traduction_chemin(chemin)
-    if "-1" in texte:
-        texte = "Pas de chemin possible"
-    dessiner_grille(grille,[(D1,D2),arrivee],cheminter,texte,orientation,grille_poids)
+    solution = solution_grille(contraintes,secondmb,f_obj,N,M,P)
+    if solution: #si Gurobi a pu résoudre le probleme
+        #creation de la grille en fonction de la solution renvoyée par Gurobi
+        grille = vecteur_to_matrice(solution,N,M)
+        
+        depart = (-1,-1)
+        arrivee = (-1,-1)
+        while not(choix_depart_arrivee(grille,depart)):
+            depart = (randint(0,N),randint(0,M))
+        deja_essaye = [depart]
+        while not(choix_depart_arrivee(grille,arrivee)) or arrivee not in deja_essaye:
+            arrivee = (randint(0,N),randint(0,M))
+            deja_essaye.append(arrivee)
+            
+        g = Graphe(grille)
+        D1,D2 = depart
+        orientation = randint(0,3)
+        depart = (D1,D2,orientation)
+        chemin = bfs(g,depart,arrivee)
+        orientation = ["nord","est","sud","ouest"][orientation]
+        if chemin!=-1:
+            chemin = ecriture_chemin(chemin,depart,arrivee)
+            cheminbis = [(c[0],c[1]) for c in chemin]
+            cheminter=[]
+            for c in cheminbis:
+                if c not in cheminter:
+                    cheminter.append(c)
+        else:
+            cheminter=[]
+        texte = traduction_chemin(chemin)
+        if "-1" in texte:
+            texte = "Pas de chemin possible"
+        dessiner_grille(grille,[(D1,D2),arrivee],cheminter,texte,orientation,grille_poids)
 
 if __name__=="__main__":
     choix = menu()
