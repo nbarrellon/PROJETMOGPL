@@ -45,8 +45,8 @@ def resolution_grille(P,N,M):
     a.append([-1]*N*M) #*-1 pour <=
 
 # Second membre
-    b = [int(2*P/M) for _ in range(M)] #seconde membre contraintes lignes
-    b += [int(2*P/N) for _ in range(N)] #second membre contraintes colonnes
+    b = [2*P/M for _ in range(M)] #seconde membre contraintes lignes
+    b += [2*P/N for _ in range(N)] #second membre contraintes colonnes
     b += [1 for _ in range(N*(M-2))]
     b += [1 for _ in range(M*(N-2))]
     b.append(-P) #il faut P obstacles ! On *-1 pour avoir un <=
@@ -77,10 +77,10 @@ def fonction_objectif(grille_poids,N,M):
 
 #####################################################################*
 if __name__=="__main__":
-    N=5
-    M=5
+    N=15
+    M=8
     grille_poids = genere_poids(N,M)
-    P = 5
+    P = 21
 
     affiche_matrice(grille_poids,N,M)
     contraintes,secondmb = resolution_grille(P,N,M)
