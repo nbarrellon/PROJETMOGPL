@@ -45,8 +45,8 @@ def resolution_grille(P,N,M):
     a.append([-1]*N*M) #*-1 pour <=
 
 # Second membre
-    b = [2*P/M for _ in range(M)] #seconde membre contraintes lignes
-    b += [2*P/N for _ in range(N)] #second membre contraintes colonnes
+    b = [2*P/M for _ in range(N)] #seconde membre contraintes lignes
+    b += [2*P/N for _ in range(M)] #second membre contraintes colonnes
     b += [1 for _ in range(N*(M-2))]
     b += [1 for _ in range(M*(N-2))]
     b.append(-P) #il faut P obstacles ! On *-1 pour avoir un <=
