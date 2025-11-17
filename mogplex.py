@@ -35,6 +35,8 @@ def solution_grille(contraintes:list[list[int]],scdmb:list[int],fonction_obj:lis
         m.addConstr(quicksum(contraintes[i][j]*x[j] for j in colonnes) <= scdmb[i], "Contrainte%d" % i)
     # Resolution
     m.optimize()
+    m.computeIIS()
+    m.write("model_iis.lp")
     solution = []
     for j in colonnes:
         solution.append(int(x[j].x))
