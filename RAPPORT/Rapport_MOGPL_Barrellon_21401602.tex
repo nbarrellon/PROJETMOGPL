@@ -620,10 +620,41 @@ Qui correspond à la grille de la figure \ref{solutiongurobi} de poids total $p=
  
  \subsection*{6) Remarques}
 Les contraintes imposées génèrent une contrainte sur le nombre maximal d'obstacle que l'on peut placer dans une grille de taille $N \times M$. \\
-En effet, le solveur annonce "\texttt{Model is infeasible}" et plante pour certaines configurations (N,M,P). 
+Ainsi, le solveur annonce "\texttt{Model is infeasible}" pour certaines configurations (N,M,P). 
 
-En effet, on doit avoir $M > \frac{2P}{M} \Leftrightarrow P < \frac{M^2}{2}$ et $N > \frac{2P}{N} \Leftrightarrow P < \frac{N^2}{2}$. \\
-J'ai intégré ces condition dans le programme Python, en restreignant les choix possibles de l'utilisateur. 
+Une de ces contraintes est aisément exprimable : on ne peut pas doit avoir plus de $\frac{2P}{M}$ obstacles sur une ligne ainsi il faut que $\frac{2P}{M} \leq M \Leftrightarrow P \leq \frac{M^2}{2}$. Par le même raisonnement sur les colonnes, on a  $P \leq \frac{N^2}{2}$. Ainsi, on trouve une condition sur $P$ : $P \leq \frac{NM}{2}$\\
+J'ai intégré cette condition dans le programme Python, en restreignant les choix possibles de l'utilisateur à $N$ inférieur à 50\% du nombre de cases de la grille. Cela fonctionne très bien pour les matrices carrées. \\
+Néanmoins, la contrainte du "101" fait chuter cette borne supérieure dans le cas des grilles rectangulaires. Hélas, je n'ai pas réussi à expliciter cette limite.\\
+Expérimentalement, Gurobi annonce que le problème est infaisable pour une grille de taille $7 \times 4$ à partir de 5 obstacles(on voit sur la figure \ref{gurobisouci} que l'ajout d'un cinquième obstacle dans la grille n'est pas possible sans violer une contrainte sachant qu'on ne peut pas mettre plus de $\frac{2*4}{4}=2$ obstacle sur une ligne et $\frac{2*4}{7} \approx 1$ sur une colonne), à partir de 15 obstacles pour une grille de $15 \times 8$.\\
+
+\begin{figure}[H]
+ \begin{center}
+  \begin{tikzpicture}[scale=0.6]
+        \matrix (m) [matrix of nodes,
+                    nodes={draw, minimum size=1cm, anchor=center},
+                    row sep=-\pgflinewidth,
+                    column sep=-\pgflinewidth]
+        {
+            $0$ & $0$ & $1$ & $0$\\
+            $0$ & $1$ & $0$ & $0$\\
+            $0$ & $0$ & $0$ & $0$\\
+            $0$ & $0$ & $0$ & $1$\\
+            $0$ & $0$ & $0$ & $0$\\
+            $0$ & $0$ & $0$ & $0$\\
+            $1$ & $0$ & $0$ & $0$\\
+        };
+
+    \end{tikzpicture}
+ \end{center}
+\caption{Solution du problème}
+\label{gurobisouci}
+ \end{figure}
+
+J'ai donc récupéré le statut de la modélisation pour :
+\begin{itemize}
+\item s'il vaut \texttt{GRB.OPTIMAL}, j'affiche la grille et le chemin trouvé ;
+\item s'il vaut \texttt{GRB.INFEASIBLE}, j'affiche un message d'erreur demandant à l'utilisateur de diminuer le nombre d'obstacles dans la grille.
+\end{itemize}
 
 
 \end{document}
