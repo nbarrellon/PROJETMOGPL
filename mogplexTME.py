@@ -7,31 +7,28 @@ from gurobipy import *
 
 
 
-nbcont=4 
-nbvar=2
+nbcont=1 
+nbvar=4
 
 # Range of plants and warehouses
 lignes = range(nbcont)
 colonnes = range(nbvar)
 
 # Matrice des contraintes
-a = [[1,0],
-     [0,1],
-     [1,2],
-     [2,1]]
+a = [[3,2,4,2]]
 
 # Second membre
-b = [8, 6, 15, 18]
+b = [5]
 
 # Coefficients de la fonction objectif
-c = [4, 10]
+c = [1,1,5,3]
 
 m = Model("mogplex")     
         
 # declaration variables de decision
 x = []
 for i in colonnes:
-    x.append(m.addVar(vtype=GRB.CONTINUOUS, lb=0, name="x%d" % (i+1)))
+    x.append(m.addVar(vtype=GRB.BINARY, lb=0, name="x%d" % (i+1)))
 
 # maj du modele pour integrer les nouvelles variables
 m.update()
