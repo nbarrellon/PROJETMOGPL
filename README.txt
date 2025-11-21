@@ -4,8 +4,9 @@
 
 Nils BARRELLON 21401602
 
-Les bibliothèques python Collections, Tkinter, Time, Gurobi, Matplotlib.pyplot, Numpy, Scipy.optimize et Scipy.stats
-doivent être installées.
+Les bibliothèques python Collections, Tkinter, Time, Gurobi doivent être installées.
+
+Les graphiques de complexité empirique ont été réalisés à l'aide des bibliothèques Numpy, Matplotlib et Scipy
 
 -> lancer main.py avec un interpreteur Python 3.10 ou supérieur
 
