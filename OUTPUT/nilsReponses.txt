@@ -1,3 +1,0 @@
-10 G a1 G a1 a3 a3 D a1 a3 a3 
-6 G a2 D a2 G a3 
-6 G a2 D a3 G a2 

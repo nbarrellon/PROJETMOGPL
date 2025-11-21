@@ -1,0 +1,3 @@
+6 D a3 a3 D a3 a3 
+-1
+12 a1 G a2 a3 G a1 a3 G a2 a3 D a3 
